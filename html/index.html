@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://sugang.pusan.ac.kr/login -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부산대학교 - 수강신청시스템</title>
+<link rel="shortcut icon" href="https://sugang.pusan.ac.kr/common/images_ses/logo.ico" type="image/x-icon">
+<link href="./pnu_files/bootstrap.min.css" rel="stylesheet">
+<link href="./pnu_files/common.css" rel="stylesheet">
+<link href="./pnu_files/owl.carousel.min.css" type="text/css" rel="stylesheet">
+<link href="./pnu_files/login.css" rel="stylesheet">
+<link href="./pnu_files/loading.css" rel="stylesheet">
+<link href="./pnu_files/layer-popup.css" rel="stylesheet">
+<link href="./pnu_files/common_dev.css" rel="stylesheet">  
+  
+<script src="./pnu_files/jquery-3.6.0.min.js"></script>
+<script src="./pnu_files/jquery-ui.min.js"></script>
+<script src="./pnu_files/script.js"></script>
+<script src="./pnu_files/jquery-ui-timepicker-addon.js"></script>
+<script src="./pnu_files/gfn_com.js"></script>
+<script src="./pnu_files/gfn_ajax.js"></script>
+<script src="./pnu_files/gfn_str.js"></script>
+<script src="./pnu_files/gfn_val.js"></script>
+<script src="./pnu_files/rsa.js"></script>
+<script src="./pnu_files/jsbn.js"></script>
+<script src="./pnu_files/prng4.js"></script>
+<script src="./pnu_files/rng.js"></script>
+ 
+
+<script type="text/javascript" language="javascript">
+	var RSAModulus = '825160c5b8e519b48cc9ec9d4f668a4b1a24173a7bd5cf3ffa3a8834fbca40d4af1bab9360537f7aa7a75c24ce6569aa5c2570d3b91308b7a7906931d1ee349fc190be24df0ea3fba7a9e0e11745dc39011a92355c2fafef3cbc543e7d85fdc3c343b46127ec03ef54864d48e6540abc827a5f8fa9d11b21bdafbaedc865f209e9e0bd7e8d99cbd3bdc4fc8bdaa771c7a85b65fe42d12b7990a654928dfec2d381add99e4652fb31cdb3a83e16d66abbcf7d72c1cfe364bea650f5c27512fd0283ea0eab18e9cf048b0c3143e3d4c77963c98610c7a617334d84f298500f5820e9f2feb125fa69c298c26831e794fa1ef7e519c6677bb9d248540c3c87d4a345';
+	var RSAExponent = '10001';
+	var _rsa = new RSAKey();
+	_rsa.setPublic(RSAModulus, RSAExponent);
+</script>
+</head>
+<body>
+	<div class="login-wrap">
+		<!--login-header-->
+		<div class="login-header">
+			<div class="container">
+				<img src="./pnu_files/logo.png" alt="logo">
+			</div>
+		</div>
+		<!--//login-header-->
+
+		<div class="login-wr">
+			<div class="container">
+				<h3 class="login-tit mb-4">
+					<span id="loginTitleTxt"></span>
+				</h3>
+				<div class="login-box">
+					<div class="form-row">
+						<div class="col-md-8" id="login-item">
+							<div class="form-group">
+								<label for="" class="col-form-label"> ID </label> <input class="form-control" id="userID" type="text" placeholder="학번">
+							</div>
+							<div class="form-group">
+								<label for="" class="col-form-label"> Password </label> <input class="form-control" id="userPW" type="password" placeholder="비밀번호" onkeyup="gfn_com_enterFunc(event,fn_login);" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<label for="" class="col-form-label"> Language </label>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="langCD1" name="langCD" class="custom-control-input" value="0001" checked=""> <label class="custom-control-label" for="langCD1">국문</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" id="langCD2" name="langCD" class="custom-control-input" value="0002"> <label class="custom-control-label" for="langCD2">English</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="input-group-btn">
+								<button id="btnLogin" class="btn btn-primary login-btn" type="button" onclick="javascript:fn_login();">로그인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--message-->
+				<div class="message-box message-box-login">
+					<div class="message-box-inner">
+						<div class="message-header">
+							<span class="deco-icon"><img src="./pnu_files/icon01.png" alt=""></span>
+						</div>
+						<div class="message-body">
+							<ul class="list list-style-1 mb-2">
+								<li id="txt00" style="display:none; color:red;"></li>
+								<li id="txt99" style="color:red;">Safari에서는 사용에 제약이 있을수 있으니 Chrome 또는 Edge를 사용해주세요.</li>
+								<li id="txt98" style="color:red;">실제 수강신청 기간 이전(테스트 등)에 입력된 수강신청자료는 예고없이 삭제됩니다.</li>
+								<li id="txt01">사용자 ID는 학번입니다.</li>
+								<li id="txt02">비밀번호는 대소문자를 구별합니다. Caps Lock을 확인바랍니다.</li>
+								<li id="txt03">신입생의 경우 최초 비밀번호는 생년월일 6자리입니다. (보안을 위해 비밀번호를 꼭 변경하시기 바랍니다.)</li>
+							</ul>
+							<a href="https://login.pusan.ac.kr/common/popup/FindPassword_step1" class="btn btn-lg btn-secondary mb-2" onclick="window.open(this.href, &#39;_blank&#39;, &#39;width=800, height=650&#39;); return false;"><i class="bi bi-bag-check mr-2" aria-hidden="true"></i><span id="btnPassChg">비밀번호 초기화</span></a>
+						</div>
+					</div>
+				</div>
+				<!--//message-->
+				<!--table-->
+				<div class="table-responsive" id="tables">
+					<table class="table table-hover">
+						<caption>대학원 수강편람</caption>
+						<colgroup>
+							<col style="">
+							<col style="">
+							<col style="">
+						</colgroup>
+						<thead>
+							<tr class="table-secondary">
+								<th scope="col" id="gridHeadTxt01">학사일정</th>
+								<th scope="col" id="gridHeadTxt02">시작일시</th>
+								<th scope="col" id="gridHeadTxt03">종료일시</th>
+							</tr>
+						</thead>
+						<tbody id="korSchd">
+							
+						</tbody>
+						<tbody id="engSchd" style="display:none;">
+							
+						</tbody>
+					</table>
+				</div>
+				<!--//table-->
+			</div>
+		</div>
+	</div>
+	<div style="margin-top : 30px;">
+		
+<footer id="footer">    
+	<div class="container">
+		<div class="row justify-content-center justify-content-lg-start">
+			<div class="col-lg-6 mb-2">
+				<ul class="list link-list">
+					<li><a class="focus" href="https://pusan.ac.kr/kor/CMS/Board/Board.do?mCode=MN186" target="_blank">개인정보처리방침</a></li>
+					<li><a href="https://pusan.ac.kr/" target="_blank">부산대학교 홈페이지</a></li>
+					<li><a href="https://onestop.pusan.ac.kr/" target="_blank">학생지원시스템</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-6 text-lg-right">
+			</div>
+        </div>
+        <div class="row">
+			<div class="col">
+                <small class="copyright">Copyright 2022. Pusan National University All rights reserved.</small>
+			</div>
+	   </div>
+	</div>
+</footer>
+<script type="text/javascript">
+
+		if(!gfn_com_isEmptyObject(scwin.menuInfo)) {
+			var header_item1 = $(".container .col-main .sec-1 .header-item").eq(0);
+			if(gfn_com_parseNull(header_item1)  != ""){
+				var sec_title_tag ='<h2 class="sec-title">'+scwin.menuInfo.MENU_KOR_NM+'</h2>';
+				header_item1.html(sec_title_tag);
+			}
+			
+	
+		}
+
+ 
+</script>
+	</div>
+	
+
+<div class="mask novisible"></div>
+<!-- alert 팝업 -->
+<div class="layer-popup s400 alert_popup" draggable="true">
+	<div class="pop_header">
+		<img src="./pnu_files/ico_pop_monitor.png">알림 <a href="https://sugang.pusan.ac.kr/login#" class="popup_close modal_alert_close" tabindex="0"><img src="./pnu_files/icon_pop_close.png"></a>
+	</div>
+	<div class="pop_container">
+		<div class="txt_dialog message"></div>
+		<p class="foot_btn">
+			<a href="https://sugang.pusan.ac.kr/login#header" class="btn_n bg_red modal_alert_confirm">확인</a>
+			<i class="linkEndAppend" tabindex="0"></i>
+		</p>
+	</div>
+</div>
+<!-- confirm 팝업 -->
+<div class="layer-popup s400 confirm_popup" draggable="true">
+	<div class="pop_header">
+		<img src="./pnu_files/ico_pop_monitor.png">확인 <a class="popup_close modal_alert_close" tabindex="0"><img src="./pnu_files/icon_pop_close.png"></a>
+	</div>
+	<div class="pop_container">
+		<div class="txt_dialog message"></div>
+		<p class="foot_btn">
+			<a href="https://sugang.pusan.ac.kr/login#header" class="btn_n bg_red modal_alert_confirm">확인</a> <a href="https://sugang.pusan.ac.kr/login#" class="btn_n bg_gray modal_alert_close">취소</a>
+			<i class="linkEndAppend" tabindex="0"></i>
+		</p>
+	</div>
+</div>
+	<!-- Scripts -->
+	<script type="text/javascript" language="javascript">
+	LayerPopup = {
+		target : {
+			alert : $(".layer-popup.alert_popup"),
+			confirm : $(".layer-popup.confirm_popup"),
+			progress : $(".layer-popup.status_progress_popup")
+		},
+		show : function(target, mode, msg) {
+			if ($(".modal_bg").length == 0) {
+				var cloneObj;
+				if (mode == "alert")
+					cloneObj = LayerPopup.target.alert.clone();
+				if (mode == "confirm")
+					cloneObj = LayerPopup.target.confirm.clone();
+				if (mode == "progress")
+					cloneObj = LayerPopup.target.progress.clone();
+
+				target.empty().append(cloneObj.html());
+
+				if (msg) {
+					target.find(".message").html(msg);
+				}
+
+				var oHeight = target.height();
+				var wHeight = $(window).height();
+				var oWidth = target.width();
+				var zIndex = gfn_com_maxZindex(1);
+
+				target.css({
+					top : ((wHeight - oHeight) / 2) - 200,
+					marginLeft : (-(oWidth / 2)),
+					visibility : 'visible',
+					zIndex : (parseInt(zIndex) + 3)
+				});
+				$('body').append(
+						'<div class="modal_bg" style="z-index:'
+								+ (parseInt(zIndex) + 2) + '"></div>');
+
+				target.draggable();
+
+				$('.modal_alert_close', target).click(function(e) {
+					e.preventDefault();
+					$('.modal_bg:last').remove();
+					$(this).parents('.layer-popup').css({
+						top : '-9999px',
+						visibility : 'hidden'
+					});
+				});
+			}
+		},
+		alert : function(msg, callback) {
+			LayerPopup.show(LayerPopup.target.alert, "alert", msg);
+
+			if (typeof callback != 'undefined' && callback) {
+				$('.modal_alert_confirm', LayerPopup.target.alert).click(
+						function(e) {
+							e.preventDefault();
+							$('.modal_bg:last').remove();
+							$(this).parents('.layer-popup').css({
+								top : '-9999px',
+								visibility : 'hidden'
+							});
+							if (typeof callback == 'function') {
+								callback();
+							} else if (typeof callback == 'object' && $(callback).length > 0) {
+								fn_focusScroll(callback);
+							}
+							$(this).unbind("click");
+						});
+			} else {
+				$('.modal_alert_confirm', LayerPopup.target.alert).click(
+						function(e) {
+							e.preventDefault();
+							$('.modal_bg:last').remove();
+							$(this).parents('.layer-popup').css({
+								top : '-9999px',
+								visibility : 'hidden'
+							});
+						});
+			}
+		},
+		confirm : function(msg, conf, canc, callback) {
+			if (conf != null && conf != undefined) {
+				$(".confirm_popup .foot_btn .modal_alert_confirm").text(conf);
+			} else {
+				$(".confirm_popup .foot_btn .modal_alert_confirm").text("확인");
+			}
+			if (canc != null && canc != undefined) {
+				$(".confirm_popup .foot_btn .modal_alert_close").text(canc);
+			} else {
+				$(".confirm_popup .foot_btn .modal_alert_close").text("취소");
+			}
+
+			LayerPopup.show(LayerPopup.target.confirm, "confirm", msg);
+
+			$('.modal_alert_confirm', LayerPopup.target.confirm)
+					.click(
+							function(e) {
+								e.preventDefault();
+								$('.modal_bg:last').remove();
+								$(this).parents('.layer-popup').css({
+									top : '-9999px',
+									visibility : 'hidden'
+								});
+
+								if (typeof callback == 'function') {
+									callback(true);
+								}
+								$(this).unbind("click");
+							});
+
+			$('.modal_alert_close', LayerPopup.target.confirm).click(
+					function(e) {
+						if (typeof callback == 'function') {
+							callback(false);
+						}
+						
+						$(this).unbind("click");
+					});
+		},
+		progress : function(msg, callback) {
+			LayerPopup.show(LayerPopup.target.progress, "progress", msg);
+
+			if (typeof callback != 'undefined' && callback) {
+				$('.modal_progress_close', LayerPopup.target.progress)
+						.click(
+								function(e) {
+									e.preventDefault();
+									$('.modal_bg:last-child').remove();
+									$(this).parents('.layer-popup').css({
+										top : '-9999px',
+										visibility : 'hidden'
+									});
+
+									if (typeof callback == 'function') {
+										callback();
+									} else {
+										if (callback) {
+											if (callback.indexOf("(") == -1) {
+												(new Function(callback + "()"))
+														();
+											} else {
+												(new Function(callback))();
+											}
+										} else {
+											if (typeof (confirmAfter) == "function") {
+												confirmAfter();
+											}
+										}
+									}
+
+									$(this).unbind("click");
+								});
+			} else {
+				$('.modal_progress_close', LayerPopup.target.progress).click(
+						function(e) {
+							e.preventDefault();
+							$('.modal_bg:last').remove();
+							$(this).parents('.layer-popup').css({
+								top : '-9999px',
+								visibility : 'hidden'
+							});
+						});
+			}
+		},
+		// popup close
+		closeProgress : function() {
+			$('.modal_progress_close', LayerPopup.target.progress).click();
+		}
+	}
+	
+	// 아이디, 비밀번호 입력후 엔터로 로그인버튼 클릭
+	$('#userID').keyup(function(e) {
+		if(e.keyCode == 13) {
+			$('#btnLogin').click();
+		}
+	});
+	$('#userPW').keyup(function(e) {
+		if(e.keyCode == 13) {
+			$('#btnLogin').click();
+		}
+	});
+	
+	if('' != "") {
+		if('' == 1) {
+			$("#langCD1").click();
+		} else if ('' == 2) {
+			$("#langCD2").click();
+		}
+		
+		var value = $("input[name='langCD']:checked").val(); 
+		if(value == '0001') {
+			// 로그인 및 안내사항
+			$('#userID').attr('placeholder','학번');
+			$('#userPW').attr('placeholder','비밀번호');
+			$('#txt00').hide();
+			$('#txt00').text('');
+			$('#txt01').text('사용자 ID는 학번입니다.');
+			$('#txt02').text('비밀번호는 대소문자를 구별합니다. Caps Lock을 확인바랍니다.');
+			$('#txt03').text('신입생의 경우 최초 비밀번호는 생년월일 6자리입니다. (보안을 위해 비밀번호를 꼭 변경하시기 바랍니다.)');
+			$('#gradHref').text('대학원 수강신청 참고사항');
+			$('#btnLogin').text('로그인');
+			$('#btnPassChg').text('비밀번호 초기화');
+			
+			// 학사일정 그리드
+			$('#gridHeadTxt01').text('학사일정');
+			$('#gridHeadTxt02').text('시작일시');
+			$('#gridHeadTxt03').text('종료일시');
+			$('#korSchd').show();
+			$('#engSchd').hide();
+			
+			// 헤더
+			if('' == '0010') {
+				$('#loginTitleTxt').text('' + '학년도 1학기 수강신청')
+			} else if('' == '0011') {
+				$('#loginTitleTxt').text('' + '학년도 여름계절수업 수강신청')
+			} else if('' == '0020') {
+				$('#loginTitleTxt').text('' + '학년도 2학기 수강신청')
+			} else if('' == '0021') {
+				$('#loginTitleTxt').text('' + '학년도 겨울계절수업 수강신청')
+			}
+		} else if (value == '0002') {
+			// 로그인 및 안내사항
+			$('#userID').attr('placeholder','Student ID');
+			$('#userPW').attr('placeholder','Password');
+			$('#txt00').show();
+			$('#txt00').text('Students on leave of absence can log in after applying for re-enrollment.');
+			$('#txt01').text('Your user ID is your student number.');
+			$('#txt02').text('The password is case-sensitive. Please check "Caps Lock" key.');
+			$('#txt03').text('For new students, the initial password is 6 digits of your date of birth. (For security, be sure to change your password.)');
+			$('#privacyHref').text('Privacy Policy');
+			$('#btnLogin').text('Login');
+			$('#btnPassChg').text('Reset Password');
+			
+			// 학사일정 그리드
+			$('#gridHeadTxt01').text('Academic Calendar');
+			$('#gridHeadTxt02').text('Start Date');
+			$('#gridHeadTxt03').text('Close Date');
+			$('#korSchd').hide();
+			$('#engSchd').show();
+
+			// 헤더
+			if('' == '0010') {
+				$('#loginTitleTxt').text('Course Registration of 1st Semester, ')
+			} else if('' == '0011') {
+				$('#loginTitleTxt').text('Course Registration of Summer Semester Course, ')
+			} else if('' == '0020') {
+				$('#loginTitleTxt').text('Course Registration of 2nd Semester, ')
+			} else if('' == '0021') {
+				$('#loginTitleTxt').text('Course Registration of Winter Semester Course, ')
+			}
+		}
+	}
+
+	// 언어구분 변경시 이벤트
+	$("input[name='langCD']").change(function(){
+		var value = $("input[name='langCD']:checked").val(); 
+		
+		if(value == '0001') {
+			// 로그인 및 안내사항
+			$('#userID').attr('placeholder','학번');
+			$('#userPW').attr('placeholder','비밀번호');
+			$('#txt00').hide();
+			$('#txt00').text('');
+			$('#txt01').text('사용자 ID는 학번입니다.');
+			$('#txt02').text('비밀번호는 대소문자를 구별합니다. Caps Lock을 확인바랍니다.');
+			$('#txt03').text('신입생의 경우 최초 비밀번호는 생년월일 6자리입니다. (보안을 위해 비밀번호를 꼭 변경하시기 바랍니다.)');
+			$('#privacyHref').text('개인정보처리방침');
+			$('#btnLogin').text('로그인');
+			$('#btnPassChg').text('비밀번호 초기화');
+			
+			// 학사일정 그리드
+			$('#gridHeadTxt01').text('학사일정');
+			$('#gridHeadTxt02').text('시작일시');
+			$('#gridHeadTxt03').text('종료일시');
+			$('#korSchd').show();
+			$('#engSchd').hide();
+
+			// 헤더
+			if('' == '0010') {
+				$('#loginTitleTxt').text('' + '학년도 1학기 수강신청')
+			} else if('' == '0011') {
+				$('#loginTitleTxt').text('' + '학년도 여름계절수업 수강신청')
+			} else if('' == '0020') {
+				$('#loginTitleTxt').text('' + '학년도 2학기 수강신청')
+			} else if('' == '0021') {
+				$('#loginTitleTxt').text('' + '학년도 겨울계절수업 수강신청')
+			}
+		} else if (value == '0002') {
+			// 로그인 및 안내사항
+			$('#userID').attr('placeholder','Student ID');
+			$('#userPW').attr('placeholder','Password');
+			$('#txt00').show();
+			$('#txt00').text('Students on leave of absence can log in after applying for re-enrollment.');
+			$('#txt01').text('Your user ID is your student number.');
+			$('#txt02').text('The password is case-sensitive. Please check "Caps Lock" key.');
+			$('#txt03').text('For new students, the initial password is 6 digits of your date of birth. (For security, be sure to change your password.)');
+			$('#privacyHref').text('Privacy Policy');
+			$('#btnLogin').text('Login');
+			$('#btnPassChg').text('Reset Password');
+			
+			// 학사일정 그리드
+			$('#gridHeadTxt01').text('Academic Calendar');
+			$('#gridHeadTxt02').text('Start Date');
+			$('#gridHeadTxt03').text('Close Date');
+			$('#korSchd').hide();
+			$('#engSchd').show();
+			
+			// 헤더
+			if('' == '0010') {
+				$('#loginTitleTxt').text('Course Registration of 1st Semester, ')
+			} else if('' == '0011') {
+				$('#loginTitleTxt').text('Course Registration of Summer Semester Course, ')
+			} else if('' == '0020') {
+				$('#loginTitleTxt').text('Course Registration of 2nd Semester, ')
+			} else if('' == '0021') {
+				$('#loginTitleTxt').text('Course Registration of Winter Semester Course, ')
+			}
+		}
+	});
+</script>
+
+	<script>
+		if (gfn_str_parseNull('') != "") {
+			alert('');
+		}
+		if (gfn_str_parseNull('') != "") {
+			alert('');
+		}
+
+		$(document).ready(function() {
+			$('img[src$=".svg"]').each(function() {
+				var img = jQuery(this);
+				var imgURL = img.attr('src');
+				var attributes = img.prop("attributes");
+
+				$.get(imgURL, function(data) {
+					var svg = $(data).find('svg');
+
+					svg = svg.removeAttr('xmlns:a');
+
+					$.each(attributes, function() {
+						svg.attr(this.name, this.value);
+					});
+
+					img.replaceWith(svg);
+				}, 'xml');
+			});
+
+			var value = $("input[name='langCD']:checked").val(); 
+			if(value == '0001') {
+				if('' == '0010') {
+					$('#loginTitleTxt').text('' + '학년도 1학기 수강신청')
+				} else if('' == '0011') {
+					$('#loginTitleTxt').text('' + '학년도 여름계절수업 수강신청')
+				} else if('' == '0020') {
+					$('#loginTitleTxt').text('' + '학년도 2학기 수강신청')
+				} else if('' == '0021') {
+					$('#loginTitleTxt').text('' + '학년도 겨울계절수업 수강신청')
+				}
+			} else {
+				if('' == '0010') {
+					$('#loginTitleTxt').text('Course Registration of 1st Semester, ')
+				} else if('' == '0011') {
+					$('#loginTitleTxt').text('Course Registration of Summer Semester Course, ')
+				} else if('' == '0020') {
+					$('#loginTitleTxt').text('Course Registration of 2nd Semester, ')
+				} else if('' == '0021') {
+					$('#loginTitleTxt').text('Course Registration of Winter Semester Course, ')
+				}
+			}
+		});
+	</script>
+	<script>
+		var fn_login = function() {
+
+			gCsrfTokenHeaderName = 'X-CSRF-TOKEN';
+			gCsrfTokenParameterName = '_csrf';
+			gCsrfToken = '21dd2980-dfcc-4730-85b0-b30fd37efaca';
+
+			//document.cookie = "MENU_CD=";
+			
+			var param = gfn_com_inputdata($("#login-item"));
+			if (!fn_login_validate(param)) return false;
+
+			var form = $('<form method="POST" action="/login/loginCheck">');
+			
+			form.append('<input type="hidden" name="USER_ID" value="'+ fn_ajax_enc_param($('#userID').val()) + '">');
+			form.append('<input type="hidden" name="PWD" value="'+ fn_ajax_enc_param($('#userPW').val()) + '">');
+			
+			let langCD = "";
+			
+			if(gfn_str_parseNull($('input[name="langCD"]:checked').val()) == "") langCD = "0001";
+			else langCD = $('input[name="langCD"]:checked').val();
+			
+			form.append('<input type="hidden" name="LANG_CD" value="'+ fn_ajax_enc_param(langCD) + '">');
+			form.append('<input type="hidden" name="'+gCsrfTokenParameterName+'" value="'+gCsrfToken+'" />');
+			
+			$('body').append(form);
+			form.submit().remove();
+		}
+		
+		var fn_login_validate = function(param) {
+			var rtnValue = true;
+			rtnValue = gfn_val_validateDataMap(param, [{
+				"id" : "userID",
+				"name" : "학번",
+				"notNull" : true,
+			},{
+				"id" : "userPW",
+				"name" : "비밀번호",
+				"notNull" : true,
+			}
+			]); 
+			if (!rtnValue) return rtnValue;
+
+			return rtnValue;
+		}
+	</script>
+	 
+	
+
+	<!-- /END Scripts -->
+
+</body></html>
