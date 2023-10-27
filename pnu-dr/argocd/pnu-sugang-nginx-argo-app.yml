@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pnu-sugang-nginx
+  namespace: argocd
+spec:
+  destination:
+    namespace: deploy
+    server: https://rcmaster1:6443
+  project: default
+  source:
+    path: dev
+    repoURL: http://gitea.gitea:3000/gitea/pnu-sugang-nginx-deploy
+    targetRevision: kust
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

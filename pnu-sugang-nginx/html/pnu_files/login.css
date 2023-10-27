@@ -1,0 +1,126 @@
+@charset "utf-8";
+.login-wrap {
+	position:relative ;
+}
+.login-header {
+	padding: 15px 0;
+	background:#043d92;
+	text-align: center;	
+	margin: 0 0 30px;
+}
+.login-wrap .container {
+	max-width: 1000px !important;
+}
+.login-wr {
+	position: relative;
+}
+.login-wr .login-tit {
+	font-size: 25px;
+	color:#333;
+	text-align: center;
+	font-weight: 700;
+}
+.login-wr .login-tit .stit {
+	display: block;
+	font-size:23px;
+	font-weight: 500;
+}
+.login-box {
+	border-radius: 3px;
+	border:1px solid #e6eaee;
+	padding: 15px;
+	margin: 0 auto 30px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.login-item .form-group {
+	margin-bottom: 10px;
+}
+.login-box .form-control {
+    height: 40px;
+    font-size: 15px;
+		display: inline-block;
+    width: 69%;
+}
+.login-btn {
+	width: 100%;
+	height: 60px;
+	background: #043d92;
+	border-color: #043d92;
+}
+.login-wr .col-form-label {
+	width: 70px;
+	text-align:right;
+	color:#333;
+}
+.login-wr .list {
+	padding-left: 0;;
+}
+@media (min-width: 360px) {
+	.login-wr .col-form-label {
+		margin-right: 8px;
+	}
+	.login-box {
+		padding: 30px;
+	}
+}
+@media (min-width: 576px) {
+	.login-wr .col-form-label {
+		margin-right: 15px;
+	}
+	.login-box {
+		max-width: 600px;
+		padding: 50px 60px 30px;
+	}
+}
+@media (min-width: 768px) {
+	.login-header {
+		margin: 0 0 60px;
+	}
+	.login-wr .login-tit {
+		font-size: 30px;
+		font-weight: 500;
+	}
+	.login-wr .login-tit .stit {
+		font-size:27px;
+	}
+	.login-btn {
+		-ms-flex: 0 0 170px;
+		flex: 0 0 170px;
+		max-width: 170px;
+		height: 95px;
+	}
+}
+
+/* Message Box*/
+.message-box.message-box-login {
+	padding: 0;
+	border-top: 2px solid #005baa;
+	background: none;
+}
+.message-box.message-box-login .message-box-inner {
+	display: flex;	
+	padding: 10px;
+	background-color: #f4f5f9;
+}
+.message-box.message-box-login .message-header {
+	display: none;
+}
+.message-box.message-box-login .message-body {
+	flex: 1;
+	padding: 10px;
+}
+
+@media (min-width: 576px) {
+	.message-box.message-box-login .message-box-inner {
+		padding:40px 0 20px
+	}
+	.message-box.message-box-login .message-header {
+		display: block;
+		margin: 0 50px;
+	}
+	.message-box.message-box-login .message-body {
+		padding: 10px;
+	}
+}
+
+/* table*/

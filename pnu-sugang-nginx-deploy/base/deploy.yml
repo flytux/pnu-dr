@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pnu-sugang-nginx
+spec:
+  selector:
+    matchLabels:
+      app: pnu-sugang-nginx
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pnu-sugang-nginx
+    spec:
+      containers:
+        - name: pnu-sugang-nginx
+          image: 192.168.5.31:30005/pnu-sugang-nginx:init
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Asia/Seoul

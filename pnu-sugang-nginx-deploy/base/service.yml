@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pnu-sugang-nginx
+  labels:
+    app: pnu-sugang-nginx
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30088
+      name: http-port
+  type: NodePort
+  selector:
+    app: pnu-sugang-nginx

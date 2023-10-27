@@ -1,0 +1,79 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: svn
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    workload.user.cattle.io/workloadselector: apps.deployment-svn-svn-server
+    svc: svn-server
+  name: svn-server
+  namespace: svn
+spec:
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-svn-svn-server
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-svn-svn-server
+        svc: svn-server
+      namespace: svn
+    spec:
+      containers:
+      - image: elleflorio/svn-server
+        imagePullPolicy: Always
+        name: svn
+        ports:
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        - containerPort: 3690
+          name: svc
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /home/svn
+          name: svn-home
+      volumes:
+      - name: svn-home
+        persistentVolumeClaim:
+          claimName: svn-home
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svn-server
+  namespace: svn
+spec:
+  ports:
+  - name: web
+    nodePort: 32032
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: svc
+    nodePort: 30690
+    port: 3690
+    protocol: TCP
+    targetPort: 3690
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-svn-svn-server
+    svc: svn-server
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: svn-home
+  namespace: svn
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
+  volumeMode: Filesystem

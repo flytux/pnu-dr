@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pnu-sugang-nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sugang-dr.pnu.ac.kr
+    http:
+      paths:
+      - backend:
+          service:
+            name: pnu-sugang-nginx
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
