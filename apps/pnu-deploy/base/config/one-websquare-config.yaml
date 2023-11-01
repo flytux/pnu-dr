@@ -1,0 +1,362 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: one-websquare-config-xml
+data:
+  config.xml: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <WebSquare>
+        <allValue value="all" />
+        <docType value="standard" />
+        <debug value="false" errorConsole="false" />
+        <debugKey value="" />
+        <language value="ko" />
+        <exceptionHandler value="websquare" />
+        <debugMenu value="block" ></debugMenu><!-- use / block -->
+        <welcome-file>/html/login.xml</welcome-file>
+        <forcedValueSetting value="true" />
+        <processMsgHeight value="81" />
+        <processMsgWidth value="295" />
+        <processMsgBackground value="true" backgroundColor="#112233" />
+        <byteCheckEncoding value="UTF-8" />
+        <initScript value="false" />
+        <postScript value="false" />
+        <clearMemory value="true" />
+        <stylesheet value="stylesheet_ext.css" import="link" enable="true"
+            earlyImportList="/common/css/bootstrap.min.css,/common/css/owl.carousel.min.css,/common/css/common_ses.css,/common/css/style_ses.css,/common/css/portlet.css,/common/css/type01.css,/common/css/type-color.css,/common/css/loading.css,/common/css/jquery.mCustomScrollbar.min.css,/common/css/common_ses_dev.css" />
+        <engine>
+            <!-- 성적 공통Script (PNU) -->
+            <module src="/common/js/gfn/sj/sj_common.js" />        
+            <!-- 학적 공통Script (PNU) -->
+            <module src="/common/js/gfn/hj/hj_common.js" />        
+            <!-- 교육과정 공통Script (PNU) -->
+            <module src="/common/js/gfn/educ/educ_common.js" />        
+            <!-- 공개강좌 공통Script (PNU) -->
+            <module src="/common/js/gfn/oc/oc_common.js" />        
+            <!-- 취업통계 공통Script (PNU) -->
+            <module src="/common/js/gfn/scm/scm_common.js" />        
+            <!-- 통학버스 공통Script (PNU) -->
+            <module src="/common/js/gfn/bus/bus_common.js" />
+            <!-- 장학 공통Script (PNU) -->
+            <module src="/common/js/gfn/jh/jh_common.js" />
+            <!-- 강의시수 공통Script (PNU) -->
+            <module src="/common/js/gfn/ks/ks_common.js" />        
+            <!-- 수업 공통Script (PNU) -->
+            <module src="/common/js/gfn/cls/cls_common.js" />        
+            <!-- 교육인증 공통Script (PNU) -->
+            <module src="/common/js/gfn/ae/ae_common.js" />
+            <!-- 교육통계 공통Script (PNU) -->
+            <module src="/common/js/gfn/kt/kt_common.js" />
+            
+            <module src="/common/js/etc/jquery.form.js" />
+            <module src="/common/js/etc/bootstrap.min.js" />
+            <module src="/common/js/etc/jquery-3.3.1.min.js" />
+            <module src="/common/js/etc/jquery-ui.min.js" />
+            <module src="/common/js/common/global.js" />
+            <module src="/common/js/rsa/rsa.js" />
+            <module src="/common/js/rsa/jsbn.js" />
+            <module src="/common/js/rsa/prng4.js" />
+            <module src="/common/js/rsa/rng.js" />
+            <module src="/common/js/common/common.js" />
+            <module src="/common/js/etc/crypto.js" />
+            <module src="/common/js/etc/encoding.js" />
+            <module src="/common/js/moment/moment.min.js" />        
+            <module src="/common/js/gfn/gfn_ajax.js" />
+            <module src="/common/js/gfn/gfn_api.js" />
+            <module src="/common/js/gfn/gfn_com.js" />
+            <module src="/common/js/gfn/gfn_date.js" />
+            <module src="/common/js/gfn/gfn_json.js" />
+            <module src="/common/js/gfn/gfn_num.js" />
+            <module src="/common/js/gfn/gfn_portal.js" />
+            <module src="/common/js/gfn/gfn_str.js" />
+            <module src="/common/js/gfn/gfn_ums.js" />
+            <module src="/common/js/gfn/gfn_val.js" />
+            <module src="/common/js/gfn/gfn_xml.js" />
+            <module src="/common/js/etc/jquery.mCustomScrollbar.min.js" />
+            <module src="/common/js/etc/jquery.mousewheel.min.js" />  
+            
+        </engine>
+        <udc>
+            <requires>
+
+            </requires>
+        </udc>
+        <ModelUtil>
+            <copyChildrenNodes refresh="false" />
+        </ModelUtil>
+        <preProcessor>
+            <systemPreProcessor value="" />
+            <businessPreProcessor value="" />
+        </preProcessor>
+        <workflow>
+            <processMsg value="" />
+        </workflow>
+        <submission>
+            <processMsg value="" />
+            <showSubmissionTime value="true" />
+            <preSubmitFunction value="common.sbm_preSubmission" />
+            <callbackSubmitFunction value="common.sbm_defCallbackSubmission" />
+            <submitErrorHandler value="common.sbm_errorHandler" mode="only" />
+            <requestID value="" />
+        </submission>
+        <visibleHelper>
+            <targetHandler value="" />
+        </visibleHelper>
+        <spa>
+            <onpageunload value="" />
+            <variable value="scwin,scvar" clone="common,sj_common,hj_common,scm_common, ks_common, cls_common,ae_common" />
+            <scriptCache value="true" />
+            <autoReload value="true" count="50" />
+        </spa>
+        <wframe>
+            <scope value="true"/>
+            <mode value="async"/>        
+            <initScript value="true">
+            <![CDATA[
+                if(!$p.isPopup()) {
+                    common.initPageLoad();
+                } else {
+                    common.getPopParam();
+                }
+            ]]>
+            </initScript>
+            <postScript value="false"><![CDATA[
+                
+            ]]>
+            </postScript>
+        </wframe>
+        <pageInherit>
+            <scopeVariable value="scwin,scvar" />
+            <scopeFunction value="$w" />
+        </pageInherit>
+        <scriptLoading merge="true" />cd /
+        <checkUpdate enable="false" interval="60000" mode="client" serverUrl="" />
+        <!-- cache 
+        <engineCache compression="true" enable="true" postfix="day" />
+        <userAgentPattern XPathParser="Edge" />
+        <preserveWhiteSpace value="false" />
+        <environment mode="production" cache="cache" postfix="day" />
+        -->
+        <!-- nocache -->  
+        <engineCache compression="true" enable="false" postfix="month" />
+        <userAgentPattern XPathParser="Edge" />
+        <preserveWhiteSpace value="false" />
+        <environment mode="production" cache="nocache" />
+        
+        <script postfix="environment" />
+        <emptyTag value="area,base,basefont,br,col,frame,hr,img,input,link,meta,param" />
+        <engineLoadingMode ie="0" moz="0" opera="0" android="0" iphone="0" chrome="0" safari="0" />
+        <editor>
+            <version value="4.14.0" />
+        </editor>
+        <dataList>
+            <removeDummyRowStatus value="true" />
+            <removedDataMatch value="true" />
+        </dataList>
+        <grid>
+            <escape value="false"/>
+            <rowNumStatusUniqueId value="true" />
+            <collectGarbage value="none" />
+            <fastScroll value="false" />
+            <dataType>
+                <date displayFormat="yyyy-MM-dd" />
+            </dataType>
+            <editType value="focus" />
+            <rowNumBackgroundColor value="#e5eff7" />
+            <selectedRowColor value="#b3e7de" />
+            <oddEvenColorDisplay value="true" />
+            <evenRowBackgroundColor value="#efefef" />
+            <oddRowBackgroundColor value="#ffffff" />
+            <rowMouseOver value="true" />
+            <rowMouseOverColor value="#edf3fb" />
+            <tooltipStyle value="padding:1px 3px 0;line-height:14px;font-size:12px;border:0;background-color:#5c85d4;color:#fff" />
+            <noResultMessageVisible value="true" />
+            <noResultMessage value="데이터가 없음" />
+            <noResultMessageStyle
+                value="position:absolute; left:40%; width:20%; top:40%; border:1px solid #b3b3b3; color:#383d41; font-size:12px; padding:5px; text-align:center; background:#fafafa" />
+            <pasteMessage value="데이터 붙이는 중" />
+            <getColumnVisible useRealColIndex="true" />
+            <colIdToColIndex value="true" />
+            <column inputType="text">
+                <escape value="false"/>
+                <editType value="select" />
+            </column>
+            <column inputType="select">
+                <escape value="false"/>
+                <chooseOptionLabel value="전체" />
+            </column>
+            <column inputType="calendar">
+                <dataType value="date" />
+                <displayFormat valueType="yearMonth" value="yyyy-MM" />
+                <displayFormat valueType="yearMonthDate" value="yyyy-MM-dd" />
+                <displayFormat valueType="yearMonthDateTime" value="yyyy-MM-dd HH:mm" />
+                <displayFormat valueType="yearMonthDateTimeSec" value="yyyy-MM-dd HH:mm:SS" />
+            </column>
+        </grid>
+        <gridView>
+            <escape value="false"/>
+            <rowNumStatusUniqueId value="true" />
+            <preventMultipleClick value="true" />
+            <collectGarbage value="none" />
+            <fastScroll value="false" />
+            <dataType>
+                <date displayFormat="yyyy-MM-dd" />
+            </dataType>
+            <editType value="focus" />
+            <rowNumBackgroundColor value="#e5eff7" />
+            <selectedRowColor value="#b3e7de" />
+            <oddEvenColorDisplay value="true" />
+            <evenRowBackgroundColor value="#efefef" />
+            <oddRowBackgroundColor value="#ffffff" />
+            <rowMouseOver value="true" />
+            <rowMouseOverColor value="#edf3fb" />
+            <tooltipStyle value="padding:1px 3px 0;line-height:14px;font-size:12px;border:0;background-color:#5c85d4;color:#fff" />
+            <noResultMessageVisible value="true" />
+            <noResultMessage value="조회된 데이터가 없습니다." />
+            <noResultMessageStyle value="position:absolute; left:0%; width:100%; top:50%;  font-size:12px; padding:5px; text-align:center; " />
+            <pasteMessage value="데이터 붙이는 중" />
+            <getColumnVisible useRealColIndex="true" />
+            <colIdToColIndex value="true" />
+            <column inputType="text">
+                <editType value="select" />
+                <escape value="false"/>
+            </column>
+            <column inputType="textarea">            
+                <escape value="false"/>
+            </column>
+            <column inputType="select">
+                <chooseOptionLabel value="전체" />
+                <escape value="false"/>
+                <viewType value="icon"/>
+                <groupbyDepthStrLabel value="true"/>
+            </column>
+            <column inputType="calendar">
+                <dataType value="date" />
+                <displayFormat valueType="yearMonth" value="yyyy-MM" />
+                <displayFormat valueType="yearMonthDate" value="yyyy-MM-dd" />
+                <displayFormat valueType="yearMonthDateTime" value="yyyy-MM-dd HH:mm" />
+                <displayFormat valueType="yearMonthDateTimeSec" value="yyyy-MM-dd HH:mm:SS" />
+            </column>
+            <focusMode value="row" />
+
+            <contextMenu value="false" />
+            <sortEvent value="onclick" />
+            <sortable value="true" />
+            <editModeEvent value="ondblclick" />
+
+            <keepDefaultColumnWidth value="true" />
+            <rowNumVisible value="true" />
+            <rowNumWidth value="50" />
+            <rowNumHeaderValue value="No" />
+            <rowStatusVisible value="true" />
+            <rowStatusHeaderValue value="상태" />
+            <rowStatusWidth value="40" />
+            <keyMoveEditMode value="true" />
+            <tooltipDisplay value="true"/>
+
+            <groupbyZoneMessage value="그룹정렬을 하시고자 하는 컬럼헤더를 여기에 드래그 앤 드랍 하십시오." /> 
+            <groupbyZone value="true" /> 
+            <useFilterList value="true" />  
+            <groupbyZoneHeight value="40%" /> 
+            <groupbyMaxCount value="10" /> 
+            <groupbyDisplayRowIndex value="true" />
+            <filterBoxvisibleRowNum value="10" />
+
+            <fixedColumnScrollHidden value="false" />
+            
+            <useFilterSearch value="true" />
+            <useCtrlKey value="false" />
+            <useShiftKey value="false" />
+            <header>
+                <column inputType="text">
+                    <useFilter value="true" />
+                </column>
+            </header>
+        </gridView>
+        <inputCalendar>
+            <validCheck value="false" />
+            <dataType value="date" />
+            <delimiter value="-" />
+            <mask value="MM-dd-yyyy" />
+            <delimiterLocaleKey value="IC_Delimiter" />
+            <maskLocaleKey value="IC_Mask" />
+            <calendarImage value="" />
+            <calendarImageOver value="" />
+            <invalidMessageFunc value="valLib.validateMsg" />
+            <minYear value="1900" />
+            <maxYear value="2100" />
+            <style value="width:200px;"/>
+        </inputCalendar>
+        <input>
+            <escape value="false"/>
+            <focusStyle value="" />
+            <dateMask value="yyyy-MM-dd" />
+            <timeMask value="HH:mm" />
+            <focusCalcSize value="false" />
+            <invalidMessageFunc value="valLib.validateMsg" />
+        </input>
+        <calendar>
+            <minYear value="1900" />
+            <maxYear value="2100" />
+        </calendar>
+        <spinner>
+            <min value="1900" />
+            <max value="2100" />
+        </spinner>
+        <selectbox>
+            <escape value="false"/>
+            <visibleRowNum value="5" />
+            <invalidMessageFunc value="valLib.validateMsg" />
+            <renderType value="select" />
+            <chooseOptionLabel value="전체" />
+        </selectbox>
+        <treeview>
+            <escape value="false"/>
+            <tooltipGroupClass value="false" />
+        </treeview>
+        <textarea>
+            <useConfig value="true" />
+            <invalidMessageFunc value="valLib.validateMsg" />
+        </textarea>
+        <div>
+            <escape value="false"/>
+        </div>
+        <label>
+            <escape value="false"/>
+        </label>
+        <textbox>
+            <escape value="false"/>
+        </textbox>
+        <span>
+            <escape value="false"/>
+        </span>
+        <trigger>
+            <preventMultipleClick value="true" />
+        </trigger>
+        <anchor>
+            <escape value="false"/>
+            <preventMultipleClick value="true" />
+        </anchor>
+        <windowContainer>
+            <tooltipGroupClass value="false" />
+        </windowContainer>
+        <pageList></pageList>
+        <style>
+            <removeDefaultClass value="true" />
+        </style>
+        <body>
+            <toolTipSec value="1" />
+        </body>
+        <fusionchart></fusionchart>
+        <languagePack useLanguagePack="false">
+            <url lang="ko" value="/langpack/ko.js" />
+            <url lang="en" value="/langpack/en.js" />
+            <url lang="ch" value="/langpack/ch.js" />
+        </languagePack>
+        <license value="true" />
+        
+        <!--  다국어 설정. --> 
+        <pageURLPrefix type="function" value="global._getI18NUrl" ignoreW2xPath="true"/>
+        
+    </WebSquare>
+

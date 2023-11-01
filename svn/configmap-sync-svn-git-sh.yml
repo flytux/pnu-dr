@@ -1,5 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
+metadata:
+  name: sync-svn-git
 data:
   sync-svn-git.sh: |-
     #!/bin/bash    
@@ -7,19 +9,24 @@ data:
      rm -rf workspace 
      mkdir workspace && cd workspace  
      echo "=== CHECKOUT SVN REPO ==="   
-     svn co --username tekton --password 1 svn://203.232.240.31:30690/pnu-sugang-nginx   
+     svn co --username $SVN_ID --password $SVN_PWD svn://$SVN_URL/$SVN_REPO --non-interactive
+     sed -i 's/192.168.2.144:8081/nexus-dr.pnu.ac.kr/g' $SVN_REPO/pom.xml
+
      echo "=== CONFIG GIT ==="    
      echo "http://gitea:gitea123@gitea-dr.pnu.ac.kr" > ~/.git-credentials   
      git config --global user.email tekton@pun.ac.kr   
      git config --global credential.helper store    
+
      echo "=== CLONE GIT ==="   
-     git clone http://gitea-dr.pnu.ac.kr/gitea/pnu-sugang-nginx tmp   
+     git clone http://gitea-dr.pnu.ac.kr/gitea/$GIT_REPO tmp   
+
      echo "=== ADD MIRROR DATE ==="   
      rm -f tmp/SVN_MIRROR_DATE   
      echo "SVN repo mirrored at" + $(date +%F-%H-%M-%S) > tmp/SVN_MIRROR_DATE   
+
      echo "=== COPY SVN to GIT ==="    
-     cp -R pnu-sugang-nginx/* tmp/    
+     cp -R $SVN_REPO/* tmp/    
      cd tmp    
      git add .    
      git commit -m "update: SVN source $(date)"    
-     git push -u origin main
+     git push -u origin master

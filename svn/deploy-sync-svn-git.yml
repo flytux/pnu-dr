@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: svn-deploy
+  name: svn-deploy
+  namespace: build
+spec:
+  selector:
+    matchLabels:
+      app: svn-deploy
+  template:
+    metadata:
+      labels:
+        app: svn-deploy
+    spec:
+      containers:
+      - command:
+        - bash
+        env:
+        - name: SVN_ID
+          value: pnu
+        - name: SVN_PWD
+          value: pnu@12
+        - name: SVN_URL
+          value: 164.125.6.115:3690/pnu
+        - name: SVN_REPO
+          value: pnu
+        - name: GIT_REPO
+          value: pnu
+        image: svn:dev
+        imagePullPolicy: IfNotPresent
+        name: svn
+        resources: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /root/sync-svn-git.sh
+          name: sync-svn-git
+          subPath: sync-svn-git.sh
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: sync-svn-git
+        name: sync-svn-git

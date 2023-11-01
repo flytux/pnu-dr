@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../base
+namePrefix: dev-
+commonLabels:
+  stage: dev
+images:
+- name: 192.168.5.31:30005/pnu
+  newTag: dev-231101-020053-c1d872f0
+patchesJson6902:
+  - target:
+      version: v1
+      kind: Service
+      name: pnu
+    patch: |-
+      - op: replace
+        path: /spec/ports/0/nodePort
+        value: 30088

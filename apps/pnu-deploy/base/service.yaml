@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pnu
+  labels:
+    app: pnu
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30088
+      name: http-port
+  type: NodePort
+  selector:
+    app: pnu

@@ -57,7 +57,7 @@ spec:
         - build-image
       params:
         - name: argo-app-name
-          value: $(params.git-repo-name)
+          value: $(params.gitops-repo-name)
         - name: gitops-url
           value: $(params.git-url)/$(params.gitops-repo-name) 
         - name: image-url

@@ -2,11 +2,11 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: sync-svn-git-every-hour
-  namespace: svn
+  namespace: build
 spec:
   jobTemplate:
     metadata:
-      namespace: svn
+      namespace: build
     spec:
       template:
         spec:

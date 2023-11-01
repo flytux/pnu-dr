@@ -20,7 +20,7 @@ spec:
   - name: MAVEN_IMAGE
     type: string
     description: Maven base image
-    default: gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641 #tag: latest
+    default: maven:3.3.9-jdk-8-alpine
   - name: DIRECTORY
     description: The directory containing the app, relative to the source repository root
     default: .
@@ -58,8 +58,10 @@ spec:
         -DsendCredentialsOverHttp=true \
         -Djib.allowInsecureRegistries=$(params.INSECUREREGISTRY) \
         -Djib.to.image=$(params.IMAGE) \
-        compile \
-        com.google.cloud.tools:jib-maven-plugin:build
+        -Djib.from.image=tomcat:9.0.82-jre8 \
+        -Djib.container.appRoot=/usr/local/tomcat/webapps/ROOT \
+        clean package \
+        com.google.cloud.tools:jib-maven-plugin:3.4.0:build
     workingDir: $(workspaces.source.path)/$(params.DIRECTORY)
     env:
     - name: HOME
