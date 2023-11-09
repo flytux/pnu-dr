@@ -14,8 +14,7 @@ spec:
           - command:
             - /bin/sh
             - -c
-            - |2-
-
+            - |
               ns=build
               tkn pr delete -n $ns --keep 5 --force
               echo "--- pipeline deleted ---"
