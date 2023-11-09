@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 단기파견 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김지윤
+ * @Create : 2022년 02월 03일
+ * @Title : ShortTermDispatch_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.sep.overseasdispatch.shorttermdispatch">
+	
+	<select id="selectUnivList" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_학생교류_해외파견_지원가능대학목록_조회(
+			#{SYEAR}
+			, #{TERM_GCD}
+			, #{EXCHG_DETAIL_GCD}
+			, #{LANG_GCD}
+			, #{DEG_COURSE_GCD}
+			, #{CMPL_TERM_CNT}
+			, #{CHASU_NO}
+		)}
+	</select>
+	
+	<select id="selectStdtInfo" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_학생교류_해외파견_단기파견_신청자정보_조회(
+			#{SYEAR}
+			, #{TERM_GCD}
+			, #{EXCHG_DETAIL_GCD}
+			, #{SESSION_USER_ID}
+			, #{CHASU_NO}
+		)}
+	</select>
+	
+	<select id="saveShortTermDispatch" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_학생교류_해외파견_단기파견_입력(
+			  #{SYEAR}
+			, #{TERM_GCD}
+			, #{EXCHG_DETAIL_GCD}
+			, #{SESSION_USER_ID}
+			, #{STDT_CELLULAR_NO}
+			, #{STDT_EMAIL}
+			, #{EMGCY_TEL_NO}
+			, #{PASSPORT_NO}
+			, #{PASSPORT_ENG_NM}
+			, #{PASSPORT_EXPIRE_DATE}
+			, #{PASSPORT_ISSUE_SUPPOSE_DATE}
+			, #{OFFICIAL_FOREIGN_LANGUAGE_GCD}
+			, #{ACQ_OFFICIAL_FOREIGN_LANGUAGE_SCORE}
+			, #{DISPATCH_PERIOD_GCD}
+			, #{DISPATCH_APPLY_GCD}
+			, #{APPLY_1_EXUNIV_CD}
+			, #{LANG_GCD}
+			, #{CHASU_NO}
+			, #{ACQ_OFFICIAL_FOREIGN_LANGUAGE_GRADE_GCD}
+			, #{DISPATCH_APPLY_SWITCH_FG}
+			, #{SESSION_USER_ID}
+			, #{SESSION_USER_IP}
+			, #{SESSION_SYSTEM_GCD}
+			, #{SESSION_MENU_CD}
+		)}
+	</select>
+
+	<select id="saveCancelShortTermDispatch" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_학생교류_해외파견_신청취소(
+			  #{SYEAR}
+			, #{TERM_GCD}
+			, #{EXCHG_DETAIL_GCD}
+			, #{SESSION_USER_ID}
+			, #{CHASU_NO}
+			, #{SESSION_USER_ID}
+			, #{SESSION_USER_IP}
+			, #{SESSION_SYSTEM_GCD}
+			, #{SESSION_MENU_CD}
+		)}
+	</select>
+	
+		<select id="selectProgram" parameterType="map" resultType="hashMap">
+		{CALL  OST.dbo.OST_학생교류_해외파견_해외파견프로그램_조회(
+			  #{SESSION_USER_ID}			
+		)}
+	</select>
+	
+
+</mapper>

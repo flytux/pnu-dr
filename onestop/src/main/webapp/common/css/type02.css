@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* type02-초초 */
+
+:root{
+    --gnb-color-01: 122, 177, 56; /* #7eb138 */
+    --gnb-color-01-light: 150, 200, 81; /* #96c851 */
+    --gnb-color-01-hover: 111, 155, 49; /* #6f9b31 */
+    --gnb-color-01-dark: 0, 77, 43; /* #004d2b */
+    --gnb-color-02: 0, 121, 68; /* #007944 */
+    --gnb-color-02-light: 0, 179, 101; /* #00b365 */
+    --gnb-color-02-hover: 0, 102, 58; /* #00663a */
+    --gnb-color-02-dark: 0, 77, 43; /* #004d2b */
+    
+    --point-color: 224, 41, 98; /* #e02962 - point */
+    --point-color-01: 0, 121, 68; /* #007944 - 주컬러 */
+    --point-color-01-light:151, 200, 179; /* #97c8b3 */
+    --point-color-01-hover: 0, 102, 58; /* #00663a */
+    --point-color-01-dark: 0, 77, 43; /* #004d2b */
+}

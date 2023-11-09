@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+/* type01-파초 */
+
+:root{
+    --gnb-color-01: 4, 106, 216; /* #046ad8 */
+    --gnb-color-01-light: 68, 155, 250; /* #449bfa */
+    --gnb-color-01-hover: 4, 95, 194; /* #045fc2 */
+    --gnb-color-01-dark: 5, 59, 118; /* #053b76 */
+    --gnb-color-02: 0, 154, 83; /* #009a53 */
+    --gnb-color-02-light: 0, 204, 109; /* #00cc6d */
+    --gnb-color-02-hover: 0, 128, 68; /* #008044 */
+    --gnb-color-02-dark: 0, 77, 41; /* #004d29 */
+    --gnb-color-03: 32, 50, 86; /* #203256 */
+    --gnb-color-03-light: 45, 64, 102; /* #2D4066 */    
+    
+    --point-color: 240, 104, 16; /* #f06810 - point */
+    --point-color-01: 1, 74, 152; /* #014a98 - 주컬러 */
+    --point-color-01-light:152, 182, 213; /* #98b6d5 */
+    --point-color-01-hover: 5, 59, 118; /* #053b76 */
+    --point-color-01-dark: 3, 47, 94; /* #032f5e */
+}

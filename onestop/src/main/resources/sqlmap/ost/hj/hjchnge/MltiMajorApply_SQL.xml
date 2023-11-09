@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 다중전공신청 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 이주은
+ * @Create : 2022년 02월 09일
+ * @Title : MltiMajorApply_SQL
+ * @version 1.0
+ * @stereotype Sql
+  --> 
+<mapper namespace="ost.hj.hjchnge.MltiMajorApply">  
+
+    <resultMap type="hashMap" id="selectListMltiMajorApplyresultMap1"></resultMap>
+    <resultMap type="hashMap" id="selectListMltiMajorApplyresultMap2"></resultMap>
+    <resultMap type="hashMap" id="selectListMltiMajorApplyresultMap3"></resultMap>
+    <select id="selectListMltiMajorApply"  resultMap="selectListMltiMajorApplyresultMap1,selectListMltiMajorApplyresultMap2,selectListMltiMajorApplyresultMap3">
+	    {CALL OST.DBO.OST_학적_다중전공_다중전공신청_조회(#{STDT_NO})} 
+    </select> 
+    
+	<select id="selectChkSchd" resultType="hashMap">
+	    {CALL OST.DBO.OST_학적_다중전공_신청가능기간여부(#{STDT_NO},#{CHG_APPLY_REASON_GCD})} 
+	</select>
+	
+	<select id="selectChkApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_학적_다중전공_신청가능여부(
+	    	#{APPLY_SYEAR},#{APPLY_TERM_GCD}, #{STDT_NO}, #{CHG_APPLY_REASON_GCD}, #{SCH_COLL_CD}, #{SCH_DEPT_CD}, #{SCH_MAJOR_CD} 
+		)} 
+	</select>
+	
+	<select id="executeMltiMajorApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_학적_다중전공_다중전공신청_저장(
+	    	 #{rowState}, #{STDT_NO},  #{APPLY_SYEAR},  #{APPLY_TERM_GCD},  #{CHG_SEQ_NO}
+	    	 , #{CHG_APPLY_REASON_GCD} , #{SCH_GRAD_GCD},  #{SCH_COLL_CD},  #{SCH_DEPT_CD},  #{SCH_MAJOR_CD}
+	    	 , #{SESSION_USER_ID},  #{SESSION_USER_IP},  #{SESSION_SYSTEM_GCD},  #{SESSION_MENU_CD}
+		)} 
+	</select>
+	
+	
+</mapper>

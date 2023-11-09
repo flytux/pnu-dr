@@ -1,0 +1,239 @@
+@charset "utf-8"; /* CSS Document */
+.text-primary {
+    color: #005baa !important;
+}
+
+.intro {
+    background: url("/common/images/intro-bg.jpg") no-repeat center top;
+}
+
+.logo {
+    margin-bottom: 20px;
+    padding: 20px 0 0 0;
+}
+
+.page-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.page-header {
+    margin: 0 0 30px 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.page-header h2 {
+    color: #005baa;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    word-break: keep-all;
+}
+
+.page-header p {
+    font-size: 16px;
+    font-weight: 600
+}
+
+.page-box {
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: 6px 10px 30px rgb(0 0 0 / 10%);
+    background: #fff;
+}
+
+.page-inner {
+    margin-bottom: 30px;
+}
+
+.page-inner .stit {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.05em;
+}
+
+.page-inner .btn-list ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.page-inner .btn-list ul li {
+    list-style: none;
+}
+
+.page-inner .btn-list ul li a {
+    display: block;
+    width: 100%;
+    margin: 2px;
+    padding: 20px;
+    border-radius: 0;
+    white-space: inherit;
+    word-break: inherit;
+}
+
+.page-inner .btn-list ul li a strong {
+    display: block;
+    font-size: 20px;
+}
+
+.page-inner .btn-list ul li a.btn-primary {
+    background: #005baa;
+    border: #005baa solid 1px;
+}
+
+.page-inner .btn-list ul li a.btn-primary:hover, .page-inner .btn-list ul li a.btn-primary:focus {
+    background: #004480;
+    border: #004480 solid 1px;
+}
+
+.page-inner .btn-list ul li a.btn-info {
+    background: #3a4b5a;
+    border: #3a4b5a solid 1px;
+}
+
+.page-inner .btn-list ul li a.btn-info:hover, .page-inner .btn-list ul li a.btn-info:focus {
+    background: #28343e;
+    border: #28343e solid 1px;
+}
+
+.page-inner .btn-list ul li a.btn-success {
+    background: #00a651;
+    border: #00a651 solid 1px;
+}
+
+.page-inner .btn-list ul li a.btn-success:hover, .page-inner .btn-list ul li a.btn-success:focus {
+    background: #00803e;
+    border: #00803e solid 1px;
+}
+
+.btn-link {
+    color: #005baa;
+    text-decoration: underline;
+    letter-spacing: -.05em;
+}
+
+.btn-list-sub ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: column;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-list-sub ul li {
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    justify-content: center;
+}
+
+.btn-list-sub ul li a {
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    margin: 1px;
+    border: 4px solid #e3e3e3;
+    color: #666;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1;
+}
+
+.btn-list-sub ul li a:hover, .btn-list-sub ul li a:focus {
+    background: #efefef;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* .ul-style-bullet */
+[class*='ul-style-'], [class*='ol-style-'] {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.ul-style-bullet > li {
+    position: relative;
+    margin-left: 1rem;
+    list-style: none;
+}
+
+.ul-style-bullet > li::before {
+    margin-left: -0.5rem;
+    content: '';
+    display: inline-block;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 1000px;
+    background-color: #025BB1;
+    position: absolute;
+    left: -0.25rem;
+    top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .page-box {
+        padding: 60px;
+    }
+
+    .page-header h2 {
+        font-size: 21px;
+    }
+
+    .page-inner .btn-list ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-flex: 0;
+        flex-direction: column;
+        flex-direction: row;
+    }
+
+    .page-inner .btn-list ul li {
+        -ms-flex: 0 0 99.3%;
+        flex: 0 0 99.3%;
+        max-width: 99.3%;
+        list-style: none;
+    }
+
+    .page-inner .btn-list ul li a {
+        display: flex;
+        width: auto;
+        margin: 2px;
+        padding: 40px 20px;
+        align-items: stretch;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .btn-list-sub ul {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .btn-list-sub ul li {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page-box {
+        padding: 80px;
+    }
+}

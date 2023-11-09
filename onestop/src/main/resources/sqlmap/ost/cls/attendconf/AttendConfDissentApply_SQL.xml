@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 출결확인 및 이의신청  iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김현주
+ * @Create : 2022년 03월 02일
+ * @Title : AttendConfDissentApplySql
+ * @version 1.0
+ * @stereotype Sql
+  --> 
+<mapper namespace="ost.cls.attendconf.attendConfDissentApply">   
+
+	<select id="selectSchdInfo" resultType="hashMap"> 
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_학사일정_조회(
+	    		#{SYEAR}
+	    	  , #{TERM_GCD}
+	    )} 
+	</select>
+
+	<select id="selectListAttDisApply" resultType="hashMap"> 
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_조회(
+	    		#{SCH_SYEAR}
+	    	  , #{SCH_TERM_GCD}
+	    	  , #{STDT_NO}
+	    	  , #{FIRSTINDEX}
+	    	  , #{LASTINDEX}
+	    )} 
+	</select>
+	
+	<select id="deleteDissentApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_삭제(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{SUBJ_NO}
+	    	 ,  #{CLASS_NO} 
+	    	 ,  #{LECT_DATE}
+	    	 ,  #{STDT_NO}
+			 ,  #{SEQ_NO}		
+			 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}	 
+	    )} 
+	</select>
+	
+	<select id="selectListApplySubj" resultType="hashMap"> 
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_수강신청교과목_조회(
+	    		#{SCH_SYEAR}
+	    	  ,	#{SCH_TERM_GCD}
+	    	  , #{STDT_NO}
+	    	  , #{FIRSTINDEX}
+	    	  , #{LASTINDEX}
+	    )} 
+	</select>
+	
+	<select id="selectListAttend" resultType="hashMap"> 
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_출결사항_조회(
+	    		#{SCH_SYEAR}
+	    	  ,	#{SCH_TERM_GCD}
+	    	  , #{STDT_NO}
+	    	  , #{SUBJ_NO}
+	    	  , #{CLASS_NO}
+	    	  , #{FIRSTINDEX}
+	    	  , #{LASTINDEX}
+	    )} 
+	</select>
+	
+	<select id="insertDissentApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출결확인및이의신청_저장(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{SUBJ_NO}
+	    	 ,  #{CLASS_NO} 
+	    	 ,  #{LECT_DATE}
+	    	 ,  #{START_LECTTIME}
+			 ,  #{STDT_NO}			 
+	    	 ,  #{CLOSE_LECTTIME}
+	    	 ,  #{START_TIME} 
+	    	 ,  #{CLOSE_TIME}	 
+	    	 ,  #{APPLY_REASON_GCD}	 
+	    	 ,  #{ATTEND_GCD}	 	    	 
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+	    )} 
+	</select>
+
+</mapper>

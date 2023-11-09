@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 대원신고서작성 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 신재원
+ * @Create : 2022년 02월 07일
+ * @Title : BusApply_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.bus.busapply">
+	
+	<select id="selectDateCheck" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_통학버스_이용신청_진행연도학기()}
+	</select>
+	
+	<resultMap type="hashMap" id="selectBusApplyresultMap1"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap2"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap3"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap4"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap5"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap6"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap7"></resultMap>
+    <resultMap type="hashMap" id="selectBusApplyresultMap8"></resultMap>
+    <select id="selectBusApply"  resultMap="selectBusApplyresultMap1,selectBusApplyresultMap2,selectBusApplyresultMap3,selectBusApplyresultMap4,selectBusApplyresultMap5,selectBusApplyresultMap6,selectBusApplyresultMap7,selectBusApplyresultMap8">
+	    {CALL OST.DBO.OST_통학버스_이용신청_조회(
+			#{SYEAR},
+			#{TERM_GCD},
+			#{CHASU_NO},
+			#{STDT_NO}
+		)}
+    </select> 
+    
+	<select id="selectBusCd" resultType="hashMap">
+		 SELECT BUS_GCD, DETAIL_CD, DETAIL_CD_NM
+	     FROM ACADEMY.dbo.BUS_CD   
+	     WHERE SYEAR = #{SYEAR}
+		      AND TERM_GCD = #{TERM_GCD}
+		      AND CHASU_NO = #{CHASU_NO}
+		<!--       
+         SELECT * FROM ACADEMY.DBO.[FN_BUS_공통코드_조회](
+             #{SYEAR}
+            , #{TERM_GCD}
+            , #{CHASU_NO}
+            , #{BUS_GCD}
+        ) -->
+    </select>
+    
+   	<select id="selectMonthApplyList" resultType="hashMap">
+		 {CALL OST.DBO.OST_통학버스_이용신청_신규_조회(
+			#{SYEAR},
+			#{TERM_GCD},
+			#{CHASU_NO},
+			#{STDT_NO}
+		)}
+    </select>
+    
+    <select id="executeBusApply" resultType="hashMap">
+		 {CALL OST.DBO.OST_통학버스_이용신청_저장_상세(
+	    		#{rowStatus}
+	    	 ,  #{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{CHASU_NO}
+	    	 ,  #{STDT_NO}
+	    	 ,  #{GETON_DATE}
+	    	 ,  #{DAY_GCD}
+	    	 ,  #{GOSCH_TIME_CD}
+	    	 ,  #{AFTERSCH_TIME_CD}
+	    	 ,  #{GOSCH_LOCATION_CD}
+	    	 ,  #{AFTERSCH_LOCATION_CD}
+	    	 ,  #{APPLY_SERIAL_NO} 
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+		)}
+    </select>
+
+    <select id="executeBusApplyMaster" resultType="hashMap">
+		 {CALL OST.DBO.OST_통학버스_이용신청_저장(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{CHASU_NO}
+	    	 ,  #{STDT_NO}
+	    	 ,  #{APPLY_SERIAL_NO} 
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+		)}
+    </select>
+    
+    <select id="cancelDetailBusApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_통학버스_이용신청_취소_상세(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{CHASU_NO}
+	    	 ,  #{STDT_NO}
+	    	 ,  #{GETON_DATE}
+	    	 ,  #{CANCEL_CHASU_CD}
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+	    )} 
+	</select>
+	
+	<select id="cancelBusApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_통학버스_이용신청_취소(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{CHASU_NO}
+	    	 ,  #{STDT_NO}
+	    	 ,  #{APPLY_SERIAL_NO}
+	    	 ,  #{CANCEL_CHASU_CD}
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+	    )} 
+	</select>
+	    
+   	<select id="selectStdtPhoto" resultType="hashMap">
+		 {CALL ACADEMY.DBO.BUS_통학버스_신청내역관리_사진_조회(
+			#{STDT_NO}
+		)}
+    </select>
+    
+    <select id="saveStdtPhoto" parameterType="map" resultType="hashMap">
+	    {CALL ACADEMY.DBO.BUS_사진_저장(
+	    		#{STDT_NO}
+	    	 ,  #{PIC}
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+	    )} 
+	</select>
+	
+    <select id="printChkBusApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_통학버스_이용신청_고지서출력가능여부_조회(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{CHASU_NO}
+	    	 ,  #{STDT_NO}
+	    	 ,  #{APPLY_SERIAL_NO}
+	    )} 
+	</select>
+	
+</mapper>

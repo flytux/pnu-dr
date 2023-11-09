@@ -1,0 +1,356 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-3" id="stdtTable" role="table" aria-label="학적정보 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-3">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>소속(과정)</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: DEPT_NM">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학번(성명)</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: STDT_INFO">
+                        </div>
+						<input type="hidden" id="STDT_INFO" data-bind="value: STDT_INFO"/>
+						<input type="hidden" id="STDT_NO" data-bind="value: STDT_NO"/>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label for="STDT_YEAR_TERM" data-lang>학년</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: STDT_YEAR_NM">
+                        </div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학적상태</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: HJ_STA_NM">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>이수학기수</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: CMPL_TERM_CNT">
+                        </div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>총취득학점</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: ACQ_CRDT">
+                        </div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>전체평점평균</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: GPA">
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="b-table-box flex-col-1" id="" role="table" aria-label="변경사항 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item ">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>신청학년도<br>/학기</label>
+						</div>
+                        <div class="b-con-box" id="APPLY_SYEAR_TERM" role="cell" data-bind="text: APPLY_SYEAR_TERM">
+                        </div>
+						<input type="hidden" id="APPLY_SYEAR" data-bind="value: APPLY_SYEAR"/>
+						<input type="hidden" id="APPLY_TERM_GCD" data-bind="value: APPLY_TERM_GCD"/>
+						<input type="hidden" id="CHG_SEQ_NO" data-bind="value: CHG_SEQ_NO"/>
+						<input type="hidden" id="STA_GCD" data-bind="value: STA_GCD"/>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item ">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>신청일자</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: APPLY_DT">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item ">
+						<div class="b-title-box" role="rowheader">
+							<label for="CHG_APPLY_REASON_GCD" data-lang>신청구분</label>
+						</div>
+						<div class="b-con-box" role="cell">
+						<select id="CHG_APPLY_REASON_GCD" class="form-control" data-bind="selected:CHG_APPLY_REASON_GCD" onchange="fn_onchange()"></select>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box d-none" role="row">
+				    <div class="b-row-item">
+				        <div class="b-title-box" role="rowheader">
+				            <label class="req" for="SCH_COLL_GRAD_GCD" data-lang>대학/대학원</label>
+				        </div>
+				        <div class="b-con-box" role="cell">
+					        <input type="text" id="SCH_COLL_GRAD_GCD" class="form-control" /> 
+				        </div>
+					</div>
+				</div>
+				<div class="b-row-box d-none" role="row">
+				    <div class="b-row-item">
+				        <div class="b-title-box" role="rowheader">
+				            <label class="req" for="SCH_GRAD_GCD" data-lang>대학원</label>
+				        </div>
+				        <div class="b-con-box" role="cell">
+                        	<input type="text" id="SCH_GRAD_GCD" class="form-control" />
+				        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+				    <div class="b-row-item">
+				        <div class="b-title-box" role="rowheader">
+				            <label class="req" for="SCH_COLL_CD" data-lang>단과대학</label>
+				        </div>
+				        <div class="b-con-box" role="cell">
+				            <input type="text" id="SCH_COLL_CD" class="form-control" />
+				        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+					    <div class="b-title-box" role="rowheader">
+					        <label class="req" for="SCH_DEPT_CD" data-lang>학과(부)</label>
+					    </div>
+					    <div class="b-con-box" role="cell">
+					        <input type="text" id="SCH_DEPT_CD" class="form-control" />
+					    </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+					    <div class="b-title-box" role="rowheader">
+					        <label class="req" for="SCH_MAJOR_CD" data-lang>전공</label>
+					    </div>
+					    <div class="b-con-box" role="cell">
+					        <input type="text" id="SCH_MAJOR_CD" class="form-control" />
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-save" id="btnSubmit" type="button" data-lang onclick="javascript:return fn_chkSchdPop();">제출</button>
+							<button class="btn btn-modify" id="btnCancel" type="button" data-lang onclick="javascript:return fn_applySave('U');">신청취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(popInit());
+
+    function popInit() {
+    	gfn_com_assignCombo({
+        	 collGradGcd : $("#SCH_COLL_GRAD_GCD")
+        	,gradGcd : $("#SCH_GRAD_GCD")
+        	,collCd : $("#SCH_COLL_CD")
+        	,deptCd : $("#SCH_DEPT_CD")
+        	,majorCd : $("#SCH_MAJOR_CD")
+        	,gradGcdExtUrl : ""
+        	,collCdExtUrl : ""
+        	,deptCdExtUrl : ""
+        	,majorCdExtUrl : ""
+        	,comboLvl : 5
+        	,initChk : false
+			,dataBound : function(e) {		
+				$("#SCH_COLL_GRAD_GCD").setValue(scwin.loginUser.collGradGcd, function() {
+					if(scwin.loginUser.collGradGcd == '0001'){ //대학
+						$("#SCH_GRAD_GCD").setValue("0000",function(){
+							$("#SCH_COLL_CD").setValue(scwin.detailObj.POST_CHG_COLL_CD,function(){
+				 				$("#SCH_DEPT_CD").setValue(scwin.detailObj.POST_CHG_DEPT_CD,function(){
+					 				$("#SCH_MAJOR_CD").setValue(scwin.detailObj.POST_CHG_MAJOR_CD);
+				 				});
+							});
+						 });
+					}else{ //대학원
+						$("#SCH_GRAD_GCD").setValue("0001",function(){
+							$("label[for='STDT_YEAR_TERM']").text('학기');
+							$("#SCH_COLL_CD").setValue(scwin.detailObj.POST_CHG_COLL_CD,function(){
+				 				$("#SCH_DEPT_CD").setValue(scwin.detailObj.POST_CHG_DEPT_CD,function(){
+					 				$("#SCH_MAJOR_CD").setValue(scwin.detailObj.POST_CHG_MAJOR_CD);
+				 				});
+							});
+						 
+						});
+					}
+				});
+			}
+		});
+     		$("#CHG_APPLY_REASON_GCD").dropDownList({ //신청구분    
+     			dataSource : scwin.schdList,
+     			commonCode : null,
+     			dataTextField : "CHG_APPLY_REASON_GCD_NM",
+     			dataValueField : "CHG_APPLY_REASON_GCD",
+     			dataBound : function(e) {
+    				setInit();
+     			}
+     		});
+
+    }
+
+	/*  팝업창 로드 시 초기설정 함수 */
+	function setInit() {
+		if(scwin.rowState == 'C'){
+			$("#btnCancel").hide();
+		}
+    	
+		gfn_com_dataBind($("#popups"), scwin.detailObj);
+	}
+
+	/* 신청가능기간여부 확인 */
+	function fn_chkSchdPop() {
+		var searchParam = gfn_com_inputdata($("#popups"));
+
+		gfn_ajax_request({
+			url : "/ost/hj/hjchnge/MltiMajorApply/selectChkSchd",
+	        reqData : searchParam,
+	        success : function(data, responseData) {
+	        	if(data.O_RSLT == "N"){
+	        		alert(data.O_MSG);
+	        		return;
+	        	}
+				fn_chkApply();
+	        }
+	    });
+	}
+
+	/* 신청가능여부 확인 */
+	function fn_chkApply() {
+		var param = gfn_com_inputdata($("#popups"));
+		if (!fn_validate(param)) return;
+		
+		gfn_ajax_request({
+			url : "/ost/hj/hjchnge/MltiMajorApply/selectChkApply",
+	        reqData : param,
+	        success : function(data, responseData) {
+	        	if(data.O_RSLT == "N"){
+	        		alert(data.O_MSG);
+	        		return;
+	        	}
+	        	fn_applySave('C');
+	        }
+	    });
+	}
+
+	/* 필수체크 */
+	function fn_validate(param) {
+		var rtnValue = true;
+		var valInfo =  [{
+								"id" : "SCH_GRAD_GCD",
+								"name" : "대학원",
+								"notNull" : true,
+							},{
+								"id" : "SCH_COLL_CD",
+								"name" : "단과대학",
+								"notNull" : true
+							},{
+								"id" : "SCH_DEPT_CD",
+								"name" : "학과(부)",
+								"notNull" : true
+							},{
+								"id" : "APPLY_SYEAR",
+								"name" : "신청학년도",
+								"notNull" : true
+							},{
+								"id" : "APPLY_TERM_GCD",
+								"name" : "신청확기",
+								"notNull" : true
+							},{
+								"id" : "CHG_APPLY_REASON_GCD",
+								"name" : "신청구분",
+								"notNull" : true
+							},{
+								"id" : "STDT_NO",
+								"name" : "학번",
+								"notNull" : true
+							}];
+
+		rtnValue = gfn_val_validateDataMap(param, valInfo);
+
+		return rtnValue;
+	}
+
+	var confirmMsg = "";
+	/* 저장 */
+	function fn_applySave(type) {
+		var param = gfn_com_inputdata($("#popups"));
+		confirmMsg = gva_SAVE_CONFIRM_MSG;
+		
+		if(type == "U") {
+			confirmMsg = "신청 취소하시겠습니까?";
+			scwin.rowState = "D";
+		}
+		
+		fn_applySaveCallback(param);
+	}
+
+	/* 저장 콜백 함수 */
+	function fn_applySaveCallback(param) {
+		param["rowState"] = scwin.rowState;  
+		 confirm(confirmMsg,function(_flag){
+			if(_flag) {
+				if(scwin.rowState == 'U' && param.STA_GCD != '0001'){
+					alert('접수 상태 일때만 수정 가능합니다.');
+					return; 
+				}
+				if(scwin.rowState == 'D' && param.STA_GCD != '0001'){
+					alert('접수 상태 일때만 취소 가능합니다.');
+					return; 
+				}
+				
+				gfn_ajax_request({
+					url : "/ost/hj/hjchnge/MltiMajorApply/executeMltiMajorApply",
+					reqData : param,
+					success : function(data, responseData){
+						alert(data.O_MSG);
+						if(data.O_RSLT == "Y") {
+	        				gfn_com_closeModalWall(1,function(){
+	        					fn_sch();
+	        				});				
+						}
+					}
+				});
+			}
+		});
+	}
+	
+	/* fn_onchange  -- select 값 변할때 */
+	function fn_onchange() {
+		var idx = $("#CHG_APPLY_REASON_GCD option").index($("#CHG_APPLY_REASON_GCD option:selected"));
+		var term = scwin.schdList[idx].TERM_GCD;
+		var syear = scwin.schdList[idx].SYEAR;
+		var termNm = scwin.schdList[idx].TERM_GCD_NM;
+		//신청구분의 학년도/학기 세팅
+		$("#APPLY_SYEAR").val(syear);
+		$("#APPLY_TERM_GCD").val(term);
+		const text = document.getElementById('APPLY_SYEAR_TERM');
+		text.innerHTML = syear+'학년도 / '+termNm;
+
+	}
+	
+</script>

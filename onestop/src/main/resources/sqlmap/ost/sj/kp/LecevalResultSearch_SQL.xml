@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 강의평가결과공개 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김동영
+ * @Create : 2022년 01월 27일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.sj.kp.lecevalresultsearch">
+
+<select id="selectLecevalOpenDept" resultType="hashMap">
+    {CALL LECTURE.DBO.KP_강의평가_공용_학과목록_조회(
+	    #{BOUNDARY},
+		#{SYEAR},
+		#{SCH_TERM_GCD},
+		#{COLL_CD},
+		#{SYEAR2},
+		#{TERM_GCD2},
+		#{SESSION_SYSTEM_GCD},
+		#{SESSION_USER_ID},
+		#{SESSION_USER_DEPT_CD},
+		#{SESSION_SEARCH_SCOPE_GCD}
+    )} 
+</select>
+
+<select id="selectLecevalResultSubj" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_강의평가_결과_조회_과목검색(
+		#{SYEAR},
+		#{SCH_TERM_GCD},
+		#{SCH_DEPT_CD},
+		#{SCH_SUBJ_GCD},
+		#{SCH_SUBJ_NM},
+		#{SEARCH_GBN},
+		#{SESSION_USER_ID},
+		#{FIRSTINDEX},
+		#{LASTINDEX}
+    )} 
+</select>
+<select id="selectLecevalResultDetail" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_강의평가_결과_조회_상세(
+		#{SYEAR},
+		#{TERM_GCD},
+		#{SUBJ_NO},
+		#{CLASS_NO},
+		#{USER_ID}
+    )} 
+</select>
+
+</mapper>

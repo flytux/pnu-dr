@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    * 게시판  Mybatis SqlMap으로서 작용한다.
+    * @Company : IDINO Co., Ltd.
+    * @Copyright : Copyright (C) by IDINO All rights reserved.
+    * @Author : 김우영
+    * @Create : 2022년 02월 07일
+    * @Title : core.bbs
+    * @version 1.0
+    * @stereotype Sql
+-->
+
+<mapper namespace="core.bbs">
+
+    <select id="selectBbsMgrInfo" parameterType="map" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_기본정보조회](
+        #{SESSION_SYSTEM_GCD},
+        #{SESSION_MENU_CD}
+        )}
+    </select>
+    
+    <select id="selectBbsAuthInfo" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_권한정보조회](
+        #{SESSION_SYSTEM_GCD},
+        #{BBS_TYPE_GCD},
+        #{BBS_TYPE_SEQ_NO},
+        #{SESSION_USER_ID}
+        )}
+    </select>
+    
+    <select id="selectListBbsCate" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판관리_카테고리_조회](
+                #{SESSION_SYSTEM_GCD},
+                #{BBS_TYPE_GCD},
+                #{BBS_TYPE_SEQ_NO}
+        )}
+    </select>
+    <resultMap id="bbsMap1" type="hashMap"></resultMap>
+    <resultMap id="bbsMap2" type="hashMap"></resultMap>
+    <resultMap id="bbsMap3" type="hashMap"></resultMap>
+    <select id="selectBbsDataList" parameterType="map" resultMap="bbsMap1,bbsMap2">
+        {CALL OST.DBO.[OST_게시판_게시글_조회2]( 
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{SCH_GUBUN},
+            #{SCH_CONTENT},
+            #{NOTICE_USE_FG},
+            #{REPLY_USE_FG},
+            #{NM_CLOSED_USE_FG},
+            #{POSTING_CLOSE_DATE_USE_FG},
+            #{SESSION_USER_ID},
+            #{CATE_TYPE_SEQ_NO},
+            'N',
+            #{FIRSTINDEX},
+    		#{LASTINDEX}  
+        )}
+    </select>
+    
+    <select id="selectBbsPassword" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_비밀번호_조회]( 
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{POSTING_SEQ_NO},
+            #{PASSWORD} 
+        )}
+    </select>
+    
+    <select id="selectBbsDetail" parameterType="map" resultType="hashMap">
+        {CALL OST.DBO.[OST_게시판_게시글_상세조회](
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{POSTING_SEQ_NO}
+        )}
+    </select>
+    
+    <select id="selectBbsReplyDataList" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_댓글_조회](
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{POSTING_SEQ_NO}
+        )}
+    </select>
+    
+    <select id="executeBbsReplyInfo" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_댓글_저장](
+            #{mode},
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{POSTING_SEQ_NO},
+            #{REPLY_POSTING_SEQ_NO},
+            #{CONTENT},
+            #{REPLY_USER_NM},
+            #{SESSION_ASSIGN_NM},
+            #{SESSION_USER_ID},
+            #{SESSION_USER_IP},
+            #{SESSION_SYSTEM_GCD},
+            #{SESSION_MENU_CD}
+        )}
+    </select>
+
+    
+    <select id="updateBbsTimesno" resultType="hashMap">
+        {CALL SYS.DBO.[SYS_게시판_조회수_수정](
+            #{SESSION_SYSTEM_GCD},
+            #{BBS_TYPE_GCD},
+            #{BBS_TYPE_SEQ_NO},
+            #{POSTING_SEQ_NO}
+        )}
+    </select>
+    
+    <select id="executeBbsInfo" resultType="hashMap">
+        {CALL OST.DBO.[OST_게시판_게시글_저장](
+        #{mode},
+        #{SESSION_SYSTEM_GCD},
+        #{BBS_TYPE_GCD},
+        #{BBS_TYPE_SEQ_NO},
+        #{NOTICE_FG},
+        #{POSTING_SEQ_NO},
+        #{LEVEL}, /* LEVEL */
+        #{TITLE_CONTENT},
+        #{CONTENT},
+        #{SECRET_FG},
+        #{PASSWORD},					
+		#{WRITEOUT_USER_NM},			
+		#{SESSION_ASSIGN_NM},
+		#{SEARCH_TIMESNO},		
+		#{DEL_FG},				
+		#{ATTACH_FILE_GRP_CD},	
+		#{FAQ_CATE_GCD},				
+		#{NM_CLOSED_FG},				
+		#{POSTING_CLOSE_DATE_FG},		
+		#{PERINFO_AGREE_FG	},		
+		#{EMAIL},						
+		#{PERINFO_AGREE_DT},
+		#{POSTING_START_DT},					
+		#{POSTING_CLOSE_DT},			
+		#{SUB_TITLE_CONTENT},	
+		#{POSTING_GRP_NO},		
+		#{POSTING_GRP_SEQ_NO},
+		#{CATE_TYPE_SEQ_NO},
+		#{UPPER_POSTING_SEQ_NO	},	
+		#{TEMP_SAVE_FG},
+		#{GUIDE_SEND_RCV_FG},		
+		#{SESSION_USER_ID},			
+		#{SESSION_USER_IP}, 			
+		#{SESSION_SYSTEM_GCD}, 		
+		#{SESSION_MENU_CD} 			
+        )} 
+    </select>
+    
+    
+    
+
+</mapper>

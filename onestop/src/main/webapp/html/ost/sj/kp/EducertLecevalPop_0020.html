@@ -1,0 +1,603 @@
+<div id="popups">
+	<section class="sec-3">
+		<div class="sec-body">
+			<div class="search-box">
+				<input type="text" id="SYEAR" class="form-control" style="display: none;" /> 
+				<input type="text" id="TERM_GCD" class="form-control" style="display: none;" /> 
+				<input type="text" id="SUBJ_NO" class="form-control" style="display: none;" /> 
+				<input type="text" id="CLASS_NO" class="form-control" style="display: none;" /> 
+				<input type="text" id="CHARGE_PROF_NO" class="form-control" style="display: none;" /> 
+				<input type="text" id="LECEVAL_GCD" class="form-control" style="display: none;" />
+				<input type="text" id="STDT_NO" class="form-control" style="display: none;" />
+				<input type="text" id="EDUCERT_GCD" class="form-control" style="display: none;" />
+				<input type="text" id="EDUCERT_PROGRAM_GCD" class="form-control" style="display: none;" />
+			</div>
+			
+			<div class="b-table-box flex-col-3" role="table" aria-label="3단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>교과목번호<br> (Course Code)</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: SUBJ_NO"></div>
+					</div>
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>교과목명<br> (Course Title)</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: SUBJ_NM"></div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>분반<br> (Setion)</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: CLASS_NO"></div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>교수<br> (Professor)</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: NM"></div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>영어강의</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: NATIVE_LANG_LECT_GCD"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /아코디언 -->
+		<section class="sec-2">
+			<div class="sec-body">
+				<div class="accordion">
+					<div class="card">
+						<div class="card-header" id="heading1">
+							<button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePop1" data-expanded="true" data-controls="collapse1">> 안내사항</button>
+						</div>
+						<div id="collapsePop1" class="collapse show" aria-labelledby="heading1">
+							<div class="card-body">
+								<ul class="list list-style-1">
+									<li data-lang><strong>부합정도에 따라 아래의 표를 참고하여, 체크하여 주시기 바랍니다.</strong></br> Please answer the following questions according the table below by assessing your learning a outcome.</li>
+								</ul>
+
+								<div class="b-table-box flex-col-5" role="table" aria-label="5단 테이블">
+									<div class="b-row-box" role="row">
+										<div class="b-row-item">
+											<div class="b-title-box" role="rowheader">
+												<label>5</label>
+											</div>
+											<div class="b-con-box" role="cell">
+												<label data-lang><strong>매우 그렇다</strong> <br> Strongly Agree </label>
+											</div>
+										</div>
+										<div class="b-row-item">
+											<div class="b-title-box" role="rowheader">
+												<label>4</label>
+											</div>
+											<div class="b-con-box" role="cell">
+												<label data-lang><strong>그렇다</strong> <br> Agree </label>
+											</div>
+										</div>
+										<div class="b-row-item">
+											<div class="b-title-box" role="rowheader">
+												<label>3</label>
+											</div>
+											<div class="b-con-box" role="cell">
+												<label data-lang><strong>보통이다</strong> <br> Neutral </label>
+											</div>
+										</div>
+										<div class="b-row-item">
+											<div class="b-title-box" role="rowheader">
+												<label>2</label>
+											</div>
+											<div class="b-con-box" role="cell">
+												<label data-lang><strong>그렇지않다</strong> <br> Disagree </label>
+											</div>
+										</div>
+										<div class="b-row-item">
+											<div class="b-title-box" role="rowheader">
+												<label>1</label>
+											</div>
+											<div class="b-con-box" role="cell">
+												<label style="float: center" data-lang><strong>매우 그렇지않다</strong> <br> Strongly Disagree </label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /END 아코디언 -->
+		
+		
+		
+		<section class="sec-3 mt-3 mb-5">
+				<header class="mb-2">
+					<h4 class="sec-title">1. 본 강의의 내용이 자신의 진로목표 달성에 유용합니까? <br/>Did the content of this lecture contribute to the achievement of yours career goals?</h4></h4>
+				</header>
+				<div class="sec-body mb-2 ml-2">
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup1_1" id="radio1_5" onclick="fn_questionTxt('1', 5)" value="5">
+		                  <label class="form-check-label" for="radio1_5">5</label>
+		            </div>
+		            <div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup1_1" id="radio1_4" onclick="fn_questionTxt('1', 4)" value="4">
+		                  <label class="form-check-label" for="radio1_4">4</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup1_1" id="radio1_3" onclick="fn_questionTxt('1', 3)" value="3">
+		                  <label class="form-check-label" for="radio1_3">3</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup1_1" id="radio1_2" onclick="fn_questionTxt('1', 2)" value="2">
+		                  <label class="form-check-label" for="radio1_2">2</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup1_1" id="radio1_1" onclick="fn_questionTxt('1', 1)" value="1">
+		                  <label class="form-check-label" for="radio1_1">1</label>
+		            </div>
+				</div>
+				<div  style="display:none;" id="txt1">
+					<table class="table table-hover" >
+						<caption>최저점 선택 이유 입력 테이블</caption>
+						<tbody >
+							<tr>
+								<td class="text-left">
+								<label for="multipleTxt1_1"><strong>객관식 문항에 최저점(1)을 입력한 경우, 최저점의 구체적인 이유를 반드시 작성해 주시기 바랍니다.</strong> <br>
+								If you entered the lowest point(1) in the multiple-choice question, please make sure to fill out the lowest point.  <br>
+								</label>
+								<input class="form-control multiple-txt1" type="text" id ="multipleTxt1_1">
+								</td>
+							</tr>
+						</tbody> 
+					</table>
+				</div>
+		</section>
+		
+		
+		
+		
+		<section class="sec-3 mt-3 mb-5">
+				<header class="mb-2">
+					<h4 class="sec-title">2. 본 강의의 내용은 아래와 같은 교과목목표 달성에 기여하였습니까?
+					<br/>Did the content of this lecture contribute to the achievement of the following Course Objectives?</h4>
+				</header>
+				<div class="sec-body mb-2 ml-2">
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup2_1" id="radio2_5" onclick="fn_questionTxt('2', 5)" value="5">
+		                  <label class="form-check-label" for="radio2_5">5</label>
+		            </div>
+		            <div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup2_1" id="radio2_4" onclick="fn_questionTxt('2', 4)" value="4">
+		                  <label class="form-check-label" for="radio2_4">4</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup2_1" id="radio2_3" onclick="fn_questionTxt('2', 3)" value="3">
+		                  <label class="form-check-label" for="radio2_3">3</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup2_1" id="radio2_2" onclick="fn_questionTxt('2', 2)" value="2">
+		                  <label class="form-check-label" for="radio2_2">2</label>
+		            </div>
+					<div class="form-check form-check-inline">
+		                  <input class="form-check-input" type="radio" name="radioGroup2_1" id="radio2_1" onclick="fn_questionTxt('2', 1)" value="1">
+		                  <label class="form-check-label" for="radio2_1">1</label>
+		            </div>
+				</div>
+		<div  style="display:none;" id="txt2">
+			<table class="table table-hover" >
+				<caption>최저점 선택 이유 입력 테이블</caption>
+				<tbody >
+					<tr>
+						<td class="text-left">
+						<label for="multipleTxt2_1"><strong>객관식 문항에 최저점(1)을 입력한 경우, 최저점의 구체적인 이유를 반드시 작성해 주시기 바랍니다.</strong> <br>
+						If you entered the lowest point(1) in the multiple-choice question, please make sure to fill out the lowest point. <br>
+						</label>
+						<input class="form-control multiple-txt2" type="text" id ="multipleTxt2_1">
+						</td>
+					</tr>
+				</tbody> 
+			</table>
+		</div>
+		<!-- 테이블 -->
+		<div class="table-box" >
+			<div class="table-body">
+				<table class="table table-hover" data-toggle="table"  data-show-column="true">
+					<caption>교과목목표 달성 내용</caption>
+					<colgroup>
+						<col style="min-width: 100px;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col" class="text-left">교과목목표(Course Objectives)</th>
+						</tr>
+					</thead>
+					<tbody id="resultTbody2">
+					</tbody>
+				</table>
+			</div>
+		</div><br>
+		<!-- /END 테이블 -->
+		</section>
+		
+		
+		
+		
+		<!-- 테이블 -->
+		<section class="sec-3 mt-3 mb-5">
+				<header class="mb-2">
+					<h4 class="sec-title">3. 아래항목은 본 교과목과 관련된 학습성과입니다. 본강의를 통해 학생 자신이 아래의 학습성과를 어느 정도 만족하였는지 만족도를 표시하시기 바랍니다.
+					<br/>Below are program outcomes related to this course. Please indicate the Extent to which you have achieved the following program  outcomes.</h4>
+				</header>
+				<div class="table-box table-list" >
+					<div class="table-body">
+						<table class="table table-hover" data-toggle="table"  data-show-column="true">
+							<caption>문항만족도정보</caption>
+							<colgroup>
+								<col style="min-width: 50px;">
+								<col style="min-width: 200px;">
+								<col style="min-width: 160px;">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">번호</th>
+									<th scope="col">문항</th>
+									<th scope="col">만족도</th>
+								</tr>
+							</thead>
+							<tbody id="resultTbody3">
+							</tbody>
+						</table>
+					</div>
+				</div><br>
+		</section>
+		<!-- /END 테이블 -->
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="form-row btn-box-right">
+					<div class="col-auto">
+						<button class="btn btn-outline-primary mb-2" onclick="fn_MiddletermLecevalSave()">입력</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/x-tbody-template" id="resultTemplate2">
+<tr>
+		<td class="text-left">
+			<ul class="list list-style-1">
+				<li>
+					#:EDU_KOR_CONTENT#
+					# if( :EDU_KOR_CONTENT != :EDU_ENG_CONTENT ) { #
+					<br/>#:EDU_ENG_CONTENT#
+					#}#
+				</li>
+			</ul>
+		</td>
+</tr>
+</script>
+<script type="text/x-tbody-template" id="resultTemplate3">
+	<tr class="question3" >
+        <td>
+			<input class="form-control SUB_QUESTION_NO" id="SUB_QUESTION_NO" type="text" style="display:none;" value="#:SUB_QUESTION_NO#">
+			<input class="form-control STUDY_OUTCM_CRITERIA_NO" id="STUDY_OUTCM_CRITERIA_NO" type="text" style="display:none;" value="#:STUDY_OUTCM_CRITERIA_NO#">
+			#:SUB_QUESTION_NO#
+		</td>
+	    <td class="text-left" scope="row"><strong>#:EDU_KOR_CONTENT#</strong>
+			# if( :EDU_KOR_CONTENT != :EDU_ENG_CONTENT ) { #
+					<br/>#:EDU_ENG_CONTENT#
+			#}#
+		</td>
+	    <td>
+			<div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioGroup3_#:SUB_QUESTION_NO#" id="radio#:SUB_QUESTION_NO#5" onclick="fn_questionTxt('#:SUB_QUESTION_NO#', 5)" value="5">
+                  <label class="form-check-label" for="radio#:SUB_QUESTION_NO#5">5</label>
+            </div>
+            <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioGroup3_#:SUB_QUESTION_NO#" id="radio#:SUB_QUESTION_NO#4" onclick="fn_questionTxt('#:SUB_QUESTION_NO#', 4)" value="4">
+                  <label class="form-check-label" for="radio#:SUB_QUESTION_NO#4">4</label>
+            </div>
+			<div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioGroup3_#:SUB_QUESTION_NO#" id="radio#:SUB_QUESTION_NO#3" onclick="fn_questionTxt('#:SUB_QUESTION_NO#', 3)" value="3">
+                  <label class="form-check-label" for="radio#:SUB_QUESTION_NO#3">3</label>
+            </div>
+			<div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioGroup3_#:SUB_QUESTION_NO#" id="radio#:SUB_QUESTION_NO#2" onclick="fn_questionTxt('#:SUB_QUESTION_NO#', 2)" value="2">
+                  <label class="form-check-label" for="radio#:SUB_QUESTION_NO#2">2</label>
+            </div>
+			<div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioGroup3_#:SUB_QUESTION_NO#" id="radio#:SUB_QUESTION_NO#1" onclick="fn_questionTxt('#:SUB_QUESTION_NO#', 1)" value="1">
+                  <label class="form-check-label" for="radio#:SUB_QUESTION_NO#1">1</label>
+            </div>
+		</td>
+	</tr>
+	<tr  style="cursor:pointer;display:none;" id="txt#:SUB_QUESTION_NO#">
+		<td class="text-left" colspan=3>
+		<label for="multipleTxt3_#:SUB_QUESTION_NO#"><strong>객관식 문항에 최저점(1)을 입력한 경우, 최저점의 구체적인 이유를 반드시 작성해 주시기 바랍니다.</strong> <br>
+														If you entered the lowest point(1) in the multiple-choice question, please make sure to fill out the lowest point. <br>
+		</label>
+														<input class="form-control multiple-txt" type="text" id = "multipleTxt3_#:SUB_QUESTION_NO#"> 
+        </td>
+	</tr>
+</script>
+<script type="text/javascript">
+	var total = 0; // 전체 문항수
+	var questionNo = new Array();
+	$(document).ready(popInit());
+
+	function popInit() {
+	
+		/* 
+		    [dataBind 공통] - json object의 값을 특정영역의 data-bind 정보를 이용해서 바인딩
+		    param1 : obj - 데이터바인딩 할 영역
+		    param2 : data - 데이터바인딩 할 데이터
+		    param3 : obj_ - 데이터바인딩 영역에서 제외할 영역
+		    param4 : callBack - 데이터바인딩 후 콜백함수
+		    data-bind 구분
+		      - value : $(this).val()
+		      - text : $(this).text()
+		      - html : $(this).html()
+		      - htmlBr : $(this).html() -> 줄바꿈(/(\n|\r\n)/g)을 <br/>태그로 치환해서 표시
+		      - checked : value값과 일치하는 항목을 checked처리
+		      - chkContains : 바인딩되는 데이터가 콤나(,)등으로 여러개가 붙어서 구성되고, value값과 일치하는 항목들을 checked처리 할 경우 사용
+		      - selected : option에 일치하는 value가 있는 경우 selected (없는경우 첫번째 option선택)
+		      - unit : 단위를 붙여서 표시해야 하는 경우 (ex) data-bind="unit : lgnFailNumtm|회"
+		      - cash : 천단위콤마표시 
+		      - cash&unit : 천단위콤마표시 & 단위를 붙여서 표시 (ex) data-bind="cash&unit : wkrcnt|명"
+		      - v_cash : value로 천단위콤마를 표시해서 넣는 경우
+		 */
+		gfn_com_dataBind($("#popups"), scwin.detailObj);
+		      
+        var collGradGcd = scwin.loginUser.collGradGcd;
+		var degCourseGcd = scwin.loginUser.degCourseGcdKorNm;
+		var assignNm = scwin.loginUser.assignNm;
+
+		var stdtNo = scwin.loginUser.userId;
+		var stdtYear = scwin.loginUser.stdtYearGcdKorNm;
+		var nm = scwin.loginUser.nm;
+
+		if (collGradGcd == '0001') {
+			$("#collGradGcd").text("대학");
+		} else if (collGradGcd == '0002') {
+			$("#collGradGcd").text("대학원");
+		}
+		$("#degCourseGcd").text(degCourseGcd);
+		$("#assignNm").text(assignNm);
+
+		$("#stdtNo").text(stdtNo);
+		$("#stdtYear").text(stdtYear);
+		$("#nm").text(nm);
+
+		$("#SYEAR").val(scwin.detailObj.SYEAR);
+		$("#TERM_GCD").val(scwin.detailObj.TERM_GCD);
+		$("#SUBJ_NO").val(scwin.detailObj.SUBJ_NO);
+		$("#CLASS_NO").val(scwin.detailObj.CLASS_NO);
+		$("#CHARGE_PROF_NO").val(scwin.detailObj.CHARGE_PROF_NO);
+		$("#LECEVAL_GCD").val("0002");
+		//$("#STDT_NO").val(scwin.loginUser.userId);
+		$("#EDUCERT_GCD").val(scwin.detailObj.EDUCERT_GCD);
+		$("#EDUCERT_PROGRAM_GCD").val(scwin.detailObj.EDUCERT_PROGRAM_GCD);
+		
+
+		data = gfn_com_searchData($(".search-box"));
+
+		data.QUESTION_GROUP_NO = 2;
+		fn_sch(data);
+		data.QUESTION_GROUP_NO = 3;
+		fn_sch(data);
+	}
+	
+	
+
+	/***************************************************************************
+	 * 강의평가 전체문항 조회
+	 **************************************************************************/
+	function fn_sch(data) {
+		var template_no = data.QUESTION_GROUP_NO;
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/sj/kp/endtermleceval/selectEduCertLecevalQuestionList",
+			reqData : data,
+			success : function(data, responseData) {
+				/*
+				total = responseData.totalCnt;
+				if(total ==0){
+					if(data.QUESTION_GROUP_NO ==2){
+						alert("교과목목표가 관리되지 않아 강의평가를 할 수 없습니다.\n강의평가 창을 종료합니다.");
+					}else if(data.QUESTION_GROUP_NO ==3){
+						alert("성과기준이 관리되지 않아 강의평가를 할 수 없습니다.\n강의평가 창을 종료합니다.");
+					}
+					gfn_com_closeModalWall();
+				}
+				*/
+				total = responseData.totalCnt;
+				//alert(total+"//"+template_no)
+				
+				if(total == 0 && template_no ==2){
+					alert("교과목목표가 관리되지 않아 강의평가를 할 수 없습니다.\n강의평가 창을 종료합니다.");
+					gfn_com_closeModalWall();
+				}else if(total ==0 && template_no ==3){
+					alert("성과기준이 관리되지 않아 강의평가를 할 수 없습니다.\n강의평가 창을 종료합니다.");
+					gfn_com_closeModalWall();
+				}
+				/*
+				var len = JSON.stringify(data.length);
+				for (var i = 0; i < len; i++) {
+					if(data[i].SUB_QUESTION_NO != "") {
+						var no = data[i].SUB_QUESTION_NO;
+						questionNo.push(no);''
+					}
+				}
+				*/
+				console.log(template_no);
+				$("#resultTbody"+template_no).listView({
+					dataSource : data,
+					dataBound : function(e) {
+						totalCnt = responseData.totalCnt;
+						currentData = data;
+						//gfn_com_createSliderComps($("#resultTbody .sliderpointer"));
+					},
+					template : $("#resultTemplate"+template_no),
+					totalCnt : responseData.totalCnt,
+					totalViewYn : "N",
+					excel : null
+				});
+				console.log("ee");
+			}
+		});
+	}
+
+	/***************************************************************************
+	 * 평가점수 선택 시 이벤트
+	 **************************************************************************/
+	function fn_questionTxt(no, num) {
+		if (num == 1) {
+			$("#txt" + no).show();
+		} else {
+			$("#txt" + no).hide();
+		}
+	}
+	
+	/***************************************************************************
+	 * 입력
+	 **************************************************************************/
+	function fn_MiddletermLecevalSave() {
+		var len = JSON.stringify(total);
+		/*
+		if (questionNo == "") {
+			alert("조회된 문항이 없습니다.");
+			return;
+		}
+		*/
+		// 최저점에 대한 내용입력 validation	
+
+		if($("input:radio[name='radioGroup1_1']:checked").val() == 1 ){
+			if($("#multipleTxt1_1").val() == ""){
+				alert("1번 문항의 최저점에 대한 내용을 작성해 주세요.");
+				$("#multipleTxt1_1").focus();
+				return;
+			}
+		}else if($("input:radio[name='radioGroup1_1']:checked").length == 0 ){
+			alert("1번 문항의 점수를 작성해 주세요.");
+			$("input:radio[name='radioGroup1_1']").focus();
+			return;
+		}
+		
+		if($("input:radio[name='radioGroup2_1']:checked").val() == 1 ){
+			if($("#multipleTxt2_1").val() == ""){
+				alert("2번 문항의 최저점에 대한 내용을 작성해 주세요.");
+				$("#multipleTxt2_1").focus();
+				return;
+			}
+		}else if($("input:radio[name='radioGroup2_1']:checked").length == 0 ){
+			alert("2번 문항의 점수를 작성해 주세요.");
+			$("input:radio[name='radioGroup2_1']").focus();
+			return;
+		}
+		
+		$.each($(".question3"),function (i,e){
+			console.log($(this).find(".STUDY_OUTCM_CRITERIA_NO").val())
+			if($("input:radio[name='radioGroup3_"+$(this).find(".SUB_QUESTION_NO").val()+"']:checked").val() == 1 ){
+				if($("#multipleTxt3_"+$(this).find(".SUB_QUESTION_NO").val()).val() == ""){
+					alert($(this).find(".SUB_QUESTION_NO").val() + "번 문항의 최저점에 대한 내용을 작성해 주세요.");
+					$("#multipleTxt3_"+$(this).find(".SUB_QUESTION_NO").val()).focus();
+					return;
+				}
+			}else if($(':radio[name="radioGroup3_'+$(this).find(".STUDY_OUTCM_CRITERIA_NO").val()+'"]:checked').length == 0){
+				alert($(this).find(".SUB_QUESTION_NO").val() + "번 문항의 점수를 작성해 주세요.");
+				$(':radio[name="radioGroup3_'+questionNo[i]+'"]').focus();
+				return;
+			}
+		});
+		
+		// 주관식 문항 validation
+		/*
+		if (document.getElementsByClassName("subjective-txt")) {
+			if($(".subject-txt").val() == "") {
+				alert("주관식 문항을 입력해 주세요.");
+				$(".subject-txt").focus();
+				return;
+			}
+		}
+		*/
+		
+		confirm(gva_SAVE_CONFIRM_MSG,function(_flag){
+    		if(_flag) {
+    			var data = new Array();
+    			
+    			let commonEduCertMap = {};
+    			
+    			
+    			
+    			//$("input:radio[name='radioGroup1']:checked").val()
+    			let eduCertMap = {};
+    			eduCertMap.SYEAR = $("#SYEAR").val();
+    			eduCertMap.TERM_GCD = $("#TERM_GCD").val();
+    			eduCertMap.SUBJ_NO = $("#SUBJ_NO").val();
+    			eduCertMap.CLASS_NO = $("#CLASS_NO").val();
+    			//eduCertMap.STDT_NO = $("#STDT_NO").val();
+    			eduCertMap.CHARGE_PROF_NO = $("#CHARGE_PROF_NO").val();
+    			eduCertMap.QUESTION_NO = "1";
+    			eduCertMap.SUB_QUESTION_NO = "1";
+    			eduCertMap.REPLY_VALUE = $("input:radio[name='radioGroup1_1']:checked").val();
+    			eduCertMap.multipleTxt = $("#multipleTxt1_1").val();
+    			data.push(eduCertMap);
+				
+    			eduCertMap = {};
+    			eduCertMap.SYEAR = $("#SYEAR").val();
+    			eduCertMap.TERM_GCD = $("#TERM_GCD").val();
+    			eduCertMap.SUBJ_NO = $("#SUBJ_NO").val();
+    			eduCertMap.CLASS_NO = $("#CLASS_NO").val();
+    			//eduCertMap.STDT_NO = $("#STDT_NO").val();
+    			eduCertMap.CHARGE_PROF_NO = $("#CHARGE_PROF_NO").val();
+    			eduCertMap.QUESTION_NO = "2";
+    			eduCertMap.SUB_QUESTION_NO = "1";
+    			eduCertMap.REPLY_VALUE  = $("input:radio[name='radioGroup2_1']:checked").val();
+    			eduCertMap.multipleTxt = $("#multipleTxt2_1").val();
+				data.push(eduCertMap);
+				
+				
+				$.each($(".question3"),function (i,e){
+					eduCertMap = {};
+					eduCertMap.SYEAR = $("#SYEAR").val();
+	    			eduCertMap.TERM_GCD = $("#TERM_GCD").val();
+	    			eduCertMap.SUBJ_NO = $("#SUBJ_NO").val();
+	    			eduCertMap.CLASS_NO = $("#CLASS_NO").val();
+	    			//eduCertMap.STDT_NO = $("#STDT_NO").val();
+	    			eduCertMap.CHARGE_PROF_NO = $("#CHARGE_PROF_NO").val();
+					eduCertMap.QUESTION_NO = "3";
+					eduCertMap.SUB_QUESTION_NO =$(this).find(".SUB_QUESTION_NO").val();
+					eduCertMap.REPLY_VALUE = $("input:radio[name='radioGroup3_"+$(this).find(".SUB_QUESTION_NO").val()+"']:checked").val();
+					eduCertMap.multipleTxt = $("#multipleTxt3_"+$(this).find(".SUB_QUESTION_NO").val()).val();
+					data.push(eduCertMap);
+				});
+
+
+    			gfn_ajax_request({
+        			url : "/ost/sj/kp/endtermleceval/saveEduCertLecevalQuestion",
+        			reqData : data,
+        			success : function(data, responseData){
+        				if(data.resultYn == "Y") {
+        					alert(data.msg);
+            				gfn_com_closeModalWall(1,function(){
+            					fn_schCallBack();
+            				});
+        				} else {
+        					alert(data.msg);
+        				}	
+        			}
+        		});
+    		}
+    	});
+	}
+</script>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교수계획표 조회 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김동영
+ * @Create : 2022년 02월 10일
+ * @Title : SylSeach_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.syl.sylsearch">
+
+<select id="selectSylSearch" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수계획표_교수계획표_조회(
+	    #{SCH_SYEAR},
+	    #{SCH_TERM_GCD},
+	    #{SEARCH_GBN},
+	    #{profSearch_hidden},
+	    #{SCH_SUBJ_NM},
+	    #{FIRSTINDEX},
+	    #{LASTINDEX}
+    )}
+</select>
+
+<select id="selectSeachPossDate" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수계획표_강의평가_조회가능기간_조회(
+	    #{SCH_SYEAR},
+	    #{SCH_TERM_GCD}
+    )}
+</select>
+</mapper>

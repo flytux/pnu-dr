@@ -1,0 +1,88 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="table-body">
+				<table class="table table-hover" id="userListTable" data-height="420" data-height="100%" data-toggle="table" data-show-column="true">
+					<caption>계정정보</caption>
+					<thead>
+						<tr>
+							<th scope="col">직급</th>
+							<th scope="col">이름</th>
+							<th scope="col">부서</th>
+							<th scope="col">선택</th>
+						</tr>
+					</thead>
+					<tbody id="resultTbody"></tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</div>
+
+<script>
+	$(document).ready(popInit());
+	function popInit() {
+		let userListHtml = "";
+		$.each(scwin.userList, function(i, rowObj) {
+			var user_id = gfn_str_parseNull(rowObj.USER_ID);
+			if (user_id != scwin.loginUser.userId) {
+				//사용자 계정들을 넣는 id 가져오기
+
+				//있으면 버튼생성하고 버튼에 팝업열기 추가
+				userListHtml += "<tr>";
+				userListHtml += "<td>"+rowObj.JK_NM+"</td>";
+				userListHtml += "<td>"+rowObj.NM+"</td>";
+				userListHtml += "<td>"+rowObj.ASSIGN_NM+"</td>";
+				userListHtml += '<td><button class="btn btn-primary mb-2" type="button" onclick="fn_check(\''+user_id+'\')">선택</button></td>';
+				userListHtml += "</tr>";
+			}
+		});
+		$("#userListTable").find("#resultTbody").html(userListHtml);
+		
+		setTimeout(
+				function() {
+					var theader_cell = $("#resultTbody").closest(
+							".fixed-table-container").find(
+							".fixed-table-header").find(".fht-cell");
+					if ($("#resultTbody").find("tr").eq(0).attr("class") != "no-records-found") {
+						$("#resultTbody").find("tr").eq(0).find("td").each(
+								function(i, o) {
+									theader_cell.eq(i).css("width",
+											$(this).css("width"));
+								});
+					}
+					if ($("#resultTbody").hasVerticalScrollBar()) {
+						theader_cell.filter(":last").css(
+								"width",
+								parseInt(theader_cell.filter(":last").css(
+										"width").replace('px', '')) );
+					} else {
+						$("#resultTbody").closest(".fixed-table-container")
+								.find(".fixed-table-header").css(
+										"margin-right", "");
+					}
+				}, 200);
+
+
+
+	}
+	function fn_check(user_id) {
+		if(gfn_com_parseNull(scwin.loginUser.originId) == ""){
+			var form = $('<form method="POST" action="/login/loginCheck">');
+			form
+					.append('<input type="hidden" name="' + scwin.tokenHeaderNm + '" value="' + scwin.token + '" />');
+			form
+					.append('<input type="hidden" name="' + scwin.tokenParameterNm + '" value="' + scwin.token + '" />');
+			form.append('<input type="hidden" name="USER_ID" value="'
+					+ fn_ajax_enc_param(user_id) + '" />');
+			form.append('<input type="hidden" name="PWD" value="" />');
+			form.append('<input type="hidden" name="ORIGIN_ID" value="'
+					+ fn_ajax_enc_param(scwin.loginUser.userId) + '" />');
+			form.append('<input type="hidden" name="SYSTEM_GCD" value="0002" />');
+			$('body').append(form);
+			form.submit().remove();
+		}else{
+			alert("사용자전환 상태에서 사용자를 변경 할 수 없습니다.");
+		}
+	}
+</script>

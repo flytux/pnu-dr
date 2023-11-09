@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="core.function">
+
+    <select id="getCode" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_공통코드_조회(#{CODES},#{ALL},#{SESSION_LOCALE_NM}) }
+    </select>
+
+    <select id="getCodeByEtcParam" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_공통코드_조건별_조회(#{CODE},#{QPARAM},#{ALL},#{SESSION_LOCALE_NM}) }
+    </select>
+
+    <select id="getEmpUserInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_팝업_교원정보_조회(#{KEYWORD}) }
+    </select> 
+    
+    <select id="getAssignComboGradGcdInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_소속콤보_대학원_조회(#{SESSION_LOCALE_NM}) }    
+    </select>
+    
+    <select id="getAssignComboCollCdInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_소속콤보_단과대학_조회(#{SESSION_LOCALE_NM}) }    
+    </select>
+    
+    <select id="getAssignComboDeptCdInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_소속콤보_학과_조회(#{SESSION_LOCALE_NM}) }    
+    </select>
+    
+    <select id="getAssignComboMajorCdInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_소속콤보_전공_조회(#{SESSION_LOCALE_NM}) }    
+    </select>
+    
+    <select id="getAssignComboDeptMajorCdInfo" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_소속콤보_학과학과전공_조회(#{SESSION_LOCALE_NM}) }    
+    </select>
+    
+    <select id="clauseDetailList" parameterType="map" resultType="hashMap">
+        { call ost.dbo.OST_공통_개인정보동의_조회(#{SYSTEM_GCD}, #{CLAUSE_SEQ_NO}) }
+    </select> 
+    
+    <select id="insertAgreeDltInfo" resultType="hashMap">
+        { CALL ost.dbo.OST_공통_개인정보동의_저장(
+            #{SYSTEM_GCD},
+            #{CLAUSE_SEQ_NO},
+            #{CLAUSE_HISTORY_SEQ_NO},
+            #{CLAUSE_DETAIL_SEQ_NO},
+            #{USER_ID},
+            #{AGREE_FG},
+            #{MULTI_ITEM_CHOICE_VALUE},
+            #{INS_USER_IP},
+            #{INS_SYSTEM_GCD},
+            #{INS_MENU_CD}
+        )}
+    </select>
+    
+    <select id="getNoticePopupInfo" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_공지팝업_조회(#{SESSION_SYSTEM_GCD},#{SESSION_MENU_CD}
+        													,#{SESSION_USER_GBN_UPPER_PART_GCD}
+        													,#{SESSION_USER_GBN_MIDDLE_PART_GCD}
+        													,#{SESSION_USER_GBN_LOWER_PART_GCD}
+        													, #{POPUP_GCD}) }
+    </select>
+    
+    <select id="getUserInfo" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_팝업_사용자정보_조회(#{GBN},#{USER_ID},#{NM},#{CNDTN}) }
+    </select>
+    
+    <select id="infoSearchInsert" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_정보검색_저장(#{INFO_SEARCH_GCD}
+                                                       ,#{SEARCH_REASON_GCD}
+                                                       ,#{FILE_NM}
+                                                       ,#{SEARCH_CONDTN_CONTENT}
+                                                       ,#{PERSON_INFO_INCLUDE_FG}
+                                                       ,#{REMARK}
+                                                       ,#{SESSION_USER_ID}
+                                                       ,#{SESSION_USER_IP}
+                                                       ,#{SESSION_SYSTEM_GCD}
+                                                       ,#{SESSION_MENU_CD}) }
+    </select>
+    
+    <select id="getSiteInfo" resultType="hashMap">
+        {CALL SYS.DBO.SYS_사이트관리_조회(#{SYSTEM_GCD})}
+    </select>
+    
+    <select id="insertSystemLog" parameterType="map" resultType="hashMap">
+        { call sys.dbo.SYS_공통_사용로그_저장(#{USE_HISTORY_GCD},#{CONN_BROWSER_INFO},#{CONN_OS_INFO},#{CONN_IP},#{USE_HISTORY_CONTENT},#{FIRST_USER_ID},#{USER_ID},#{SYSTEM_GCD},#{MENU_CD},#{INS_USER_ID},#{INS_USER_IP},#{INS_SYSTEM_GCD},#{INS_MENU_CD},#{USE_HISTORY_GCD_NM},#{SYSTEM_GCD_NM},#{USER_NM},#{USER_GCD}) }
+    </select>
+    
+    
+    
+    <select id="bindProc" resultType="hashMap">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap21" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap22" type="hashMap"></resultMap>
+    
+    <select id="bindProc2" resultMap="comfunresultmap21,comfunresultmap22">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap31" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap32" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap33" type="hashMap"></resultMap>
+    
+    <select id="bindProc3" resultMap="comfunresultmap31,comfunresultmap32,comfunresultmap33">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap41" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap42" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap43" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap44" type="hashMap"></resultMap>
+    
+    <select id="bindProc4" resultMap="comfunresultmap41,comfunresultmap42,comfunresultmap43,comfunresultmap44">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap51" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap52" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap53" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap54" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap55" type="hashMap"></resultMap>
+    
+    <select id="bindProc5" resultMap="comfunresultmap51,comfunresultmap52,comfunresultmap53,comfunresultmap54,comfunresultmap55">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap61" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap62" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap63" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap64" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap65" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap66" type="hashMap"></resultMap>
+    
+    <select id="bindProc6" resultMap="comfunresultmap61,comfunresultmap62,comfunresultmap63,comfunresultmap64,comfunresultmap65,comfunresultmap66">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap71" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap72" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap73" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap74" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap75" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap76" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap77" type="hashMap"></resultMap>
+    
+    <select id="bindProc7" resultMap="comfunresultmap71,comfunresultmap72,comfunresultmap73,comfunresultmap74,comfunresultmap75,comfunresultmap76,comfunresultmap77">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap81" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap82" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap83" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap84" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap85" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap86" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap87" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap88" type="hashMap"></resultMap>
+    
+    <select id="bindProc8" resultMap="comfunresultmap81,comfunresultmap82,comfunresultmap83,comfunresultmap84,comfunresultmap85,comfunresultmap86,comfunresultmap87,comfunresultmap88">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap91" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap92" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap93" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap94" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap95" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap96" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap97" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap98" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap99" type="hashMap"></resultMap>
+    
+    <select id="bindProc9" resultMap="comfunresultmap91,comfunresultmap92,comfunresultmap93,comfunresultmap94,comfunresultmap95,comfunresultmap96,comfunresultmap97,comfunresultmap98,comfunresultmap99">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap101" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap102" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap103" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap104" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap105" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap106" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap107" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap108" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap109" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1010" type="hashMap"></resultMap>
+    
+    <select id="bindProc10" resultMap="comfunresultmap101,comfunresultmap102,comfunresultmap103,comfunresultmap104,comfunresultmap105,comfunresultmap106,comfunresultmap107,comfunresultmap108,comfunresultmap109,comfunresultmap1010">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap111" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap112" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap113" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap114" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap115" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap116" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap117" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap118" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap119" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1110" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1111" type="hashMap"></resultMap>
+    
+    <select id="bindProc11" resultMap="comfunresultmap111,comfunresultmap112,comfunresultmap113,comfunresultmap114,comfunresultmap115,comfunresultmap116,comfunresultmap117,comfunresultmap118,comfunresultmap119,comfunresultmap1110,comfunresultmap1111">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap121" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap122" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap123" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap124" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap125" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap126" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap127" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap128" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap129" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1210" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1211" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1212" type="hashMap"></resultMap>
+    
+    <select id="bindProc12" resultMap="comfunresultmap121,comfunresultmap122,comfunresultmap123,comfunresultmap124,comfunresultmap125,comfunresultmap126,comfunresultmap127,comfunresultmap128,comfunresultmap129,comfunresultmap1210,comfunresultmap1211,comfunresultmap1212">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap131" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap132" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap133" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap134" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap135" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap136" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap137" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap138" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap139" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1310" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1311" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1312" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1313" type="hashMap"></resultMap>
+    
+    <select id="bindProc13" resultMap="comfunresultmap131,comfunresultmap132,comfunresultmap133,comfunresultmap134,comfunresultmap135,comfunresultmap136,comfunresultmap137,comfunresultmap138,comfunresultmap139,comfunresultmap1310,comfunresultmap1311,comfunresultmap1312,comfunresultmap1313">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap141" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap142" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap143" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap144" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap145" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap146" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap147" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap148" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap149" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1410" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1411" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1412" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1413" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1414" type="hashMap"></resultMap>
+    
+    <select id="bindProc14" resultMap="comfunresultmap141,comfunresultmap142,comfunresultmap143,comfunresultmap144,comfunresultmap145,comfunresultmap146,comfunresultmap147,comfunresultmap148,comfunresultmap149,comfunresultmap1410,comfunresultmap1411,comfunresultmap1412,comfunresultmap1413,comfunresultmap1414">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+    <resultMap id="comfunresultmap151" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap152" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap153" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap154" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap155" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap156" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap157" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap158" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap159" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1510" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1511" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1512" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1513" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1514" type="hashMap"></resultMap>
+    <resultMap id="comfunresultmap1515" type="hashMap"></resultMap>
+    
+    <select id="bindProc15" resultMap="comfunresultmap151,comfunresultmap152,comfunresultmap153,comfunresultmap154,comfunresultmap155,comfunresultmap156,comfunresultmap157,comfunresultmap158,comfunresultmap159,comfunresultmap1510,comfunresultmap1511,comfunresultmap1512,comfunresultmap1513,comfunresultmap1514,comfunresultmap1515">
+        {CALL [SYS].DBO.[SP_공통_프로시저_호출](#{db},#{proc},#{params})}
+    </select>
+    
+
+</mapper>

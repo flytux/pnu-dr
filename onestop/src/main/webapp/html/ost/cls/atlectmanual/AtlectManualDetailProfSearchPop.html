@@ -1,0 +1,331 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="table-box">
+				<div class="table-body">
+					<table class="table table-hover" data-toggle="table" data-show-column="true">
+						<caption>교수상세정보</caption>
+						<colgroup>
+							<col style="min-width: 100px;">
+							<col style="min-width: 120px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 20px;">
+							<col style="min-width: 130px;">
+							<col style="min-width: 130px;">
+							<col style="min-width: 70px;">
+							<col style="min-width: 70px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">교수명</th>
+								<th scope="col">직급</th>
+								<th scope="col">학과</th>
+								<th scope="col">책임교수여부</th>
+								<th scope="col">강의기간</th>
+								<th scope="col">시간/강의실</th>
+								<th scope="col">교수계획표(국문)</th>
+								<th scope="col">교수계획표(영문)</th>
+							</tr>
+						</thead>
+						<tbody id="resultTbody2">
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</div>
+<script src="/common/js/gfn/gfn_report.js"></script>
+<script type="text/x-tbody-template" id="resultTemplate">
+	<tr style="cursor:pointer;">
+	    <td class="text-center">#:NM#</td>
+	    <td class="text-center">#:JK_NM#</td>
+	    <td class="text-left">#:ASSIGN_NM#</td>
+	    <td class="text-left">#:RESP_PROF_FG#</td>
+	    <td class="text-left">#:GIGAN#</td>
+	    <td class="text-left">#:TIMETABLE_SUMMARY_INFO#</td>
+	<td>	
+			# if( :PRT_KOR == "국문") { #
+	               <button class="btn btn-outline-primary kor" type="button">국문</button>
+	        #} else if ( :PRT_KOR == "") { #
+	               
+	        #}#
+		</td> 
+		<td>
+			# if( :PRT_ENG == "영문") { #
+	               <button class="btn btn-outline-secondary eng" type="button">영문</button>
+	        #} else if ( :PRT_KOR == "") { #
+	               
+	        #}#
+		</td> 
+	</tr>
+</script>
+<script type="text/javascript">
+	$(document).ready(popInit());
+
+	function popInit() {
+
+		SearchDetailInfo();
+	}
+	
+	function SearchDetailInfo() {
+
+		gfn_ajax_request({
+			url : "/ost/cls/atlectmanual/atlectmanual/selectAtlectManualDetailProf",
+			reqData : scwin.detailObj01,
+			success : function(data, responseData) {
+
+				$("#resultTbody2").listView({
+					dataSource : data,
+					dataBound : function(e) {
+						$('#resultTbody2 .kor').bind("click", function(e) {
+							paramData = $(this).closest("tr").data();
+							fn_openReport(paramData, 'KOR');
+						});
+						$('#resultTbody2 .eng').bind("click", function(e) {
+							paramData = $(this).closest("tr").data();
+							fn_openReport(paramData, 'ENG');
+						});
+					},
+					template : $("#resultTemplate"),
+					totalCnt : responseData.totalCnt,
+
+				});
+			}
+		});
+	}
+	
+	
+	function fn_openReport(param,gbn) {
+		var options ={};
+        var objParam = {};	
+    	var SCH_LANG_GCD = "";
+    	console.log(param);
+	 	if(gbn == "KOR"){
+	 		SCH_LANG_GCD      = '0001';
+        }else if(gbn == "ENG"){
+        	SCH_LANG_GCD		= '0002';
+        }
+	 	
+
+        
+        if(param.EDUCERT_GCD == null){ //교육인증 구분코드 없을때./////////////////////////////////////////////////////////////////////////////
+        	if(gbn == "KOR") { //국문
+                options.rptName = "/ses/cls/sylmng/sylprint/SylPrint_001.crf";
+            } else {//영문
+                options.rptName = "/ses/cls/sylmng/sylprint/SylPrint_002.crf";
+            }	
+        	objParam.SCH_CURC_APPLY_SYEAR = param.SYEAR;
+        	objParam.SCH_TERM_GCD = param.TERM_GCD;
+		    		objParam.bind = [{
+		                db : "LECTURE",
+		                proc : "CLS_교수계획표_교수계획표출력_출력",
+		                params : ["MST"
+			                ,param.SYEAR
+			                ,param.TERM_GCD
+			                ,param.PROF_NO
+			                ,param.SUBJ_NO
+			                ,""
+			                ,SCH_LANG_GCD
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+			                ,""
+						]
+		        },{
+		                db : "LECTURE",
+		                proc : "CLS_교수계획표_교수계획표출력_출력",
+		                params : ["DTL"
+		                ,param.SYEAR
+		                ,param.TERM_GCD
+		                ,param.PROF_NO
+		                ,param.SUBJ_NO
+		                ,param.CLASS_NO
+		                ,SCH_LANG_GCD
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,param.EDUCERT_GCD
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+						]
+		        },{
+		                db : "LECTURE",
+		                proc : "CLS_교수계획표_교수계획표출력_출력",
+		                params : ["DTL2"
+		                ,param.SYEAR
+		                ,param.TERM_GCD
+		                ,param.PROF_NO
+		                ,param.SUBJ_NO
+		                ,param.CLASS_NO
+		                ,SCH_LANG_GCD
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+						]
+		        },{
+		                db : "LECTURE",
+		                proc : "CLS_교수계획표_교수계획표출력_출력",
+		                params : ["DTL1"
+		                ,param.SYEAR
+		                ,param.TERM_GCD
+		                ,param.PROF_NO
+		                ,param.SUBJ_NO
+		                ,param.CLASS_NO
+		                ,SCH_LANG_GCD
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+		                ,""
+						]
+		        }];
+        
+        }else{////////교육인증 구분코드 존재할때./////////////////////////////////////////////////
+        	if(gbn == "KOR"){
+        		options.rptName = "/ses/ae/sylmng/sylprint/SylPrint"+param.EDUCERT_GCD+"_001.crf";
+        		objParam.bind = [{
+	                db : "EDUCERT",
+	                proc : "AE_교수계획표관리_통합_교수계획표_출력",
+	                params : [
+	                param.SYEAR
+	                ,param.TERM_GCD
+	                ,param.SUBJ_NO
+	                ,param.CLASS_NO
+	                ,param.PROF_NO
+	                ,SCH_LANG_GCD
+	                ,param.EDUCERT_GCD
+	                ]
+	       		 }];
+        	}else if(gbn == "ENG"){
+        		options.rptName = "/ses/ae/sylmng/sylprint/SylPrint"+param.EDUCERT_GCD+"_002.crf";
+        		objParam.bind = [{
+	                db : "EDUCERT",
+	                proc : "AE_교수계획표관리_통합_교수계획표_출력",
+	                params : [
+	                param.SYEAR
+	                ,param.TERM_GCD
+	                ,param.SUBJ_NO
+	                ,param.CLASS_NO
+	                ,param.PROF_NO
+	                ,SCH_LANG_GCD
+	                ,param.EDUCERT_GCD
+	                ]
+	       		 }];
+        	}
+        	
+        }
+
+        //레포트를 생성시킬 group component 또는 id를 넣는다.
+        options.div = 'grp_report';
+
+        //레포트에서 사용할 옵션
+        //현재 다운로드 버튼 관련 기능만 제공...
+        options.reportOption = {};
+        options.reportOption.useHwp = false; //한글다운로드 기능 사용안할 경우
+        options.reportOption.useDoc = false; //word다운로드 기능 사용안할 경우
+        options.reportOption.useEtc = false; //기타다운로드 기능(ppt, rtf, html 등) 사용안할 경우
+        options.reportOption.usePrint = false; //프린트 기능 사용안할 경우
+
+        //실행실킬 레포트 파일에서 사용할 파라미터 object 형식
+        //프로그램 정보(PROG_INFO)와 사용자 정보(USER_INFO)는 기본값으로 전송됨.
+        options.data = objParam;
+
+        fn_openPopup2(options);
+        /* 
+		var options ={};
+                    
+        
+        if(gbn == "KOR") {
+            options.rptName = "/ses/cls/sylmng/sylprint/SylPrint_001.crf";
+        } else {
+            options.rptName = "/ses/cls/sylmng/sylprint/SylPrint_002.crf";
+        }
+        
+        //파라메터 설정
+        //var objParam = dma_SearchParam.getJSON();
+        var objParam = {};
+        objParam.SYEAR 							= paramData.SCH_SYEAR;  //기준년도
+        objParam.TERM_GCD                       = paramData.SCH_TERM_GCD;  //기준월
+        objParam.SCH_PROF_NO                        = param.PROF_NO;
+        objParam.SCH_SUBJ_NO                        = param.SUBJ_NO;
+        objParam.SCH_CLASS_NO                        = param.CLASS_NO;
+        if(gbn == "KOR"){
+	        objParam.SCH_LANG_GCD                        = '0001';
+        }else if(gbn == "ENG"){
+        	objParam.SCH_LANG_GCD		='0002';
+        }
+        //레포트를 생성시킬 group component 또는 id를 넣는다.
+        options.div = 'grp_report1';
+
+        //레포트에서 사용할 옵션
+        //현재 다운로드 버튼 관련 기능만 제공...
+        options.reportOption = {};
+        options.reportOption.useHwp = false; //한글다운로드 기능 사용안할 경우
+        options.reportOption.useDoc = false; //word다운로드 기능 사용안할 경우
+        options.reportOption.useEtc = false; //기타다운로드 기능(ppt, rtf, html 등) 사용안할 경우
+        options.reportOption.usePrint = false; //프린트 기능 사용안할 경우
+
+        //실행실킬 레포트 파일에서 사용할 파라미터 object 형식
+        //프로그램 정보(PROG_INFO)와 사용자 정보(USER_INFO)는 기본값으로 전송됨.
+        options.data = objParam;
+
+        fn_openPopup2(options); */
+
+	}
+	
+	function fn_openPopup2(rptOptions) {
+		gfn_com_modalPopup({
+        	width : 1200,
+            height : 900,
+            target : null,            
+            title : "교수계획표",
+            include : "/html/ost/core/popup/CommPopReport.html", 
+            dataBound : function(e) {
+            	rptOptions.div = "pop_grp_report";
+            	openReport(rptOptions);
+            }
+        });
+	}
+	
+</script>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 다국어 관리  SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 류승우
+ * @Create : 2021년 08월 26일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="core.i18n">
+    
+    <select id="selectListMultiLang" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_다국어_조회()}
+    </select>
+    
+    <select id="insertMultiLang" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_다국어_저장(    
+            #{SYSTEM_GCD},   
+            #{MENU_CD},
+            #{KOR_NM},
+            #{SESSION_SYSTEM_GCD},
+            #{SESSION_MENU_CD},
+            #{SESSION_USER_ID},
+            #{SESSION_USER_IP}
+        )}        
+    </select>
+  
+    
+</mapper>

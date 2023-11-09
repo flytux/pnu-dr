@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pnu-jib-build-pipeline-
+spec:
+  serviceAccountName: sa-pipeline-runner
+  pipelineRef:
+    name: build-mvn-jib
+  params:
+  - name: build-stage
+    value: dev
+  - name: git-repo-name
+    value: pnu
+  - name: git-branch
+    value: master
+  - name: insecure-registry
+    value: "true"
+  - name: git-url
+    value: "http://gitea.gitea:3000/gitea"
+  - name: image-url
+    value: "192.168.5.31:30005"
+  - name: gitops-repo-name
+    value: pnu-deploy
+  - name: gitops-branch
+    value: kust
+  workspaces:
+  - name: source
+    persistentvolumeclaim:
+      claimName: pvc-build
+    subPath: pnu
+  - name: gitops
+    emptyDir: {}

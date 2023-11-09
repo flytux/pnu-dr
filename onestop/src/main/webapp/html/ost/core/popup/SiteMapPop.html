@@ -1,0 +1,87 @@
+<div id="popups">
+	<div class="container-sub">
+		<div class="sec-body" id="sitemap"></div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(popInit());
+	function popInit() {
+
+		if (scwin.menuList != undefined && scwin.menuList != {}) {
+			var list = scwin.menuList;
+			//1Depth 메뉴 리스트 가져오기
+			var menu1Depth = gfn_com_getMatchedJSON(list, 'UPPER_MENU_CD',
+					'000000000000000');
+			var menuItem = '';
+
+			for ( var menu1 in menu1Depth) {
+				menuItem += '<section class="sec-2">                                                                  ';
+				menuItem += '<header>                                                                                 ';
+				menuItem += '		<h2 class="sec-title">'
+						+ langMenuNm(menu1Depth[menu1])
+						+ '</h2>                                                   ';
+				menuItem += '</header>                                                                                ';
+				menuItem += '<div class="sec-body">                                                                   ';
+				menuItem += '<table class="table">                                                                    ';
+				menuItem += '	<caption>'
+						+ langMenuNm(menu1Depth[menu1])
+						+ '메뉴의 사이트맵 리스트입니다.</caption>                                  ';
+				menuItem += '	<tbody>                                                                               ';
+
+				//2Depth 메뉴 리스트 가져오기
+				var menu2Depth = gfn_com_getMatchedJSON(list, 'UPPER_MENU_CD',
+						menu1Depth[menu1].MENU_CD);
+				for ( var menu2 in menu2Depth) {
+					
+					//3Depth 메뉴 리스트 가져오기
+					var menu3Depth = gfn_com_getMatchedJSON(list,
+							'UPPER_MENU_CD', menu2Depth[menu2].MENU_CD);
+					if (menu3Depth.length > 0
+							|| menu2Depth[menu2].MENU_GCD == '0002') {
+					
+						menuItem += '		<tr>                                                                              ';
+						menuItem += '			<th scope="col" width="200px" class="align-text-top text-left">';
+	
+						if (menu2Depth[menu2].MENU_GCD == '0002') {
+							menuItem += '<a  href="#none" onclick="selectMenu(\''
+									+ menu2Depth[menu2].MENU_CD + '\');return false;" onkeypress="this.onclick" >'
+									+ langMenuNm(menu2Depth[menu2]) + '</a>';
+						} else {
+							menuItem +=  langMenuNm(menu2Depth[menu2]) ;
+						}
+						menuItem += '			</th>';
+	
+						menuItem += '			<td class="text-left">                                                        ';
+	
+						menuItem += '				<ul class="list list-style-1 row">                                        ';
+						//3Depth 메뉴 리스트 가져오기
+						var menu3Depth = gfn_com_getMatchedJSON(list,
+								'UPPER_MENU_CD', menu2Depth[menu2].MENU_CD);
+						for ( var menu3 in menu3Depth) {
+							menuItem += '					<li class="col-md-6 col-lg-4">';
+	
+							if (menu3Depth[menu3].MENU_GCD == '0002') {
+								menuItem += '<a href="#none" onclick="selectMenu(\''
+										+ menu3Depth[menu3].MENU_CD + '\');return false;" onkeypress="this.onclick">'
+										+ langMenuNm(menu3Depth[menu3]) + '</a>';
+							} else {
+								menuItem +=  langMenuNm(menu3Depth[menu3]);
+							}
+							menuItem += '					</li>           ';
+						}
+						menuItem += '				</ul>                                                                     ';
+						menuItem += '			</td>                                                                         ';
+						menuItem += '		</tr>                                                                             ';
+					}
+				}
+				menuItem += '	</tbody>                                                                              ';
+				menuItem += '</table>                                                                                 ';
+				menuItem += '</div> ';
+				menuItem += '</section>                                                                               ';
+			}
+
+			$('#sitemap').append(menuItem).trigger("create");
+		}
+	}
+</script>

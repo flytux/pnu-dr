@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 영어 기초학력진단평가 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김지윤
+ * @Create : 2022년 02월 10일
+ * @Title : DiagnosisTestEng_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.basicsdiagnosistest.DiagnosisTestEng"> 
+<select id="searchTestFg" parameterType="map" resultType="hashMap">
+    {CALL OST.dbo.OST_수강신청_영어기초학력진단평가_응시여부_조회(
+	    #{STDT_NO}
+    )}
+</select>
+
+<select id="searchSubjList" parameterType="map" resultType="hashMap">
+    {CALL OST.dbo.OST_수강신청_영어기초학력진단평가_수강신청과목_조회(
+	    #{STDT_NO}
+    )}
+</select>
+</mapper>

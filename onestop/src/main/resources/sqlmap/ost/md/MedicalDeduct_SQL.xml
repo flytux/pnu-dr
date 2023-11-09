@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 학생의료공제회 급여 신청 및 확인 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김우영
+ * @Create : 2022년 07월 26일
+ * @Title : MedicalDeduct_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.md.medicaldeduct">
+	
+	<select id="payApplyList" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_등록_의료공제회_의료공제신청_조회(
+			  #{SCH_SYEAR},
+			  #{SCH_TERM_GCD},
+			  #{SESSION_USER_ID}
+			)}
+	</select>
+	
+	<select id="payApplyDetail" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_등록_의료공제회_의료공제신청_상세조회(
+			  #{APPLY_SERIAL_NO},
+			  #{SESSION_USER_ID}
+			)} 
+	</select>
+	
+	
+	<select id="executePayApplyInfo" resultType="hashMap">
+        {CALL OST.DBO.OST_등록_의료공제회_의료공제회신청_저장(
+        #{APPLY_SERIAL_NO},
+        #{SYEAR},
+        #{TERM_GCD},
+        #{SESSION_USER_ID},
+        #{DISEASE_NM},
+        #{HOSPITAL_NM},
+        #{HOSPITAL_TEL_NO},
+        #{OUTPATIENT_START_DATE},
+        #{OUTPATIENT_CLOSE_DATE},
+        #{INPATIENT_START_DATE},
+        #{INPATIENT_CLOSE_DATE},					
+		#{OCCUR_CONTENT},			
+		#{SELF_PAY_AMT},
+		#{BANK_CD},		
+		#{ACCT_NO},				
+		#{ACCT_NM},	
+		#{ATTACH_FILE_GRP_CD},
+		#{SESSION_USER_ID},				
+		#{SESSION_USER_IP},				
+		#{SESSION_SYSTEM_GCD},
+		#{SESSION_MENU_CD},					
+		#{rowStatus}		
+        )}  
+    </select>
+    
+    
+    <select id="refundApplyList" parameterType="map" resultType="hashMap">
+		{CALL ENROLL.dbo.DR_잡부금환불_조회(
+			  #{SCH_SYEAR},
+			  #{SCH_TERM_GCD},
+			  '0006',
+			  #{SESSION_USER_ID},
+			  ''  
+			)}
+	</select>
+	
+	<select id="refundApplyDetail" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_등록_의료공제회_의료공제신청_상세조회(
+			  #{APPLY_SERIAL_NO},
+			  #{SESSION_USER_ID}
+			)} 
+	</select>
+	
+	
+	<select id="executeRefundApplyInfo" resultType="hashMap">
+        {CALL ENROLL.DBO.DR_잡부금환불_저장(
+        #{rowStatus},
+        #{SYEAR},
+        #{TERM_GCD},
+        #{CLAIM_SMALL_GCD},
+        #{SESSION_USER_ID},
+        #{BANK_CD},
+        #{ACCT_NO},
+        #{ACCT_NM},
+
+		#{SESSION_USER_ID},				
+		#{SESSION_USER_IP},				
+		#{SESSION_SYSTEM_GCD},
+		#{SESSION_MENU_CD}				
+        )}   
+    </select>
+	
+</mapper>

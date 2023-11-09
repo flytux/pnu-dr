@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+     * 교직원 사진 업로드 관리(BLOB) MyBatis SqlMap으로서 작용한다.
+     * @Company : IDINO Co., Ltd.
+     * @Copyright : Copyright (C) by IDINO All rights reserved.
+     * @Author : jbhwang
+     * @Create : 2020-11-17
+     * @Title : 교직원 사진 업로드 관리
+     * @version 1.0
+     * @stereotype Sql
+-->
+<mapper namespace="core.photo.staffPhoto">
+    
+    <select id="displayPhotoStaff"  parameterType="map" resultType="hashmap">
+    /* comm.photo.staffPhoto.displayPhotoStaff ( 교직원 사진 업로드 관리(BLOB) )        */
+        SELECT PHT 
+        FROM   PSMN011_03 
+        WHERE  RPST_STAFF_NO = #{RPST_STAFF_NO}  
+    </select>
+    
+    <parameterMap id="addPhotoStaffMap" type="java.util.Map">
+        <parameter property="RPST_STAFF_NO"                mode="IN"   jdbcType="VARCHAR" />
+        <parameter property="PHT"               mode="IN"   jdbcType="BLOB" />
+        <parameter property="FILE_NM"         mode="IN"   jdbcType="VARCHAR" />
+                
+        <parameter property="MOD_USER_ID"       mode="IN"   jdbcType="VARCHAR" />
+        <parameter property="MOD_PRG_ID"        mode="IN"   jdbcType="VARCHAR" />
+        <parameter property="MOD_USER_IP"       mode="IN"   jdbcType="VARCHAR" />
+        <parameter property="O_RSLT"            mode="OUT"  jdbcType="VARCHAR" />
+        <parameter property="O_MSG"             mode="OUT"  jdbcType="VARCHAR" />
+        <parameter property="O_KEY"             mode="OUT"  jdbcType="VARCHAR" />
+    </parameterMap>  
+    
+    <select id="addPhotoStaff" statementType="CALLABLE" parameterMap="addPhotoStaffMap">
+    /* comm.photo.staffPhoto.addPhotoStaff ( 교직원 사진 업로드 관리(BLOB) )        */
+            { CALL USP_STAFFPHOTO_SAVE(?,?,? ,?,?,? ,?,?,?) }
+    </select>
+    
+</mapper>

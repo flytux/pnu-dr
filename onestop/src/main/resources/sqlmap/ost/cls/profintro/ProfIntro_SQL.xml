@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교수소개 조회 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김동영
+ * @Create : 2022년 02월 24일
+ * @Title : SylSeach_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.profintro.profintro">
+
+<select id="selectProfIntroGrad" resultType="hashMap">
+    { CALL OST.dbo.OST_수업_교수소개_대학원_조회 }
+</select>
+<select id="selectProfIntroColl" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수소개_단과대학_조회 }
+</select>
+<select id="selectProfIntroDept" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수소개_학과_조회 }
+</select>
+<select id="selectProfIntro" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수소개_조회(
+    	#{SCH_DEPT_CD},
+	    #{FIRSTINDEX},
+	    #{LASTINDEX}
+    ) }
+</select>
+<select id="selectProfDetailIntro" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수소개_상세_조회(
+    	#{PROF_NO}
+    ) }
+</select>
+
+
+</mapper>

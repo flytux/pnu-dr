@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교양과목조회 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김지윤
+ * @Create : 2022년 01월 25일
+ * @Title : CultSubjSeach_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.curc.subjsearch.CultSubjSearch">
+
+<select id="selectCultSubjSearch" resultType="hashMap">
+    {CALL OST.DBO.OST_교육과정_교양과목_조회(
+    #{SCH_SYEAR},
+    #{SCH_TERM_GCD},
+    #{RGROUP},
+    #{SCH_AREA_GCD},
+    #{FIRSTINDEX},
+    #{LASTINDEX}
+    )}
+</select>
+
+</mapper>

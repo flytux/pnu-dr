@@ -1,0 +1,151 @@
+/*
+ * Nanum Gothic (Korean) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/NanumGothic-Regular.eot);
+  src: url(../font/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(../font/NanumGothic-Regular.woff2) format('woff2'),
+       url(../font/NanumGothic-Regular.woff) format('woff'),
+       url(../font/NanumGothic-Regular.ttf) format('truetype');
+       /*
+       url(../font/NanumGothic-Regular.svg#NanumGothic) format('svg');
+       */
+}
+
+@font-face {
+  font-family: '나눔고딕';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/NanumGothic-Regular.eot);
+  src: url(../font/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(../font/NanumGothic-Regular.woff2) format('woff2'),
+       url(../font/NanumGothic-Regular.woff) format('woff'),
+       url(../font/NanumGothic-Regular.ttf) format('truetype');
+       /*
+       url(../font/NanumGothic-Regular.svg#나눔고딕) format('svg');
+       */
+}
+
+@font-face {
+  font-family: 'Gulim';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/Gulim.eot);
+  src: url(../font/Gulim.eot?#iefix) format('embedded-opentype'),
+       url(../font/Gulim.woff2) format('woff2'),
+       url(../font/Gulim.woff) format('woff'),
+       url(../font/Gulim.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: '굴림';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/Gulim.eot);
+  src: url(../font/Gulim.eot?#iefix) format('embedded-opentype'),
+       url(../font/Gulim.woff2) format('woff2'),
+       url(../font/Gulim.woff) format('woff'),
+       url(../font/Gulim.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'GulimChe';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/GulimChe.eot);
+  src: url(../font/GulimChe.eot?#iefix) format('embedded-opentype'),
+       url(../font/GulimChe.woff2) format('woff2'),
+       url(../font/GulimChe.woff) format('woff'),
+       url(../font/GulimChe.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: '굴림체';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/GulimChe.eot);
+  src: url(../font/GulimChe.eot?#iefix) format('embedded-opentype'),
+       url(../font/GulimChe.woff2) format('woff2'),
+       url(../font/GulimChe.woff) format('woff'),
+       url(../font/GulimChe.ttf) format('truetype');
+}
+ 
+@font-face {
+  font-family: 'Batang';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/Batang.eot);
+  src: url(../font/Batang.eot?#iefix) format('embedded-opentype'),
+       url(../font/Batang.woff2) format('woff2'),
+       url(../font/Batang.woff) format('woff'),
+       url(../font/Batang.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: '바탕';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/Batang.eot);
+  src: url(../font/Batang.eot?#iefix) format('embedded-opentype'),
+       url(../font/Batang.woff2) format('woff2'),
+       url(../font/Batang.woff) format('woff'),
+       url(../font/Batang.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'BatangChe';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/BatangChe.eot);
+  src: url(../font/BatangChe.eot?#iefix) format('embedded-opentype'),
+       url(../font/BatangChe.woff2) format('woff2'),
+       url(../font/BatangChe.woff) format('woff'),
+       url(../font/BatangChe.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: '바탕체';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/BatangChe.eot);
+  src: url(../font/BatangChe.eot?#iefix) format('embedded-opentype'),
+       url(../font/BatangChe.woff2) format('woff2'),
+       url(../font/BatangChe.woff) format('woff'),
+       url(../font/BatangChe.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'OldEnglishTextMT';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/OldEnglishTextMT.eot);
+  src: url(../font/OldEnglishTextMT.eot?#iefix) format('embedded-opentype'),
+       url(../font/OldEnglishTextMT.woff2) format('woff2'),
+       url(../font/OldEnglishTextMT.woff) format('woff'),
+       url(../font/OldEnglishTextMT.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: '휴먼명조';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/HMKMM.eot);
+  src: url(../font/HMKMM.eot?#iefix) format('embedded-opentype'),
+       url(../font/HMKMM.woff2) format('woff2'),
+       url(../font/HMKMM.woff) format('woff'),
+       url(../font/HMKMM.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HMKMM';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/HMKMM.eot);
+  src: url(../font/HMKMM.eot?#iefix) format('embedded-opentype'),
+       url(../font/HMKMM.woff2) format('woff2'),
+       url(../font/HMKMM.woff) format('woff'),
+       url(../font/HMKMM.ttf) format('truetype');
+}

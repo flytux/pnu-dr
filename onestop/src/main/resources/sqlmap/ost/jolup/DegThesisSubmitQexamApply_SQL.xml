@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 학위논문자격시험 웹신청 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김지윤
+ * @Create : 2022년 01월 26일
+ * @Title : DegThesisSubmitQexamApply_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.jolup.degthesissubmitqexam.degthesissubmitqexamapply">
+	
+	<select id="selectStdtInfo" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_졸업_학위논문자격시험웹신청_학생정보_조회(
+			  #{STDT_NO}
+			)}
+	</select>
+	
+	<select id="selectSubject" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_졸업_학위논문자격시험웹신청_응시대상과목_조회(
+			  #{GRAD_GCD},
+			  #{DEG_COURSE_GCD},
+			  #{MAJOR_CD}
+			)}
+	</select>
+	
+	<select id="selectApplySubject" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_졸업_학위논문자격시험웹신청_응시신청과목_조회(
+			  #{STDT_NO}
+			)}
+	</select>
+	
+	<select id="selectPassSubject" parameterType="map" resultType="hashMap">
+		{CALL OST.dbo.OST_졸업_학위논문자격시험웹신청_기합격과목내역_조회(
+			  #{STDT_NO}
+			)}
+	</select>
+	
+	<select id="checkPassSubject" resultType="hashMap">
+	    {CALL OST.DBO.OST_졸업_학위논문자격시험웹신청_기합격과목_조회(
+	    	#{STDT_NO},
+	    	#{COMP_EXAM_SUBJ_CD},
+	    	#{SUBJ_NM},
+	    	#{GRAD_GCD}
+	    )} 
+	</select>
+
+	<select id="checkPassSubject2" resultType="hashMap">
+	    {CALL OST.DBO.OST_졸업_학위논문자격시험웹신청_기합격과목외국어_조회(
+	    	#{STDT_NO},
+	    	#{KOREAN_EXAM_APPLY_FG},
+	    	#{ENG_EXAM_APPLY_FG},
+	    	#{SECOND_FORELANG_EXAM_GCD}
+	    )} 
+	</select>
+		
+	<select id="excuteSubject" resultType="hashMap">
+	    {CALL OST.DBO.OST_졸업_학위논문자격시험웹신청_시험신청(
+	    	#{STATUS},
+	    	#{STDT_NO},
+	    	#{COMP_EXAM_SUBJ_CD},
+	    	#{SUBJ_NM},
+	    	#{GRAD_GCD},
+	    	#{DEG_COURSE_GCD},
+	    	#{KOREAN_EXAM_APPLY_FG},
+	    	#{ENG_EXAM_APPLY_FG},
+	    	#{SECOND_FORELANG_EXAM_GCD},
+	    	#{COMP_EXAM_TYPE_GCD},
+	    	#{FOREIGN_LANGUAGE_EXAM_APPLY_QUALIFY_GCD},
+	    	#{SESSION_USER_ID}, 
+	    	#{SESSION_USER_IP}, 
+	    	#{SESSION_SYSTEM_GCD}, 
+	    	#{SESSION_MENU_CD}
+	    )} 
+	</select>
+	
+	
+</mapper>

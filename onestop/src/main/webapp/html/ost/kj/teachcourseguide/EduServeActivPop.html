@@ -1,0 +1,491 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1" id="stdtTable" role="table" aria-label="학적정보 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>대상<br>(선택/다수선택가능)</label>
+						</div>
+                        <div class="b-con-box" role="cell">
+							<div class="form-row">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="target" id="CHK0001" value="0001">
+									<label for="CHK0001" class="custom-control-label">유치원생</label>
+								</div>								
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="target" id="CHK0002" value="0002">
+									<label for="CHK0002" class="custom-control-label">초등학생</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="target" id="CHK0003" value="0003">
+									<label for="CHK0003" class="custom-control-label">중학생</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="target" id="CHK0004" value="0004">
+									<label for="CHK0004" class="custom-control-label">고등학생</label>
+								</div>
+							</div>
+							<div class="form-row">
+								<p class="info-text info-text-style-1 text-danger mb-0">이외의 대상은 인정하지 않음</p>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>내용<br>(선택/다수선택가능)</label>
+						</div>
+                        <div class="b-con-box" role="cell">
+							<div class="form-row">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0005" value="0005">
+									<label for="CHK0005" class="custom-control-label">보조교사</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0006" value="0006">
+									<label for="CHK0006" class="custom-control-label">부진아학생지도</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0007" value="0007">
+									<label for="CHK0007" class="custom-control-label">방과후교사</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0008" value="0008">
+									<label for="CHK0008" class="custom-control-label">초등돌봄교실</label>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0009" value="0009">
+									<label for="CHK0009" class="custom-control-label">자유학기제 관련활동</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0010" value="0010">
+									<label for="CHK0010" class="custom-control-label">학생생활지도 관련활동</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0011" value="0011">
+									<label for="CHK0011" class="custom-control-label">재능기부</label>
+								</div>
+							</div>
+							<div class="form-row align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="content" id="CHK0012" value="0012" onchange="fn_check();">
+									<label for="CHK0012" class="custom-control-label">직접입력</label>
+								</div>
+								<div class="col-auto">
+									<input name="content" id="TXT0012" class="form-control d-none" type="text" title="내용직접입력">
+								</div>
+							</div>
+							<div class="form-row">
+								<p class="info-text info-text-style-1 text-danger mb-0">단순노무 및 사무보조는 교육봉사활동 이수로 인정하지 않음</p>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>기관(선택하고<br> 직접입력)</label>
+						</div>
+                        <div class="b-con-box" role="cell">
+							<div class="form-row align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="org" id="CHK0013" value="0013" onchange="fn_check();">
+									<label for="CHK0013" class="custom-control-label">학교현장실습 가능기관  예)유·초·중·고등학교</label>
+								</div>
+								<div class="col-auto">
+									<input name="org" id="TXT0013" class="form-control d-none" type="text" title="학교현장실습 가능기관 직접입력">
+								</div>
+							</div>
+							<div class="form-row align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="org" id="CHK0015" value="0015" onchange="fn_check();">
+									<label for="CHK0015" class="custom-control-label">공공기관의 장이 인정하는 비영리기관  예)각 구청 관할 지역아동센터</label>
+								</div>
+								<div class="col-auto">
+									<input name="org" id="TXT0015" class="form-control d-none" type="text" title="공공기관의 장이 인정하는 비영리기관 직접입력">
+								</div>
+							</div>
+							<div class="form-row align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="org" id="CHK0016" value="0016" onchange="fn_check();">
+									<label for="CHK0016" class="custom-control-label">해외봉사활동</label>
+								</div>
+								<div class="col-auto">
+									<input name="org" id="TXT0016" class="form-control d-none" type="text" title="해외봉사활동 직접입력">
+								</div>
+							</div>
+							<div class="form-row align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input class="custom-control-input" type="checkbox" name="org" id="CHK0017" value="0017" onchange="fn_check();">
+									<label for="CHK0017" class="custom-control-label">봉사활동비</label>
+								</div>
+								<div class="col-auto">
+									<input name="org" id="TXT0017" class="form-control d-none" type="text" onkeyup="fn_chk_num(this);" title="봉사활동비 입력">
+								</div>
+							</div>
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label for="EDU_SERVE_ACTIV_START_DATE" data-lang>교육봉사활동<br>기간 및 시간</label>
+						</div>
+                        <div class="b-con-box" role="cell" data-bind="text: DEPT_NM">
+                        	<span>기간</span>
+							<div class="col">
+                        		<input type="text" id="EDU_SERVE_ACTIV_START_DATE" class="form-control datepicker" style="width:110px" title="교육봉사활동시작일자"/>
+							</div>
+							<span>~</span>
+							<div class="col">
+                        		<input type="text" id="EDU_SERVE_ACTIV_CLOSE_DATE" class="form-control datepicker" style="width:110px" title="교육봉사활동종료일자"/>
+							</div>
+                       		<span class="" data-lang>시간</span>
+							<div class="col">
+                        		<input class="form-control form-w-md" id="EDU_SERVE_ACTIV_PLAN_TIME_CNT" style="" onkeyup="fn_chk_num(this);" title="교육봉사활동시간"/>
+							</div>
+                        	
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box" id="BTN_BOX">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-save d-none" id="btnSave" type="button"  data-lang onclick="javascript:return fn_planUpdate('I');">저장</button>
+							<button class="btn btn-delete d-none" id="btnDelete" type="button" data-lang onclick="javascript:return fn_planDelete();">삭제</button>
+							<button class="btn btn-etc d-none" id="btnApprove" type="button" data-lang onclick="javascript:return fn_planUpdate('P');">승인요청</button>
+							<button class="btn btn-etc d-none" id="btnApproveCancel" type="button" data-lang onclick="javascript:return fn_planUpdate('C');">승인요청취소</button>
+						</div>
+					</div>
+				</div>
+				<div class="btn-box" id="BTN_BOX_2">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-print d-none" id="btnPrint" type="button"  data-lang onclick="javascript:return fn_openReport(true,'C');">교육봉사활동 확인서 출력</button>
+							<button class="btn btn-print d-none" id="btnDaylogPrint" type="button" data-lang onclick="javascript:return fn_openReport(true,'D');">교육봉사활동 일지 출력</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script src="/common/js/gfn/gfn_report.js"></script>
+<script type="text/javascript">
+	$(document).ready(popInit());
+
+	function popInit() {
+		setInit();
+    }
+
+	/***************************************************************************************************
+	* 팝업창 로드 시 초기설정 함수
+	***************************************************************************************************/
+	function setInit() {
+		if(scwin.rowState == "U"){
+			//세부내용조회
+			fn_planDetailSearch();
+		}
+		var staGcd = scwin.detailObj.EDU_SERVE_ACTIV_PLAN_STA_GCD;
+		if(staGcd == "0001" && scwin.rowState == "C") {
+			$("#BTN_BOX_2").addClass('d-none');
+			$("#btnSave").removeClass("d-none");
+			$("#btnDelete").addClass("d-none");
+			$("#btnApprove").addClass("d-none");
+		}else if(staGcd == "0001" && scwin.rowState == "U") {
+			$("#BTN_BOX_2").addClass('d-none');
+			$("#btnSave").removeClass("d-none");
+			$("#btnDelete").removeClass("d-none");
+			$("#btnApprove").removeClass("d-none");
+		}else if(staGcd == "0002") {
+			$("#BTN_BOX_2").addClass('d-none');
+			$("#btnApproveCancel").removeClass("d-none");
+		}else if(staGcd == "0003" || staGcd == "0004" || staGcd == "0005") {
+			$("#BTN_BOX").addClass('d-none');
+			$("#btnPrint").removeClass("d-none");
+			$("#btnDaylogPrint").removeClass("d-none");
+		}
+	}
+    
+	/***************************************************************************************************
+	* 세부내용조회
+	***************************************************************************************************/
+    function fn_planDetailSearch() {
+		var searchParam = {"EDU_SERVE_ACTIV_PLAN_SEQ_NO" : scwin.detailObj.EDU_SERVE_ACTIV_PLAN_SEQ_NO };
+		gfn_ajax_request({
+			url : "/ost/kj/teachcourseguide/EduServeActiv/selectListPlanDetailSearch",
+			reqData : searchParam,
+			success : function(data, responseData) {
+				$("#EDU_SERVE_ACTIV_START_DATE").val(data[0].EDU_SERVE_ACTIV_START_DATE);
+				$("#EDU_SERVE_ACTIV_CLOSE_DATE").val(data[0].EDU_SERVE_ACTIV_CLOSE_DATE);
+				$("#EDU_SERVE_ACTIV_PLAN_TIME_CNT").val(data[0].EDU_SERVE_ACTIV_PLAN_TIME_CNT);
+				$(data).each(function(key, val){
+					$("input[type=checkbox][value="+val.PLAN_APPLY_GCD+"]").prop("checked",true);
+					$("input[type=text][id=TXT"+val.PLAN_APPLY_GCD+"]").val(val.PLAN_APPLY_CONTENT);
+				});
+				fn_check();
+			}
+		});
+    }
+	
+	/***************************************************************************************************
+	* 체크시 input 박스 
+	***************************************************************************************************/
+    function fn_check() {
+		if ($("#CHK0012:checked").val() == "" || $("#CHK0012:checked").val() == null) {
+			$("#TXT0012").addClass('d-none');
+			$("#TXT0012").val("");
+		} else {
+			$("#TXT0012").removeClass("d-none");
+		}
+
+		if ($("#CHK0013:checked").val() == "" || $("#CHK0013:checked").val() == null) {
+			$("#TXT0013").addClass('d-none');
+			$("#TXT0013").val("");
+		} else {
+			$("#TXT0013").removeClass("d-none");
+		}
+		
+		if ($("#CHK0015:checked").val() == "" || $("#CHK0015:checked").val() == null) {
+			$("#TXT0015").addClass('d-none');
+			$("#TXT0015").val("");
+		} else {
+			$("#TXT0015").removeClass("d-none");
+		}
+		
+		if ($("#CHK0016:checked").val() == "" || $("#CHK0016:checked").val() == null) {
+			$("#TXT0016").addClass('d-none');
+			$("#TXT0016").val("");
+		} else {
+			$("#TXT0016").removeClass("d-none");
+		}
+		
+		if ($("#CHK0017:checked").val() == "" || $("#CHK0017:checked").val() == null) {
+			$("#TXT0017").addClass('d-none');
+			$("#TXT0017").val("");
+		} else {
+			$("#TXT0017").removeClass("d-none");
+		}
+    }
+
+	/***************************************************************************************************
+	* 입력 데이터 체크
+	***************************************************************************************************/
+	function fn_chk_num(obj) {
+    	if(isNaN(obj.value) || obj.value == null ){
+    		$("#"+$(obj).attr("id")).focus();
+    		obj.value = "";
+    		alert('숫자만 입력 가능합니다.');
+    	}
+    }
+	
+	/***************************************************************************************************
+	* 저장, 승인요청, 승인요청 취소
+	***************************************************************************************************/
+    function fn_planUpdate(gbn) {
+		var confirmMsg = "";
+		
+    	if(gbn=="P"){
+			confirmMsg = '승인요청 하시겠습니까?';
+    	}else if(gbn=="C"){
+			confirmMsg = '승인요청취소 하시겠습니까?';
+    	}else{
+    		confirmMsg = gva_SAVE_CONFIRM_MSG;
+    	}
+	
+		confirm(confirmMsg, function(_flag) {
+			if(_flag) {
+		    	if(!fn_planValidate()) return;
+				
+				var applyGcd = '';
+				for(var i = scwin.detailObj.minC; i <=  maxC; i++){
+					var str = i.toString();
+					var grpGcd ='';
+					strDigit = str.length;
+					if(strDigit == 2){
+						if($("input[id=CHK00"+i+"]").attr('name') =='content'){
+							grpGcd= '0002';
+						}else if($("input[id=CHK00"+i+"]").attr('name') =='target'){
+							grpGcd= '0001';
+						}else if($("input[id=CHK00"+i+"]").attr('name') =='org'){
+							grpGcd= '0003';
+						}	
+						applyGcd += $("input[id=CHK00"+i+"]").val() + "@" + $("input[id=TXT00"+i+"]").val()+"*"+($("input[id=CHK00"+i+"]").is(":checked") == true ? "Y" : "N") + "_" +grpGcd+ "!";
+					}else if(strDigit == 1){
+						if($("input[id=CHK000"+i+"]").attr('name') =='content'){
+							grpGcd= '0002';
+						}else if($("input[id=CHK000"+i+"]").attr('name') =='target'){
+							grpGcd= '0001';
+						}else if($("input[id=CHK000"+i+"]").attr('name') =='org'){
+							grpGcd= '0003';
+						}	
+						applyGcd += $("input[id=CHK000"+i+"]").val() + "@" + $("input[id=TXT000"+i+"]").val()+"*"+($("input[id=CHK000"+i+"]").is(":checked") == true ? "Y" : "N") + "_"+grpGcd+ "!";
+					}
+
+				}
+
+				var searchParam = { "EDU_SERVE_ACTIV_PLAN_SEQ_NO" : scwin.detailObj.EDU_SERVE_ACTIV_PLAN_SEQ_NO 
+		    								, "EDU_SERVE_ACTIV_START_DATE" :  $("#EDU_SERVE_ACTIV_START_DATE").val().replace(/-/gi, "")
+		    								, "EDU_SERVE_ACTIV_CLOSE_DATE" :  $("#EDU_SERVE_ACTIV_CLOSE_DATE").val().replace(/-/gi, "")
+		    								, "EDU_SERVE_ACTIV_PLAN_TIME_CNT" :  $("#EDU_SERVE_ACTIV_PLAN_TIME_CNT").val()
+		    								, "EDU_SERVE_ACTIV_PLAN_STA_GCD" :  scwin.detailObj.EDU_SERVE_ACTIV_PLAN_STA_GCD 
+		    								, "GBN" :  gbn
+		    								, "APPLY_GCD" :  applyGcd
+		    								, "SYEAR" :  scwin.detailObj.SYEAR 
+		    								, "TERM_GCD" :  scwin.detailObj.TERM_GCD 
+		    								};
+				gfn_ajax_request({
+					url : "/ost/kj/teachcourseguide/EduServeActiv/executePlan",
+					reqData : searchParam,
+					success : function(data, responseData) {
+						
+						alert(data.O_MSG);
+						if(data.O_RSLT == "Y"){
+		    				gfn_com_closeModalWall(1,function(){
+		    					fn_initScreen();
+		    				});				
+						}
+					}
+				});
+			}
+		});
+    }
+
+	/***************************************************************************************************
+	* 필수 체크
+	***************************************************************************************************/
+	function fn_planValidate() {
+		if ($("input[name=target]:checked").val() == null || $("input[name=target]:checked").val() == "") {
+			alert("교육봉사활동 대상이 누락되었습니다.");
+			return false;
+		}
+		if ($("input[name=content]:checked").val() == null || $("input[name=content]:checked").val() == "") {
+			alert("교육봉사활동 내용이 누락되었습니다.");
+			return false;
+		}
+		if ($("input[name=org]:checked").val() == null || $("input[name=org]:checked").val() == "") {
+			alert("교육봉사활동 기관이 누락되었습니다.");
+			return false;
+		}
+		if ($("input[name=org]:checked").length > 1) {
+			alert("교육봉사활동 기관은 하나만 선택하세요.");
+			return false;
+		}
+		if (( $("#CHK0012:checked").val() != null || $("#CHK0012:checked").val() == "" ) && $("#TXT0012").val() == "") {
+			alert("직접입력 내용이 누락되었습니다.");
+			return false;
+		}
+		for (var i = 13; i < 18; i++) {
+			if ($("#CHK00" + i + ":checked").val() != null && $("#TXT00" + i).val() == "") {
+				alert("직접입력기관 내용이 누락되었습니다.");
+				return false;
+			}
+		}
+		if ($("#EDU_SERVE_ACTIV_START_DATE").val() == null || $("#EDU_SERVE_ACTIV_START_DATE").val() == "" || $("#EDU_SERVE_ACTIV_CLOSE_DATE").val() == null || $("#EDU_SERVE_ACTIV_CLOSE_DATE").val() == "") {
+			alert("교육봉사활동 기간이 누락되었습니다.");
+			return false;
+		}
+		if ($("#EDU_SERVE_ACTIV_PLAN_TIME_CNT").val() == null || $("#EDU_SERVE_ACTIV_PLAN_TIME_CNT").val() == "" || Number($("#EDU_SERVE_ACTIV_PLAN_TIME_CNT").val()) == 0) {
+			alert("교육봉사활동 시간이 누락되었습니다.");
+			return false;
+		}
+
+		return true;
+	}
+
+	/***************************************************************************************************
+	* 삭제
+	***************************************************************************************************/
+    function fn_planDelete() {
+
+		 confirm('삭제 하시겠습니까?',function(_flag){
+			if(_flag) {
+				var searchParam = { "EDU_SERVE_ACTIV_PLAN_SEQ_NO" : scwin.detailObj.EDU_SERVE_ACTIV_PLAN_SEQ_NO 
+		    								};
+				gfn_ajax_request({
+					url : "/ost/kj/teachcourseguide/EduServeActiv/deletePlan",
+					reqData : searchParam,
+					success : function(data, responseData) {
+						alert(data.O_MSG);
+						if(data.O_RSLT == "Y"){
+		    				gfn_com_closeModalWall(1,function(){
+		    					fn_initScreen();
+		    				});				
+						}
+					}
+				});
+			}
+		});
+		
+    }
+
+	/***************************************************************************************************
+	 * 출력
+	***************************************************************************************************/
+	function fn_openReport(isPop, gbn) {
+		//C: 교육봉사활동 확인서  D: 교육봉사활동 일지 
+		var options = {};
+		var title = "";
+
+		if(gbn == "C") {
+			title = "교육봉사활동확인서";
+		    options.rptName = "/ses/kj/teachcourseguide/EduServeActiv_001.crf";
+		} else {
+			title = "교육봉사활동일지";
+		    options.rptName = "/ses/kj/teachcourseguide/EduServeActiv_002.crf";
+		}
+   
+        //파라메터 설정
+        var objParam = {};
+
+        objParam.bind = [{
+	            db : "OST",
+	            proc : "OST_교직_교육봉사활동_확인서_출력",
+	            params : [scwin.loginUser.userId, scwin.detailObj.EDU_SERVE_ACTIV_PLAN_SEQ_NO]
+	    }];
+        //레포트를 생성시킬 group component 또는 id를 넣는다.
+        options.div = 'grp_report';
+        //레포트에서 사용할 옵션
+        //현재 다운로드 버튼 관련 기능만 제공...
+        options.reportOption = {};
+        options.reportOption.useHwp = false; //한글다운로드 기능 사용안할 경우
+        options.reportOption.useDoc = false; //word다운로드 기능 사용안할 경우
+        options.reportOption.useEtc = false; //기타다운로드 기능(ppt, rtf, html 등) 사용안할 경우
+        options.reportOption.usePrint = false; //프린트 기능 사용안할 경우
+
+        //실행실킬 레포트 파일에서 사용할 파라미터 object 형식
+        //프로그램 정보(PROG_INFO)와 사용자 정보(USER_INFO)는 기본값으로 전송됨.
+        options.data = objParam;
+        if (isPop) {
+        	fn_openReportPopup(options,title);
+        } 
+	}
+	
+	/***************************************************************************
+	 * 출력 팝업 호출
+	 **************************************************************************/
+	function fn_openReportPopup(rptOptions,title) {
+		gfn_com_modalPopup({
+        	width : 900,
+            height : 1000,
+            target : null,            
+            title : title,
+            include : "/html/ost/core/popup/CommPopReport.html", 
+            dataBound : function(e) {
+            	rptOptions.div = "pop_grp_report";
+            	openReport(rptOptions);
+            }
+        });
+	}
+	
+</script>

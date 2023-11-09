@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교환/교비 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김탁현
+ * @Create : 2023년 03월 08일
+ * @Title : Mentoring_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.mento.mentoring">
+
+	<!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_대상여부체크 시작 -->
+    <select id ="MENTORING00" parameterType="java.util.Map" resultMap="mento01,mento02,mento03,mento04" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_대상여부체크](
+          	#{STDT_CD}
+          )
+        }
+    </select>
+    <resultMap id="mento01" type="java.util.LinkedHashMap">    
+        <result property="신청가능여부"  column="신청가능여부" />
+        <result property="메세지"    	column="메세지" />
+        <result property="연도"    		column="연도" />
+        <result property="학기"    		column="학기" />
+     </resultMap>
+     
+     <resultMap id="mento02" type="java.util.LinkedHashMap">    
+        <result property="연도"    		column="연도" />
+        <result property="학기"    		column="학기" />
+        <result property="계획서번호"   	column="계획서번호" />
+     </resultMap>
+     
+     <resultMap id="mento03" type="java.util.LinkedHashMap">    
+        <result property="성명"    		column="성명" />
+        <result property="학번"    		column="학번" />
+        <result property="대학"    		column="대학" />
+        <result property="학과"    		column="학과" />
+        <result property="학적상태"    	column="학적상태" />
+        <result property="성별"    		column="성별" />
+        <result property="휴대폰번호"   	column="휴대폰번호" />
+        <result property="이메일"    	column="이메일" />
+     </resultMap>
+     
+     <resultMap id="mento04" type="java.util.LinkedHashMap">    
+        <result property="신청가능여부"	column="신청가능여부" />
+        <result property="메세지"    	column="메세지" />
+     </resultMap>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_대상여부체크 끝 -->
+
+	<!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_분류목록 시작 -->
+    <select id ="MENTORING01" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_분류목록](
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_분류목록 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_분류별멘토목록 시작 -->
+    <select id ="MENTORING02" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_분류별멘토목록](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{ITEM_CD}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_분류별멘토목록 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_조회 시작 -->
+    <select id ="MENTORING03" parameterType="java.util.Map" resultMap="mentoApp01,mentoApp02" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_조회](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{PROJ_CD},
+            #{STDT_CD}
+          )
+        }
+    </select>
+    <resultMap id="mentoApp01" type="java.util.LinkedHashMap">    
+        <result property="연도"    			column="연도" />
+        <result property="계획서구분"    	column="계획서구분" />
+        <result property="계획서번호"    	column="계획서번호" />
+        <result property="프로그램명칭"    	column="프로그램명칭" />
+        <result property="멘토성명"    		column="멘토성명" />
+        <result property="멘토소속"    		column="멘토소속" />
+        <result property="신청일시"    		column="신청일시" />
+        <result property="신청구분"    		column="신청구분" />
+     </resultMap>
+     
+     <resultMap id="mentoApp02" type="java.util.LinkedHashMap">    
+        <result property="일정"    			column="일정" />
+        <result property="취소가능여부"    		column="취소가능여부" />
+     </resultMap>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_조회 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_입력 시작 -->
+    <select id ="MENTORING04" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_입력](
+          	#{YEAR},
+          	#{TERM_CD},
+          	#{PROJ_CD},
+            #{STDT_CD},
+            #{IP}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_입력 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_삭제 시작 -->
+    <select id ="MENTORING05" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_삭제](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{PROJ_CD},
+            #{STDT_CD},
+            #{IP}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링_학생지원시스템_멘토신청_삭제 끝 -->
+
+	<!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_대상여부체크 시작 -->
+    <select id ="MENTORING06" parameterType="java.util.Map" resultMap="mentoForeign01,mentoForeign02,mentoForeign03,mentoForeign04" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_대상여부체크](
+          	#{STDT_CD}
+          )
+        }
+    </select>
+    <resultMap id="mentoForeign01" type="java.util.LinkedHashMap">    
+        <result property="신청가능여부"  column="신청가능여부" />
+        <result property="메세지"    	column="메세지" />
+        <result property="연도"    		column="연도" />
+        <result property="학기"    		column="학기" />
+     </resultMap>
+     
+     <resultMap id="mentoForeign02" type="java.util.LinkedHashMap">    
+        <result property="연도"    		column="연도" />
+        <result property="학기"    		column="학기" />
+        <result property="계획서번호"   	column="계획서번호" />
+     </resultMap>
+
+     <resultMap id="mentoForeign03" type="java.util.LinkedHashMap">    
+        <result property="성명"    		column="성명" />
+        <result property="학번"    		column="학번" />
+        <result property="대학"    		column="대학" />
+        <result property="학과"    		column="학과" />
+        <result property="학적상태"    	column="학적상태" />
+        <result property="성별"    		column="성별" />
+        <result property="휴대폰번호"   	column="휴대폰번호" />
+        <result property="이메일"    	column="이메일" />
+     </resultMap>
+     
+     <resultMap id="mentoForeign04" type="java.util.LinkedHashMap">    
+        <result property="신청가능여부"	column="신청가능여부" />
+        <result property="메세지"    	column="메세지" />
+     </resultMap>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_대상여부체크 끝 -->
+
+	<!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류목록 시작 -->
+    <select id ="MENTORING07" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류목록](
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류목록 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류별멘토목록 시작 -->
+    <select id ="MENTORING08" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류별멘토목록](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{ITEM_CD}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_분류별멘토목록 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_조회 시작 -->
+    <select id ="MENTORING09" parameterType="java.util.Map" resultMap="mentoAppForeign01,mentoAppForeign02" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_조회](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{PROJ_CD},
+            #{STDT_CD}
+          )
+        }
+    </select>
+    <resultMap id="mentoAppForeign01" type="java.util.LinkedHashMap">    
+        <result property="연도"    			column="연도" />
+        <result property="계획서구분"    	column="계획서구분" />
+        <result property="계획서번호"    	column="계획서번호" />
+        <result property="프로그램명칭"    	column="프로그램명칭" />
+        <result property="멘토성명"    		column="멘토성명" />
+        <result property="멘토소속"    		column="멘토소속" />
+        <result property="신청일시"    		column="신청일시" />
+        <result property="신청구분"    		column="신청구분" />
+     </resultMap>
+     
+     <resultMap id="mentoAppForeign02" type="java.util.LinkedHashMap">    
+        <result property="일정_국문"    			column="일정_국문" />
+        <result property="일정_영문"    			column="일정_영문" />
+        <result property="일정_중문"    			column="일정_중문" />
+        <result property="취소가능여부"    		column="취소가능여부" />
+     </resultMap>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_조회 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_입력 시작 -->
+    <select id ="MENTORING10" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_입력](
+          	#{YEAR},
+          	#{TERM_CD},
+          	#{PROJ_CD},
+            #{STDT_CD},
+            #{IP}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_입력 끝 -->
+    
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_삭제 시작 -->
+    <select id ="MENTORING11" parameterType="java.util.Map" resultType="java.util.LinkedHashMap" statementType="CALLABLE">
+        { 
+          call [SMART].[dbo].[통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_삭제](
+          	#{YEAR},
+          	#{TERM_CD},
+            #{PROJ_CD},
+            #{STDT_CD},
+            #{IP}
+          )
+        }
+    </select>
+    <!-- 통합과제_교육연구학생지도_멘토링외국인_학생지원시스템_멘토신청_삭제 끝 -->
+</mapper>

@@ -1,0 +1,229 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-3" id="stdtTable" role="table" aria-label="학적정보 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-3">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>소속(과정)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id = "ASSIGN"></span>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학번(성명)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id = "STDT_NO"></span> <input type="hidden" id="STDT_NO" data-bind="value: STDT_NO" />
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label id="lbl_STDT_YEAR_NM" data-lang>학년</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id ="STDT_YEAR_GCD"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학적상태</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id = "HJ_STA_GCD"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="b-table-box flex-col-2" id="stdtTable" role="table" aria-label="신청사항 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label class="req" data-lang>신청학년도/<br/>학기</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id = "APPLY_SYEAR_TERM"></span> <input type="hidden" id="CHG_SEQ_NO" data-bind="value: CHG_SEQ_NO" />
+						</div>
+					</div>
+				</div>
+
+				<div class="b-row-box" role="row" id="milClassGcdRow">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label class="req" for="MIL_CLASS_GCD" data-lang>이수구분</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<input type="radio" id="CHG_APPLY_REASON_GCD1" name="CHG_APPLY_REASON_GCD" class="" style="" value="0033" checked="checked" /><label for="SEARCH_GBN1" class="" data-lang>트랙</label>
+							<div style="margin-left: 20px;"></div>
+							<input type="radio" id="CHG_APPLY_REASON_GCD2" name="CHG_APPLY_REASON_GCD" class="" style="" value="0034" /><label for="SEARCH_GBN2" class="" data-lang>트랙(전공)</label>
+							<div style="margin-left: 20px;"></div>
+							<input type="radio" id="CHG_APPLY_REASON_GCD3" name="CHG_APPLY_REASON_GCD" class="" style="" value="0035" /><label for="SEARCH_GBN3" class="" data-lang>마이크로디그리</label>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row" id="subjGbn">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label class="req" for="SCH_MAJOR_GBN" data-lang>트랙/마이크로디그리</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<select id="SCH_MAJOR_GBN" style="width: 260px;" name="searchParam" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="_footer">
+				<section class="sec-1">
+					<div class="sec-body">
+						<div class="btn-box">
+							<div class="form-row btn-box-right">
+								<div class="col-auto">
+									<button class="btn btn-primary" id="btnSubmit" type="button" data-lang onclick="javascript:return fn_applySave();">제출</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+	$(document).ready(popInit());
+
+
+	function popInit() {
+		setBindFn();
+		setInit();
+
+	}
+
+	/*  팝업창 로드 시 초기설정 함수 */
+	function setInit() {
+		console.log(scwin.loginUser);
+		fn_trackSearch("0033");
+		var assign = scwin.loginUser.collGradGcdKorNm +" "+ scwin.loginUser.collCdKorNm +" "+ scwin.loginUser.deptCdKorNm ;
+		if(scwin.loginUser.deptCdKorNm != scwin.loginUser.assignNm){
+			assign + " " + scwin.loginUser.assignNm;
+		}
+		assign = assign + " (" + scwin.loginUser.degCourseGcdKorNm + ")";
+		stdtNoNm = scwin.loginUser.userId + "(" + scwin.loginUser.nm+ ")"
+		stdtYearGcd = scwin.loginUser.stdtYearGcdKorNm + "(" + scwin.termInfo.TERM_GCD_KOR_NM + ")"
+		hjStaGcd = scwin.loginUser.hjStaGcdKorNm; 
+		applySyearTerm =  scwin.termInfo.SYEAR +"학년도/"+ scwin.termInfo.TERM_GCD_KOR_NM
+		$("#ASSIGN").html(assign);
+		$("#STDT_NO").html(stdtNoNm);
+		$("#STDT_YEAR_GCD").html(stdtYearGcd);
+		$("#HJ_STA_GCD").html(hjStaGcd);
+		$("#APPLY_SYEAR_TERM").html(applySyearTerm);
+		
+	}
+
+	/* 이벤트 바인딩 함수 */
+	function setBindFn() {
+		$("[name=CHG_APPLY_REASON_GCD]").change(
+				function() {
+					fn_trackSearch(this.value);
+				});
+	}
+	function fn_trackSearch(gcd){
+		var param = {"CHG_APPLY_REASON_GCD" : gcd};
+		gfn_ajax_request({
+			url : "/ost/hj/smallmajor/listenApply/selectTrackList",
+			reqData : param,
+			success : function(data, responseData) {
+				$("#SCH_MAJOR_GBN").dropDownList({
+					dataSource : data,
+					commonCode : "",
+					dataTextField : "DEPT_KOR_NM",
+					dataValueField : "DEPT_CD",
+					optionLabel : "선택",
+					optionValue : "",
+					defaultValue : "",
+					expnCondition : "",
+					dataBound : function(e) {
+
+					}
+				});
+			}
+		});
+	}
+	/* 필수입력 체크 */
+	function fn_validate(param) {
+		var rtnValue = true;
+		var valObj = [{
+			"id" : "SCH_MAJOR_GBN",
+			"name" : "트랙/마이크로디그리",
+			"notNull" : true,
+		}];
+
+		rtnValue = gfn_val_validateDataMap(param, valObj);
+
+		if (!rtnValue)
+			return rtnValue;
+
+		return rtnValue;
+	}
+
+	var param = [];
+
+	/* 저장 함수 */
+	function fn_applySave(type) {
+		var confirmMsg = gva_SAVE_CONFIRM_MSG;
+		param = gfn_com_inputdata($("#popups"));
+		param["APPLY_SYEAR"] = scwin.termInfo.SYEAR;
+		param["APPLY_TERM_GCD"] = scwin.termInfo.TERM_GCD;
+		param["STDT_NO"] = scwin.loginUser.userId;
+		if (!fn_validate(param))
+			return false;
+
+
+		confirm(confirmMsg,
+				function(_flag) {
+					if (_flag) {
+						fn_clause();
+					}
+				});
+	}
+
+
+
+	/* 약관 동의 */
+	function fn_clause() {
+		gfn_com_clausePop({
+			title : '개인정보활용동의팝업',
+			systemGcd : '0002',
+			clauseSeqNo : 7,
+			callbackFunc : function(data) {
+				/* 필수동의 사항에 동의한 경우 콜백 실행 */
+				param["agreeDltInfo"] = data; // 전달 파라미터에 정보동의 정보 담기
+				param["CLAUSE_HISTORY_SEQ_NO"] = param["agreeDltInfo"][0]["CLAUSE_HISTORY_SEQ_NO"];
+				param["CLAUSE_SEQ_NO"] = param["agreeDltInfo"][0]["CLAUSE_SEQ_NO"];
+				param["CLAUSE_DETAIL_SEQ_NO"] = param["agreeDltInfo"][0]["CLAUSE_DETAIL_SEQ_NO"];
+				fn_applySaveCallback();
+			}
+		});
+	}
+
+	/* 휴학신청 저장 */
+	function fn_applySaveCallback() {
+		gfn_ajax_request({
+			url : "/ost/hj/smallmajor/listenApply/executeListenApply",
+			reqData : param,
+			success : function(data, responseData) {
+				alert('신청완료되었습니다.');
+				// 신청 완료
+				//if (data.O_RSLT == "Y") {
+					gfn_com_closeModalWall(1, function() {
+						fn_sch();
+					});
+				//}
+			}
+		});
+	}
+
+</script>

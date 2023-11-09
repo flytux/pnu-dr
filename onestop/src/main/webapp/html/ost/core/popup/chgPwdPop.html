@@ -1,0 +1,133 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1 chg-pwd-wrap" role="table" aria-label="1단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label class="">학생번호</label>
+						</div>
+						<div class="b-con-box" role="cell" data-bind="text: userId"></div>
+					</div>                                  
+				</div>          
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label for="pwd01" class="req">현재 비밀번호</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<input id="pwd01" type="password" class="form-control"></input>
+						</div>
+					</div>                                  
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label for="pwd02" class="req">비밀번호</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<input id="pwd02" type="password" class="form-control"></input>
+						</div>
+					</div>                                  
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label for="pwd03" class="req">비밀번호확인</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<input id="pwd03" type="password" class="form-control"></input>
+						</div>
+					</div>                                  
+				</div>                        
+			</div>
+			<p class="text-danger">※ 영문, 숫자, 특수문자의 조합으로 8자 이상 입력하십시오.</p>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2" onclick="javascript:return fn_chgPwdPopSave();">변경</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(popInit());
+    
+    function popInit() {
+		gfn_com_dataBind($(".chg-pwd-wrap"), scwin.loginUser);
+    }
+    
+    function fn_validate(param) {
+		var rtnValue = true;
+
+		rtnValue = gfn_val_validateDataMap(param, [{
+			"id" : "pwd01",
+			"name" : "현재 비밀번호",
+			"notNull" : true,
+		},{
+			"id" : "pwd02",
+			"name" : "비밀번호",
+			"notNull" : true
+		},{
+			"id" : "pwd03",
+			"name" : "비밀번호확인",
+			"notNull" : true
+		}]);
+		
+		if (!rtnValue) return rtnValue;
+
+		return rtnValue;
+	}
+    
+    function fn_validateEtc() {
+		if($(".chg-pwd-wrap #pwd02").val() != $(".chg-pwd-wrap #pwd03").val()) {
+        	alert("새비밀번호와 새비밀번호 확인이 다릅니다.", $(".chg-pwd-wrap #pwd03"));
+            return;
+        }
+		var pw = $(".chg-pwd-wrap #pwd02").val();
+        var pattern1 = /[0-9]/;
+        var pattern2 = /[a-zA-Z]/;        
+        var pattern3 = /[!@\#$%<>^&*~]/;     // 원하는 특수문자 추가 제거        
+        
+        if(!pattern1.test(pw)||!pattern2.test(pw)||!pattern3.test(pw)||pw.length<8||pw.length>50){
+            alert("영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.", $(".chg-pwd-wrap #pwd02"));
+            return;
+        }
+		return true;
+	}
+    
+    function fn_chgPwdPopSave() {
+
+    	var param = gfn_com_inputdata($(".chg-pwd-wrap"));
+    	
+    	if (!fn_validate(param)) return false;
+    	
+    	if (!fn_validateEtc()) return false;
+
+    	confirm("비밀번호를 변경 하시겠습니까?",function(_flag){
+    		if(_flag) {
+    			gfn_ajax_request({
+        			url : "/core/main/saveChgPwd",        			
+        			reqData : param,
+        			success : function(data, responseData){
+        				if(gfn_str_parseNull(data.O_RSLT) != "S_OK"){
+                            alert("현재 비밀번호가 틀렸습니다. ");
+                            return;
+                        } else {
+                        	alert("변경 되었습니다.");
+                        	gfn_com_closeModalWall();
+                        }
+        			}
+        		});
+    		}
+    	});
+    }
+</script>

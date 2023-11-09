@@ -1,0 +1,365 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="message-box mb-3">
+				<div class="message-box-inner">
+					<div class="message-body">
+						<label id="APPLY_DT" style="text-align: center;"> </label>
+					</div>
+				</div>
+			</div>
+			<!-- 탑승정보 폼 -->
+			<div class="b-table-box flex-col-1" role="table" aria-label="입력">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box " role="rowheader">
+							<label class="req" data-lang>탑승정보</label>
+						</div>
+						<!-- 테이블 -->
+						<div class="b-con-box pop-bus-table" role="cell">
+						<div class="table-box" style="width:100%">
+							<div class="table-body" >
+								<table class="table table-hover" data-toggle="table"  data-width="2000" data-show-column="true" id = "getOnTable">
+									<caption>탑승정보</caption>
+									<colgroup>
+										<col style="min-width: 150px;">
+										<col style="min-width: 150px;">
+										<col style="min-width: 100px;">
+										<col style="min-width: 150px;">
+										<col style="min-width: 100px;">
+										<col style="min-width: 100px;">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">탑승일자</th>
+											<th scope="col">등교장소</th>
+											<th scope="col">등교시간</th>
+											<th scope="col">하교장소</th>
+											<th scope="col">하교시간</th>
+											<th scope="col">취소</th>
+										</tr>
+									</thead>
+									<tbody id="resultTbody">
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</div>
+						<!-- /END 테이블 -->
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>요금정보</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<label id="PAY_INFO"></label> <br> <label id="" style="color: blue;">※ 신청 또는 수정 후 요금정보가 조회됩니다.</label>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>환불계좌</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<label id="REFUND_ACCT"></label>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label class="" data-lang>사진정보</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<img id="stdtImg" src="/common/images/no_img.png" width="98px" height="118px" />
+						</div>
+					</div>
+				</div>
+				<!-- 메시지 박스: 밑에 설명글 -->
+				<div class="message-box">
+					<div class="message-box-inner">
+						<div class="message-body">
+							<ul class="list list-style-1">
+								<li>신청 후 이용일수 및 이용요금 확인 할 것</li>
+								<li><strong style="color: red;">수납기간 내 반드시 고지서 출력 후 이용요금 납부</strong> 할 것(미수납 시 신청내역 취소 예정)</li>
+								<li>수납 확인자에 한해 모바일 통학증 발급예정</li>
+								<li><strong style="color: red;">반드시 신청내역(요일 및 시간 등)에 맞게 통학버스를 이용</strong>하여야 하며, 통학버스 부정 이용 적발 시 승차제한 등 통학버스 이용에 제한이 따를 수 있음</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /END 메시지 박스 -->
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/x-tbody-template" id="resultTemplate">
+	<tr style="cursor:pointer;">
+        <td class="text-left">#:GETON_DAY_DATE#</td>
+	    <td>#:승차장소#</td>
+		<td>#:승차시간#</td>
+	    <td>#:하차장소#</td>
+		<td>#:하차시간#</td>
+		<td>#:취소버튼#</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	$(document).ready(popInit());
+	
+	var initData = {};
+	var listChk = false;
+	/***************************************************************************
+	 * popInit
+	 **************************************************************************/	
+	function popInit() {
+		fn_getInitInfo(); 	
+	}
+	/***************************************************************************
+	 * fn_getInitInfo  신청년도학기 조회
+	 **************************************************************************/		
+	function fn_getInitInfo() {
+		var paramMap = {"SYEAR" : scwin.detailObj.popupParam.SYEAR,
+								"TERM_GCD" : scwin.detailObj.popupParam.TERM_GCD,
+								"CHASU_NO" : scwin.detailObj.popupParam.CHASU_NO,
+								"STDT_NO" : scwin.detailObj.popupParam.STDT_NO};
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/bus/busapply/selectDateCheck",
+			reqData : paramMap,
+			success : function(data, responseData) {	
+				initData = {
+					"SYEAR" : data[0].SYEAR,
+					"TERM_GCD" : data[0].TERM_GCD,
+					"CHASU_NO" : data[0].CHASU_NO,//data[0].CHASU_NO,
+					"STDT_NO" : stdtNo
+				};
+
+				if(scwin.detailObj.popupParam.CHASU_NO){
+					initData = {
+							"SYEAR" : paramMap.SYEAR,
+							"TERM_GCD" : paramMap.TERM_GCD,
+							"CHASU_NO" : paramMap.CHASU_NO,
+							"STDT_NO" : paramMap.STDT_NO
+						};
+				}
+				
+				fn_sch(initData);//신청정보 조회
+			}
+		});
+	}
+	/***************************************************************************
+	 * fn_sch
+	 **************************************************************************/	
+	function fn_sch(initData) {
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/bus/busapply/selectBusApply",
+			reqData : initData,
+			success : function(data, responseData) {
+				var datas1 = data[0][0];
+				var datas2 = data[2];
+				var datas3 = data[3][0];
+				var datas4 = data[4][0];
+				var datas5 = data[5][0];
+				var datas6 = data[6][0];
+				var datas7 = data[7][0];
+				var datas8 = data[8][0];
+
+				var msgDlgType = '';
+				var msg = '';
+				
+				msgDlgType = datas1.O_RSLT;
+				msg = datas1.O_MSG;
+				
+				if (datas1) {
+					if (msgDlgType == 'W') { //신청기간이 아닐때
+						$("#APPLY_DT").html(msg); //신청기간
+						$("#collapse1").hide();
+						return false;
+					} else { //신청기간 or 수납기간 일때
+						$("#APPLY_DT").text(datas8.신청기본정보); //신청목록 - 메세지
+						$("#collapse1").show();
+						
+						//기본정보 및 기타정보
+						$("#STDT_NO").text(stdtNo);
+						$("#NM").text(nm);
+						$("#DEPT_NM").text(assignNm);
+						$("#TELL_NO").text(telNo);
+						$("#PHONE_NO").text(phoneNo);
+						
+						$("#PAY_INFO").html(datas3.수납정보); //요금정보
+						$("#REFUND_ACCT").html(datas4.계좌정보); //환불계좌
+						
+						fn_getPhoto(); //사진조회
+						
+						if(datas8.length > 0){
+							$("#sic_num").val(datas7.APPLY_SERIAL_NO);
+						}
+						//$("#img사진").attr("src", "/schoolBus/getPicture?stdtCd=" + stdtNo);
+						
+						$("#resultTbody").listView({ //탑승정보
+							dataSource : datas2,
+							dataBound : function(e) {
+								currentData = datas2;
+							},
+							template : $("#resultTemplate"),
+							totalCnt : datas2.length,
+						});
+
+						$('#resultTbody .cancel-btn').bind("click",function(e) { //취소버튼 클릭시
+							scwin.detailObj = $(this).closest("tr").data();
+							var getonDate = scwin.detailObj.GETON_DATE;
+							var applySerialNo =  datas7.APPLY_SERIAL_NO; 
+							if(datas6.취소=="Y") var cancelChasuCd = scwin.detailObj.취소차수;	
+							else cancelChasuCd = "";
+							
+							var searchData = {
+								"GETON_DATE" : getonDate,
+								"CANCEL_CHASU_CD" : cancelChasuCd,
+								"APPLY_SERIAL_NO" : applySerialNo
+							}
+							
+							var cancelData = $.extend(initData, searchData);
+							
+							fn_cancelDetail(cancelData); //취소처리
+							 
+						});
+						
+						$('#resultTbody .reApply-btn').bind("click",function(e) { //재신청버튼 클릭시
+							scwin.detailObj = $(this).closest("tr").data();
+							var getonDate = scwin.detailObj.GETON_DATE;
+							var applySerialNo =  datas7.APPLY_SERIAL_NO; 
+							if(datas6.취소=="Y") var cancelChasuCd = scwin.detailObj.취소차수;	
+							else cancelChasuCd = "";
+							
+							var searchData = {
+								"GETON_DATE" : getonDate,
+								"CANCEL_CHASU_CD" : cancelChasuCd,
+								"APPLY_SERIAL_NO" : applySerialNo
+							}
+							
+							var reApplyData = $.extend(initData, searchData);
+							
+							fn_reApplyDetail(reApplyData); //재신청처리
+							 
+						});
+						//신청기간이 아닐때 취소버튼 열 보이지 않게함
+						if (datas1.BUTTON_CANCEL == 'N') { 
+							var table = document.getElementById("getOnTable");
+							for(var i = 0; i < table.rows.length; i++){
+								table.rows[i].deleteCell(-1);
+							}
+						}
+					}
+				}else {
+				}
+			}
+		});
+	}
+	
+	/***************************************************************************
+	 * fn_getPhoto 학생 사진 조회
+	 **************************************************************************/		
+	function fn_getPhoto() {
+		var paramMap = {"STDT_NO" : stdtNo};
+
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/bus/busapply/selectStdtPhoto",
+			reqData : paramMap,
+			success : function(data, responseData) {
+				if (!gfn_com_isEmptyObject(data)) {
+					$("#stdtImg").attr("src", "data:image/png;base64," + data.PIC);
+				}
+			}
+		}); 
+		
+	}
+	
+	/***************************************************************************
+	 * fn_cancelDetail 취소
+	 **************************************************************************/
+	function fn_cancelDetail(cancelData) {
+		confirm('취소 하시겠습니까?',function(_flag){
+			if(_flag) {
+				listChk = true;
+				//취소 - 상세저장
+				gfn_ajax_request({
+					url : "/ost/bus/busapplylist/cancelDetailBusApplyList",
+					reqData : cancelData,
+					success : function(data, responseData) {
+						if(data.O_RSLT=="N"){
+							alert(data.O_MSG);
+							return;							
+						}else{
+							
+							fn_cancel(cancelData); //취소 상세저장 성공시 취소 저장
+							fn_sch(initData);
+							setTimeout(function() {
+							alert(data.O_MSG,$("#popup .cancel-btn").eq(0));
+							}, 300);
+						} 
+						
+					}
+				});
+				
+			}
+		});
+		
+	}
+	
+	/***************************************************************************
+	 * fn_cancel 취소
+	 **************************************************************************/
+	function fn_cancel(cancelData) {
+		//취소 - 저장
+		gfn_ajax_request({
+			url : "/ost/bus/busapplylist/cancelBusApplyList",
+			reqData : cancelData,
+			success : function(data, responseData) {
+				if(data.O_RSLT=="N"){
+					alert(data.O_MSG);
+					fn_getInitInfo()
+				}else{
+					alert(data.O_MSG);
+				}
+			}
+		});
+		
+	}
+	
+	/***************************************************************************
+	 * fn_reApplyDetail 취소
+	 **************************************************************************/
+	function fn_reApplyDetail(reApplyData) {
+		confirm('재신청하시겠습니까?',function(_flag){
+			if(_flag) {
+				listChk = true;
+				//취소 - 상세저장
+				gfn_ajax_request({
+					url : "/ost/bus/busapplylist/reApplyDetailBusApplyList",
+					reqData : reApplyData,
+					success : function(data, responseData) {
+						if(data.O_RSLT=="N"){
+							alert(data.O_MSG);
+							return;							
+						}else{
+							fn_cancel(reApplyData); //재신청 상세저장 성공시 취소 저장
+							fn_sch(initData);
+							setTimeout(function() {
+							alert(data.O_MSG,$("#popup .cancel-btn").eq(0));
+							}, 300);
+						} 
+						
+					}
+				});
+				
+			}
+		});
+		
+	}
+
+</script>

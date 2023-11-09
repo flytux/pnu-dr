@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 공통코드 관리 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 
+ * @Create : 
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="core.main">
+
+    <select id="selectAllMenu" resultType="java.util.HashMap">
+        {CALL OST.dbo.OST_공통_학생지원메뉴정보_모든메뉴_조회(#{MENU_CD})}
+    </select>
+    
+    <select id="selectAnonymousMenu_BAK" resultType="java.util.HashMap">
+        {CALL OST.dbo.OST_공통_학생지원메뉴정보_익명사용자_조회(#{MENU_CD})}
+    </select>
+    
+    <select id="selectMenu" resultType="java.util.HashMap">
+        {CALL OST.dbo.OST_공통_학생지원메뉴정보_조회(#{USER_ID},#{MENU_CD})}
+    </select>
+    
+    <select id="selectListUser" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_사용자계정정보_조회(#{SESSION_USER_ID})}
+    </select>
+
+    <select id="selectLangList" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_다국어정보_조회(#{SESSION_SYSTEM_GCD})}
+    </select>
+    
+    <select id="updateLangGcd" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_다국어_사용자정보_저장(#{SESSION_USER_ID},#{langGcd})}
+    </select>
+    
+    <select id="addLangInfo" resultType="java.util.HashMap">
+        {CALL SYS.dbo.SYS_공통_다국어_저장(#{SYSTEM_GCD},#{MENU_CD},#{KOR_NM},#{SESSION_SYSTEM_GCD},#{SESSION_MENU_CD},#{SESSION_USER_ID},#{SESSION_USER_IP})}
+    </select>
+    
+    <select id="selectOneShafYyShtm" statementType="CALLABLE"  resultType="hashMap">
+        {CALL SYS.DBO.SP_기준년도_학기_조회(#{SYSTEM_GCD},#{MENU_CD})}
+    </select>   
+    
+    <select id="selectContentMngList" resultType="hashMap">
+        {CALL OST.DBO.OST_컨텐츠정보_조회(
+        #{SYSTEM_GCD},
+        #{MENU_CD}
+        )}
+    </select>
+    
+    <select id="selectListBookMark" resultType="java.util.HashMap">        
+        {CALL SYS.dbo.SYS_공통_즐겨찾기_조회(             
+            #{SESSION_USER_ID}, 
+            #{SESSION_SYSTEM_GCD}
+         )}
+    </select>
+    
+    <select id="excuteBookMark" resultType="java.util.HashMap">        
+        {CALL SYS.dbo.SYS_공통_즐겨찾기_저장(
+            #{rowStatus},
+            #{SESSION_SYSTEM_GCD}, 
+            #{SESSION_USER_ID},              
+            #{MENU_CD}, 
+            #{SESSION_USER_ID},
+            #{SESSION_USER_IP},
+            #{SESSION_SYSTEM_GCD},
+            #{SESSION_MENU_CD}
+         )}
+    </select>
+    
+    <select id="saveChgPwd" resultType="java.util.HashMap">        
+        {CALL SYS.dbo.SYS_공통_패스워드_수정(
+            #{SESSION_USER_ID},              
+            #{pwd01}, 
+            #{pwd02}
+         )}
+    </select>
+    
+    <select id="excutePositionBookMark" resultType="java.util.HashMap">        
+        {CALL SYS.dbo.SYS_공통_즐겨찾기_위치변경_저장(            
+            #{SESSION_SYSTEM_GCD}, 
+            #{SESSION_USER_ID},              
+            #{MENU_CD}, 
+            #{LINEUP_SEQ_NO},
+            #{SESSION_USER_ID},
+            #{SESSION_USER_IP},
+            #{SESSION_SYSTEM_GCD},
+            #{SESSION_MENU_CD}
+         )}
+    </select>
+    
+    <select id="selectTodayClass" resultType="hashMap">
+		{CALL OST.dbo.OST_메인_오늘의수업_조회(
+		#{SCH_SYEAR},
+		#{SCH_TERM_GCD},
+		#{SCH_DAY_GCD},
+		#{SESSION_USER_ID}
+		)}
+	</select>
+	
+	<select id="selectMealMenu" resultType="hashMap">
+		{CALL dbo.OST_메인_식단표_조회}
+	</select>
+	
+	<select id="selectPnuNoticeList" resultType="hashMap" >
+		{CALL dbo.OST_메인_대학공지_조회(#{bbsPageSize})}
+		
+	</select>
+	
+	<select id="saveStdtInfoUpd" resultType="hashMap" >
+		{CALL OST.dbo.OST_메인_학생_개인정보_수정(
+		#{STDT_NO},
+		#{PHONE_NO},
+		#{EMAIL},
+		#{SESSION_USER_ID},
+		#{SESSION_USER_IP},
+		#{SESSION_SYSTEM_GCD},
+		#{SESSION_MENU_CD}
+		)}
+		
+	</select>
+	
+	<select id="selectMatchedUserList" resultType="hashMap">
+    {CALL API.DBO.API_외부기관사용자인증_조회(
+	    #{id},
+	    #{pswd},
+	    #{ssn},
+	    #{allFlag}
+	 )} 
+	</select>
+
+</mapper>

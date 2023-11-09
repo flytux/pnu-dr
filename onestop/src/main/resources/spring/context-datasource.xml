@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd  
+    http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+	
+        <util:properties id="databaseprop" location="classpath:config/database.properties" />
+	
+	     
+        <!-- Jasypt -->
+        <bean id="environmentVariablesConfiguration" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+            <property name="algorithm" value="PBEWITHMD5ANDDES"/>
+            <property name="passwordEnvName" value="APP_ENCRYPTION_PASSWORD"/>
+                
+        </bean>    
+        <bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+            <property name="config" ref="environmentVariablesConfiguration"/>
+            <property name="password" value="a12345"/>
+        </bean>    
+        <bean id="propertyConfig" class="org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer">
+            <constructor-arg ref="configurationEncryptor"/>
+            <property name="location" value="classpath:#{databaseprop['database.connect']}.properties"/>
+        </bean>    
+        
+        <!-- DataSource server
+        <bean id="dataSourcePnu" class="org.apache.commons.dbcp2.BasicDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.url}"/> 
+            <property name="username" value="${jdbc.username}"/> 
+            <property name="password" value="${jdbc.password}"/>
+            <property name="initialSize" value="1" />
+      		<property name="maxTotal" value="300" />
+	      	<property name="maxIdle" value="2" />
+	      	<property name="minIdle" value="0" />
+	      	<property name="maxWaitMillis" value="300000" />
+        </bean>
+        
+        <bean id="dataSourceHomepage" class="org.apache.commons.dbcp2.BasicDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.homepage.url}"/> 
+            <property name="username" value="${jdbc.homepage.username}"/> 
+            <property name="password" value="${jdbc.homepage.password}"/>
+            <property name="initialSize" value="1" />
+      		<property name="maxTotal" value="300" />
+	      	<property name="maxIdle" value="2" />
+	      	<property name="minIdle" value="0" />
+	      	<property name="maxWaitMillis" value="300000" />
+        </bean>
+        
+        <bean id="dataSourceUnit" class="org.apache.commons.dbcp2.BasicDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.unit.url}"/> 
+            <property name="username" value="${jdbc.unit.username}"/> 
+            <property name="password" value="${jdbc.unit.password}"/>
+            <property name="initialSize" value="1" />
+      		<property name="maxTotal" value="300" />
+	      	<property name="maxIdle" value="2" />
+	      	<property name="minIdle" value="0" />
+	      	<property name="maxWaitMillis" value="300000" />
+        </bean>
+         -->
+         
+        <!-- DataSource local -->
+        <bean id="dataSourcePnu" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.url}"/> 
+            <property name="username" value="${jdbc.username}"/> 
+            <property name="password" value="${jdbc.password}"/>
+        </bean>
+        
+        <bean id="dataSourceHomepage" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.homepage.url}"/> 
+            <property name="username" value="${jdbc.homepage.username}"/> 
+            <property name="password" value="${jdbc.homepage.password}"/>
+        </bean>
+        
+        <bean id="dataSourceUnit" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+            <property name="driverClassName" value="${jdbc.driverClassName}"/> 
+            <property name="url" value="${jdbc.unit.url}"/> 
+            <property name="username" value="${jdbc.unit.username}"/> 
+            <property name="password" value="${jdbc.unit.password}"/>
+        </bean>
+
+</beans>

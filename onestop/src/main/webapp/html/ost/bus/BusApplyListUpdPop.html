@@ -1,0 +1,154 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<label class="text-left dfn ml-2 mt-2">● 신청 변경</label><br>
+			<!-- 메세지 -->
+			<div class="message-box mb-3">
+				<div class="message-box-inner">
+					<div class="message-body">
+						<ul class="list list-style-1">
+							<li id="oMsg"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- END 메세지 -->
+			<!-- 테이블 -->
+			<div class="table-box">
+				<div class="table-body">
+					<table class="table table-hover" data-toggle="table" data-height="" data-show-column="true">
+						<caption>탑승정보</caption>
+						<colgroup>
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+							<col style="min-width: 140px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">탑승일</th>
+								<th scope="col">구분</th>
+								<th scope="col">출발시간</th>
+								<th scope="col">도착시간</th>
+								<th scope="col">장소</th>
+								<th scope="col">배차대수</th>
+								<th scope="col">잔여좌석</th>
+								<th scope="col">가능여부</th>
+							</tr>
+						</thead>
+						<tbody id="resultTbody">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /END 테이블 -->
+		</div>
+	</section>
+</div>
+<script type="text/x-tbody-template" id="resultTemplate"> 
+	<tr style="cursor:pointer;">
+        <td class="text-left">#:GETON_DAY_DATE#</td>
+	    <td>#:KIND#</td>
+		<td>#:DEPART_TIME#</td>
+	    <td>#:ARRIVAL_TIME#</td>
+		<td>#:LOCATION_CD_NM#</td>
+		<td>#:VEHICLE_CNT#</td>
+		<td>#:REMAIN_SEAT_CNT#</td>
+		<td># if( :REMAIN_SEAT_CNT== 0 || :TIME_FG == "N") {# <button id="btnNoApply" class="btn btn-outline-danger detail-btn" type="button" >신청불가</button>#} 
+				  else {# <button id="btnApply" class="btn btn-outline-primary detail-btn" type="button" onclick="fn_apply(this);">신청하기</button>#}#
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	$(document).ready(popInit());
+	/***************************************************************************
+	 * popInit
+	 **************************************************************************/
+	function popInit() {
+		fn_busGetonDate();
+		fn_sch();
+		$("#btnNoApply").prop("disabled", true);
+	}
+	/***************************************************************************
+	 * fn_busUpdMsg 당일 차량 변경 신청 -- 신청자료가 있을때
+	 **************************************************************************/	
+	function fn_busGetonDate() {
+		var paramMap = {};
+
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/bus/busapplylist/selectGetonDate",
+			reqData : paramMap,
+			success : function(data, responseData) {
+				
+				if(data.O_RSLT=="N") {}
+				else{
+					$("#oMsg").text(data.O_MSG);
+				}
+			}
+		});
+	}
+	/***************************************************************************
+	 * fn_sch  통학버스 하교변경 팝업
+	 **************************************************************************/
+	function fn_sch() {
+		var paramMap = {};
+
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/bus/busapplylist/selectBusAfterSchTime",
+			reqData : paramMap,
+			success : function(data, responseData) {
+
+				$("#resultTbody").listView({ 
+					dataSource : data,
+					dataBound : function(e) {
+						currentData = data;
+					},
+					template : $("#resultTemplate"),
+					totalCnt : data.length,
+				});
+			}
+		});
+	}
+	
+	/***************************************************************************
+	 * fn_apply
+	 **************************************************************************/
+	function fn_apply(obj) {
+		scwin.detailObj = $(obj).closest("tr").data();  
+		
+		var searchData = {
+			"SYEAR" : scwin.detailObj.SYEAR,
+			"TERM_GCD" : scwin.detailObj.TERM_GCD,
+			"CHASU_NO" : scwin.detailObj.CHASU_NO,
+			"GETON_DATE" : scwin.detailObj.GETON_DATE,
+			"TIME_CD" : scwin.detailObj.TIME_CD,
+			"LOCATION_CD" : scwin.detailObj.LOCATION_CD,
+			"KIND" : scwin.detailObj.KIND
+		}
+		
+		 confirm(
+			'차량 변경을 신청하시겠습니까?',
+			function(_flag) {
+				if (_flag) {
+					gfn_ajax_request({
+						url : "/ost/bus/busapplylist/executeBusAfterSchTime",
+						reqData : searchData,
+						success : function(data, responseData) {
+							if(data.O_RSLT=="Y") {
+								alert(data.O_MSG,$("#popup span"));
+								fn_sch();
+							}else{
+								alert(data.O_MSG,$("#popup span"));
+							}
+						}
+					});
+				}
+			}); 
+	}
+</script>

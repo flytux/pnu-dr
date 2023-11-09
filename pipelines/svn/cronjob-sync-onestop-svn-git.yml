@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sync-onsetop-svn-git-every-hour
+  namespace: build
+spec:
+  jobTemplate:
+    metadata:
+      namespace: build
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - args:
+                - sync-svn-git.sh
+              command:
+                - /bin/bash
+              image: svn:dev
+              imagePullPolicy: IfNotPresent
+              name: sync-svn-git
+              env:
+              - name: SVN_ID
+                value: pnu
+              - name: SVN_PWD
+                value: pnu@12
+              - name: SVN_URL
+                value: 164.125.6.115:3690/dronestop
+              - name: SVN_REPO
+                value: onestop
+              - name: GIT_REPO
+                value: onestop
+              volumeMounts:
+                - mountPath: /root/sync-svn-git.sh
+                  name: sync-svn-git
+                  subPath: sync-svn-git.sh
+              workingDir: /root
+          schedulerName: default-scheduler
+          volumes:
+            - configMap:
+                defaultMode: 420
+                name: sync-svn-git
+              name: sync-svn-git
+  schedule: 0 * * * *

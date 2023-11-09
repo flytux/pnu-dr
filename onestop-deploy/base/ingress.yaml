@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: onestop-deploy
+    stage: dev
+  name: dev-onestop-dr
+  namespace: deploy
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: dr-onestop.pusan.ac.kr
+      http:
+        paths:
+          - backend:
+              service:
+                name: dev-onestop
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - dr-onestop.pusan.ac.kr
+      secretName: pnu-tls-cert
+

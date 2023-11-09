@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 메뉴관리 MyBatis SqlMap
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 정원빈
+ * @Create : 2020-02-06
+ * @Title : ComnSys001Sql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="core.comnJs.common">
+
+    <select id="curDate" resultType="hashMap">
+    	
+        SELECT /* comm.comnJs.common.curDate */
+                   TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') CUR_DATE
+              FROM DUAL
+    </select>
+
+
+    
+    <select id="sViewFileInfo" parameterType="java.util.Map" resultType="Map">
+        SELECT FILE_GRP_CD
+             , FILE_SEQ
+             , DISPLAY_NAME AS FILE_NAME
+             , FILE_SIZE
+             , TO_CHAR(ROUND((FILE_SIZE/1024), 2), 'FM9,9999,9999,999,990.00') || ' Mb' AS DISPLAY_SIZE
+          FROM GSC090
+         WHERE 1 = 1
+           AND FILE_GRP_CD = #{FILE_GRP_CD}
+        <if test='FILE_SEQ != null and FILE_SEQ != ""'>
+           AND FILE_SEQ = #{FILE_SEQ}
+        </if>
+        ORDER BY FILE_SEQ
+    </select>
+    
+    <select id="sFileInfo" parameterType="java.util.Map" resultType="Map">
+        SELECT FILE_GRP_CD
+             , FILE_SEQ
+             , DISPLAY_NAME
+             , REAL_NAME
+             , FILE_SIZE
+             , FILE_TYPE
+             , REAL_PATH
+             , NVL(REAL_PATH, '')||NVL(REAL_NAME, '') AS PATH
+          FROM GSC090
+         WHERE 1 = 1
+           AND FILE_GRP_CD = #{FILE_GRP_CD}
+        <if test='FILE_SEQ != null and FILE_SEQ != ""'>
+           AND FILE_SEQ = #{FILE_SEQ}
+        </if>
+        ORDER BY FILE_SEQ
+    </select>
+    
+    <parameterMap id="spFileSaveMap" type="HashMap">
+        <parameter property="rowStatus"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="FILE_SEQ"       jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="DISPLAY_NAME"   jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="REAL_NAME"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="FILE_SIZE"      jdbcType="NUMERIC"  mode="IN"/>
+        <parameter property="FILE_GRP_CD"    jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="FILE_TYPE"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="UPDATE_PGM"     jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="UPDATE_IP"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="REAL_PATH"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="CHAEYONG_YY"    jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="CHASU"          jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="SEOLYU_CD"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="UPDATE_ID"      jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="O_RSLT"           jdbcType="VARCHAR" mode="OUT"/>
+        <parameter property="O_MSG"            jdbcType="VARCHAR" mode="OUT"/>
+        <parameter property="O_KEY"            jdbcType="VARCHAR" mode="OUT"/>
+    </parameterMap>
+    
+    <select id="saveFile" statementType="CALLABLE" parameterMap="spFileSaveMap" resultType="HashMap">
+        {CALL USP_FILE_SAVE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </select>
+    
+    <select id="getUpDeptCd" parameterType="map" resultType="hashmap">
+        /*comm.comnJs.common.ComnJs_SQL.getUpDeptCd(상위부서코드 조회)*/
+        SELECT A.LVL_DEPT1
+              ,A.LVL_DEPT2
+              ,A.LVL_DEPT3
+              ,A.LVL_DEPT4
+              ,A.DEPT_CD
+              ,A.DEPT_NM
+              ,A.UP_DEPT_CD
+              ,A.UP_DEPT_NM
+          FROM V_DEPT_INFO A
+         WHERE A.DEPT_CD = #{DEPT_CD}
+    </select>
+    
+     <select id="getPwdCfm" parameterType="map" resultType="hashmap">
+        SELECT F_CHK_PWD(
+                              <if test="PWD != null and PWD != ''">
+                              #{PWD}
+                              </if>
+                              <if test="PWD == null or PWD == ''">
+                              ''
+                              </if>
+                              <if test="GBN != null and GBN != ''">
+                             ,#{GBN}
+                              </if>
+                              <if test="GBN == null or GBN == ''">
+                             ,'1'
+                              </if>
+                              <if test="RTN_TYPE != null and RTN_TYPE != ''">
+                             ,#{RTN_TYPE}
+                              </if>
+                              <if test="RTN_TYPE == null or RTN_TYPE == ''">
+                             ,'1'
+                              </if>
+                              <if test="SEP != null and SEP != ''">
+                             ,#{SEP}
+                              </if>
+                              <if test="SEP == null or SEP == ''">
+                             ,' '
+                              </if>
+                             ) O_RSLT
+              ,F_CHK_PWD(
+                              <if test="PWD != null and PWD != ''">
+                              #{PWD}
+                              </if>
+                              <if test="PWD == null or PWD == ''">
+                              ''
+                              </if>
+                             ,'2'
+                              <if test="RTN_TYPE != null and RTN_TYPE != ''">
+                             ,#{RTN_TYPE}
+                              </if>
+                              <if test="RTN_TYPE == null or RTN_TYPE == ''">
+                             ,'1'
+                              </if>
+                              <if test="SEP != null and SEP != ''">
+                             ,#{SEP}
+                              </if>
+                              <if test="SEP == null or SEP == ''">
+                             ,' '
+                              </if>
+                             ) O_MSG
+          FROM DUAL
+    </select>
+    
+    <select id="getRandomNo" parameterType="map" resultType="hashmap">
+         SELECT TRIM(TO_CHAR(TRUNC(DBMS_RANDOM.VALUE(1,999999)),'000000')) RANDOM_NO 
+          FROM DUAL
+    </select>
+
+</mapper>

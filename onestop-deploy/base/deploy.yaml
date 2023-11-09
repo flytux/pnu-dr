@@ -1,0 +1,86 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onestop
+spec:
+  selector:
+    matchLabels:
+      app: onestop
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: onestop
+    spec:
+      containers:
+        - name: onestop
+          image: 192.168.5.31:30005/onestop:init
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: UMASK
+              value: '0000'
+            - name: JAVA_OPTS
+              value: >-
+                -Duser.timezone=GMT+09:00 
+                -XX:+UseParallelGC -XX:+UseParallelOldGC -XX:+PrintGCDetails
+                -XX:+HeapDumpOnOutOfMemoryError
+                -XX:HeapDumpPath=$CATALINA_HOME/logs/$HOSTNAME/heapdump
+                -verbose:gc
+                -Xloggc:$CATALINA_HOME/logs/$HOSTNAME/gclog/gc-%t.log
+                -Djava.security.egd=file:/dev/./urandom
+                -Dcatalina.host=$HOSTNAME
+                -Dcatalina.logdir=$CATALINA_HOME/logs/$HOSTNAME
+                -Dbase.dir=$CATALINA_HOME/webapps/ROOT
+                -DWEBSQUARE_HOME=$CATALINA_HOME/webapps/ROOT/WEB-INF/websquare_home
+          resources:
+            limits:
+              cpu: '4'
+              memory: 8Gi
+            requests:
+              cpu: '4'
+              memory: 8Gi
+          volumeMounts:
+            - name: onestop-conext-xml
+              mountPath: /usr/local/tomcat/conf/context.xml
+              subPath: context.xml
+            - name: onestop-server-xml
+              mountPath: /usr/local/tomcat/conf/server.xml
+              subPath: server.xml
+            - name: onestop-log4j2-xml
+              mountPath: /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/log4j2.xml
+              subPath: log4j2.xml
+            - name: one-db-properties
+              mountPath: >-
+                /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/config/database.properties
+              subPath: db.properties
+            - name: localtime
+              readOnly: true
+              mountPath: /etc/localtime
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: ''
+        - name: onestop-conext-xml
+          configMap:
+            name: onestop-context-xml
+            defaultMode: 420
+        - name: onestop-server-xml
+          configMap:
+            name: onestop-server-xml
+            defaultMode: 420
+        - name: onestop-log4j2-xml
+          configMap:
+            name: onestop-log4j2-xml
+            defaultMode: 420
+        - name: one-db-properties
+          configMap:
+            name: one-db-properties
+            defaultMode: 420

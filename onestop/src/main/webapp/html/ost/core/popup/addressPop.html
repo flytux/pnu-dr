@@ -1,0 +1,62 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">			
+			<div id="grp_DaumSource" style="position: relative;height:100%"></div>
+		</div>
+	</section>
+</div>
+<script src="/common/js/dmap.js?autoload=false"></script>
+<script>
+$(document).ready(return_execDaumPostcode());
+
+function return_execDaumPostcode() {
+    
+	var comp =document.getElementById("grp_DaumSource");
+
+    daum.postcode.load(function(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if(data.addressType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+                
+                if(typeof scwin.jusoPop.callbackFunc == "function"){
+            		scwin.jusoPop.callbackFunc({
+            			"zipCd":data.zonecode,
+            			"addr":fullAddr,
+            			"addrEng":data.jibunAddressEnglish,
+            			"bdNm":data.buildingName
+            		});
+            	}else if (typeof scwin.jusoPop.callbackFunc == "string"){
+            	    window[scwin.jusoPop.callbackFunc]({
+            			"zipCd":data.zonecode,
+            			"addr":fullAddr,
+            			"addrEng":data.jibunAddressEnglish,
+            			"bdNm":data.buildingName
+            		});
+            	}
+            	gfn_com_closeModalWall();
+                
+            }
+           ,width : "100%"
+           ,height: "444px"
+        }).embed(comp);
+    });
+}
+</script>

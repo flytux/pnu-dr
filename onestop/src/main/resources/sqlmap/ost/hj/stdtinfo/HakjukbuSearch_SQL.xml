@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 학적부 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김현주
+ * @Create : 2022년 02월 18일
+ * @Title : HakjukbuSearchSql
+ * @version 1.0
+ * @stereotype Sql
+  --> 
+<mapper namespace="ost.hj.stdtinfo.hakjukbuSearch">   
+
+	<resultMap type="hashMap" id="visaResultMap01"></resultMap>
+    <resultMap type="hashMap" id="visaResultMap02"></resultMap>
+
+	<select id="selectStdtInfo" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_학적_조회(#{STDT_NO}, #{SESSION_USER_CONTENT})} 
+	</select>
+	
+	<select id="selectListEnt" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_입학_입학내역_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListOunv" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_입학_출신대학교_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListVisa" resultType="hashMap" resultMap="visaResultMap01, visaResultMap02"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_비자_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListSrchg" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_학적변동_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListMultiMajor" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_학적변동_다중전공신청_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListLinkProc" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_학적변동_연계과정신청_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListAcqDelay" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_학적변동_학사무논문학위취득유예신청_조회(#{STDT_NO})}  
+	</select>
+	
+	<select id="selectListCourseEtc" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_편입교류복수공동학위_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListJangHak" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_장학금탭_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListTermSj" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_성적_학기별성적_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListTotTermSj" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_성적_학기별성적_합계_조회(#{STDT_NO})} 
+	</select>
+	
+	<select id="selectListSubjSj" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_성적_교과목성적_조회(#{STDT_NO}, #{SYEAR}, #{TERM_GCD})} 
+	</select>
+	
+	<select id="selectListDeg" resultType="hashMap"> 
+	    {CALL HAKJUK.DBO.HJ_학생정보_학적부조회_졸업_조회(#{STDT_NO})} 
+	</select>
+
+
+</mapper>

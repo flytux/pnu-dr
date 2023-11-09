@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 공통코드 관리 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 최현우
+ * @Create : 2021년 08월 10일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="common.sample">
+
+<select id="sample1SelectList" resultType="hashMap">
+    {CALL SYS.DBO.SYS_공통코드관리_샘플_조회(
+    #{SCH_SYSTEM_GCD},
+    '',
+    #{SCH_COMMON_CD},
+    #{SCH_COMMON_CD_KOR_NM},
+    '',
+    '',
+    #{FIRSTINDEX},
+    #{LASTINDEX})} 
+</select>
+
+<select id="executeSampleInfo" resultType="hashMap">
+	{ CALL SYS.DBO.SYS_공통코드관리_샘플_저장(
+        #{rowState},
+        #{SYSTEM_GCD},
+        #{COMMON_CD},
+        #{COMMON_CD_KOR_NM},
+        #{USE_FG},
+        #{SESSION_USER_ID},
+        #{SESSION_USER_IP},
+        #{SESSION_SYSTEM_GCD},
+        #{SESSION_MENU_CD}
+    )}
+</select>
+
+</mapper>

@@ -1,0 +1,657 @@
+<div class="header-sub">
+  <div class="container">
+    <ul class="list list-with-separator">
+      <li>
+        <a href="#">로그인</a>
+      </li>
+      <li>
+        <a href="#">밀양대학교 학생지원시스템</a>
+      </li>
+      <li>
+        <a href="#">PNU International</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="header-main">
+  <div class="container">
+    <div class="header-item">
+      <h1 class="heading">
+        <img class="logo" src="/common/images/logo.svg" alt="">
+        <div class="title-box">
+          <span class="title">부산대학교</span>
+          <span class="sub-title">학생지원시스템</span>
+        </div>
+      </h1>
+    </div>
+    <div class="header-item">
+      <div class="menu-wrapper">
+        <div class="menu-wrapper-inner">
+          <ul class="list link-list">
+            <li>
+              <a href="#">부산대학교</a>
+            </li>
+            <li>
+              <a href="#">로그아웃</a>
+            </li>
+          </ul>
+
+          <!-- 인증 -->
+          <section class="sec-1 sec-auth">
+						<header>
+							<ul class="nav nav-tabs" id="header-login-tab" role="tablist">
+									<li class="nav-item" role="presentation"><a class="nav-link active" id="header-login-tab01" data-toggle="tab" href="#header-login-cont01" role="tab" data-controls="header-login-cont01" data-selected="true">아이디</a></li>
+									<li class="nav-item" role="presentation"><a class="nav-link" id="header-login-tab02" data-toggle="tab" href="#header-login-cont02" role="tab" data-controls="header-login-cont02" data-selected="false">인증서</a></li>
+									<li class="nav-item" role="presentation"><a class="nav-link" id="header-login-tab03" data-toggle="tab" href="#header-login-cont03" role="tab" data-controls="header-login-cont03" data-selected="false">스마트</a></li>
+							</ul>
+						</header>
+            <div class="sec-body">
+							<div class="tab-content logged-out-view">
+									<div class="tab-pane fade show active" id="header-login-cont01" role="tabpanel" aria-labelledby="header-login-tab01">
+										<p class="login-info">업무포털, 대학자원관리 , 기록관 등 <span class="text-danger">전체 서비스를 이용 가능</span>.</p>
+										<div class="login-box">
+											<div class="login-item">
+												<div class="form-group">
+													<input class="form-control" type="text" placeholder="학번">
+												</div>
+												<div class="form-group">
+													<input class="form-control" type="password" placeholder="비밀번호">
+												</div>
+											</div>
+											<div class="login-item">
+												<button class="btn btn-primary login-btn" type="button">로그인</button>
+											</div>
+										</div>
+										<ul class="list list-center list-with-separator">
+											<li><a href="#">아이디찾기</a></li>
+											<li><a href="#">비밀번호 찾기</a></li>
+										</ul>
+									</div>
+									<div class="tab-pane fade" id="header-login-cont02" role="tabpanel" aria-labelledby="header-login-tab02">
+										<p class="login-info">공동인증서를 <span class="text-danger">발급/재발급/갱신</span>한 경우 반드시 <span class="text-danger">인증서를 재등록</span>. 행정전자서명 외 <span class="text-danger">인증서(은행용, 증권용)</span> 등록 가능</p>
+										<div class="text-center mb-3">
+											<button class="btn btn-primary" type="button">공인인증서 로그인</button>
+										</div>
+										<ul class="list list-center list-with-separator">
+											<li><a href="#">인증서</a></li>
+											<li><a href="#">인증정보 등록/해지</a></li>
+										</ul>
+									</div>
+									<div class="tab-pane fade" id="header-login-cont03" role="tabpanel" aria-labelledby="header-login-tab03">
+										<p class="login-info"><span class="text-danger">생체인증(지문, 얼굴) 또는 OTP 6자리 비밀번호</span>로 대체하는 서비스로, 인증서가 없는 PC에서도 로그인이 가능.</p>
+										<div class="text-center mb-3">
+											<button class="btn btn-primary" type="button">OTP 로그인</button>
+											<button class="btn btn-secondary" type="button">생체인증 로그인</button>
+										</div>
+										<ul class="list list-center list-with-separator">
+											<li><a href="#">신규등록</a></li>
+											<li><a href="#">인증하기</a></li>
+											<li><a href="#">이용방법</a></li>
+											<li><a href="#">인증정보 등록/해지</a></li>
+										</ul>
+									</div>
+							</div>   
+							<div class="logged-in-view">
+									<h3 class="user-name">홍길동<span class="user-number">202002176</span></h3>
+									<ul class="list list-with-separator user-info-list">
+											<li>경제통상대학</li>
+											<li>관광컨벤션학과</li>
+											<li>2학년</li>
+									</ul>
+									<ul class="list list-logged">
+											<li><a href="#"><i class="bi bi-envelope-fill" aria-hidden="true"></i> 웹메일</a></li>
+											<li><a href="#"><i class="bi bi-save-fill" aria-hidden="true"></i> 인터넷디스크</a></li>
+											<li><a href="#"><i class="bi bi-file-earmark-text-fill" aria-hidden="true"></i> 설문조사</a></li>
+											<li><a href="#"><i class="bi bi-bar-chart-fill" aria-hidden="true"></i> 학업성취분석</a></li>
+									</ul>
+									<button class="btn btn-icon setting-btn" type="button">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" src="/common/images/setting.svg" alt="설정" fill="currentcolor">
+											<path d="M26.519,16.5a3.088,3.088,0,0,1,1.981-2.88,12.237,12.237,0,0,0-1.481-3.568,3.13,3.13,0,0,1-1.256.269,3.081,3.081,0,0,1-2.819-4.336A12.206,12.206,0,0,0,19.381,4.5a3.086,3.086,0,0,1-5.763,0A12.243,12.243,0,0,0,10.05,5.981a3.081,3.081,0,0,1-2.819,4.336,3.029,3.029,0,0,1-1.256-.269A12.507,12.507,0,0,0,4.5,13.623a3.086,3.086,0,0,1,.006,5.761,12.237,12.237,0,0,0,1.481,3.568,3.082,3.082,0,0,1,4.069,4.068A12.315,12.315,0,0,0,13.625,28.5a3.08,3.08,0,0,1,5.75,0,12.243,12.243,0,0,0,3.569-1.481,3.086,3.086,0,0,1,4.069-4.068,12.308,12.308,0,0,0,1.481-3.568A3.1,3.1,0,0,1,26.519,16.5Zm-9.962,4.992a5,5,0,1,1,5-5A5,5,0,0,1,16.556,21.489Z" transform="translate(-4.5 -4.5)"></path>
+									</svg>
+									</button>
+									<button class="btn btn-icon logout-btn" type="button">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+											<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+										</svg>
+									</button>
+							</div>             
+            </div>
+          </section>
+          <!-- /END 인증 -->
+
+          <!-- 전체메뉴 -->
+          <nav id="menu">
+            <header>
+              <h2 class="sec-title">전체메뉴</h2>
+            </header>
+            <div class="sec-body">              
+              <ul class="menubar-main" role="menubar" aria-label="전체메뉴">
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">학적</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">학적</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="학적">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">학적변동안내</a>
+                          <ul role="menu" aria-label="학적변동안내">
+                            <li role="none"><a role="menuitem" class="active" href="#">일반휴학</a></li>
+                            <li role="none"><a role="menuitem" href="#">군휴학</a></li>
+                            <li role="none"><a role="menuitem" href="#">복학</a></li>
+                            <li role="none"><a role="menuitem" href="#">교내전과</a></li>
+                            <li role="none"><a role="menuitem" href="#">재입학</a></li>
+                            <li role="none"><a role="menuitem" href="#">제적</a></li>
+                            <li role="none"><a role="menuitem" href="#">자퇴</a></li>
+                            <li role="none"><a role="menuitem" href="#">학적부 변경신청</a></li>
+                          </ul>
+                        </li>
+    
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">인터넷휴복학</a>
+                          <ul role="menu" aria-label="인터넷휴복학">
+                            <li role="none"><a role="menuitem" href="#">휴학신청</a></li>
+                            <li role="none"><a role="menuitem" href="#">복학신청</a></li>
+                          </ul>
+                        </li>
+    
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">학생생활기록부</a>
+                          <ul role="menu" aria-label="학생생활기록부">
+                            <li role="none"><a role="menuitem" href="#">학생생활기록부 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">개인정보수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">가족사항 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">계좌번호 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">학적변동내역 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">전공신청내역 조회</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">학생생활기록부</a>
+                          <ul role="menu" aria-label="학생생활기록부">
+                            <li role="none"><a role="menuitem" href="#">학생생활기록부 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">개인정보수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">가족사항 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">계좌번호 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">학적변동내역 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">전공신청내역 조회</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">학생생활기록부</a>
+                          <ul role="menu" aria-label="학생생활기록부">
+                            <li role="none"><a role="menuitem" href="#">학생생활기록부 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">개인정보수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">가족사항 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">계좌번호 입력/수정</a></li>
+                            <li role="none"><a role="menuitem" href="#">학적변동내역 조회</a></li>
+                            <li role="none"><a role="menuitem" href="#">전공신청내역 조회</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">교육과정</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">교육과정</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="교육과정">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">수업</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">수업</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="수업">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">성적</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">성적</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="성적">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">장학</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">장학</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="장학">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>                 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">등록</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">등록</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="등록">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">졸업</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">졸업</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="졸업">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>                        
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">타대교류</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">타대교류</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="타대교류">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li role="none">
+                  <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">대학생활</a>
+                  <div class="menubox">
+                    <div class="menubox-inner">
+                      <div class="menu-deco">
+                        <p class="menu-deco-title">대학생활</p>
+                        <p class="menu-deco-text">PUSAN NATIONAL UNIVERSITY</p>
+                      </div>
+                      <ul role="menu" aria-label="대학생활">
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+
+                        <li role="none">
+                          <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">2뎁스 메뉴</a>
+                          <ul role="menu" aria-label="2뎁스 메뉴">
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                            <li role="none"><a role="menuitem" href="#">3뎁스 메뉴</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- /END 전체메뉴 -->
+        </div>
+
+        <button class="close-btn" type="button">
+          <img src="/common/images/close_white.svg" alt="메뉴 닫기">
+        </button>
+      </div>
+    </div>
+    <div class="header-item">
+      <ul class="list list-no-gutter">
+        <li>
+          <a class="btn btn-icon bookmark-btn" role="button" href="#bookmark-modal" data-toggle="modal">
+            <i class="bi bi-star"></i>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">
+            <img src="/common/images/notification.svg" alt="알림">
+          </a>
+        </li>
+        <li>          
+          <a class="btn btn-icon menu-btn" href="javascript:void(0);">
+            <img src="/common/images/menu.svg" alt="메뉴">
+          </a>
+        </li>
+      </ul>     
+    </div>
+  </div>
+</div>
+
+<div class="header-backdrop"></div>

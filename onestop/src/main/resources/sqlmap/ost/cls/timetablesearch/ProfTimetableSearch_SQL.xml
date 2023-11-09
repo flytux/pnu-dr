@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교수별 시간표 조회 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김동영
+ * @Create : 2022년 03월 03일
+ * @Title : SylSeach_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.timetablesearch.proftimetablesearch">
+
+<select id="selectProfTimetable" resultType="hashMap">
+    {CALL OST.dbo.OST_수업_교수별_시간표_조회(
+	    #{SCH_SYEAR},
+	    #{SCH_TERM_GCD},
+	    #{SCH_DEPT_CD},
+	    #{profSearch_hidden},
+	    #{SCH_SEARCH_GBN},
+	    #{FIRSTINDEX},
+	    #{LASTINDEX}
+    )}
+</select>
+
+
+</mapper>

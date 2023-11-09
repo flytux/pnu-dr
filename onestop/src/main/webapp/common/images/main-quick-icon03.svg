@@ -1,0 +1,15 @@
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="45" height="43" viewBox="0 0 45 43">
+  <g id="Layer_1" data-name="Layer 1">
+    <g id="그룹_99" data-name="그룹 99">
+      <g id="그룹_97" data-name="그룹 97">
+        <path id="패스_103" data-name="패스 103" d="M30.5,25.5a8,8,0,0,1-16,0H1.5v16h42v-16Z" fill="none" stroke="#333" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="패스_104" data-name="패스 104" d="M10.5,7.5h-5l-4,18" fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="패스_105" data-name="패스 105" d="M43.5,25.5l-4-18h-5" fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="3"/>
+      </g>
+      <g id="그룹_98" data-name="그룹 98">
+        <line id="선_8" data-name="선 8" y2="20" transform="translate(22.5)" fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="패스_106" data-name="패스 106" d="M14.5,12l8,8,8-8" fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>

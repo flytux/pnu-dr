@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 
+ * @Create : 
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="core.main.deptNotice">
+
+	<!-- 학생지원_메인_학과 홈페이지 설정_조회-->
+    <select id ="DEPARTBOARDINFO_001" resultType="hashMap">
+        {CALL OST.dbo.OST_메인_학과게시판_설정_조회(#{SESSION_USER_ID})}
+    </select>  
+    
+    <!-- 학생지원_메인_학과홈페이지 설정 입력 수정 -->
+    <select id ="DEPARTBOARDUPDATE_001" resultType="hashMap">
+    	{CALL OST.dbo.OST_메인_학과게시판_설정_저장(#{SESSION_USER_ID},#{siteId},#{boardId})}
+    </select>    
+
+    
+    <select id="selectDeptSiteInfo" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		{CALL unit_db.dbo.Dept_Siteinfo(#{pValue})}
+	</select>
+    
+    <select id="selectDeptSiteBoardInfo" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		{CALL unit_db.dbo.Dept_Boardinfo(#{pValue})}
+	</select>
+</mapper>

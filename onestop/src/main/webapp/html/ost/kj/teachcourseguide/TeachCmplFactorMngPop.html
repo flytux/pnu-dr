@@ -1,0 +1,153 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1" id="" role="table" aria-label="적인성검사 항목별 점수 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>문제해결력</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_1_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>판단력</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_2_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>독립성</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_3_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>창의응용령</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_4_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>심리적 안정성</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_5_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>언어의사소통력</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_6_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>지도성</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_7_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>공포포용력</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_8_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>지식정보력</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_9_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>봉사희생협동성</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_10_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>계획성</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_11_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>성실책임감</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_12_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>소명감교직관</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_13_SCORE">
+                        </div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>열정</label>
+						</div>
+                        <div class="b-con-box text-right" role="cell" data-bind="text: ITEM_14_SCORE">
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+	$(document).ready(popInit());
+
+	function popInit() {
+		fn_sch();
+	}
+
+	function fn_sch() {
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/kj/teachcourseguide/TeachCmplFactorMng/selectListTeachCmplFactorMngPop",
+			reqData : scwin.detailObj,
+			success : function(data, responseData) {
+				gfn_com_dataBind($("#popups"), data);
+			}
+		});
+	}
+
+</script>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 중간강의평가 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김수민
+ * @Create : 2022년 01월 25일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.sj.kp.middletermleceval">
+
+<select id="selectMiddletermLeceval" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_중간강의평가_조회(
+    #{SYEAR},
+    #{TERM_GCD},
+    #{SESSION_USER_ID},
+    #{FIRSTINDEX},
+    #{LASTINDEX}
+    )} 
+</select>
+
+<select id="selectMiddletermLecevalQuestionList" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_중간강의평가_평가_전체문항_조회(
+    #{SYEAR},
+    #{TERM_GCD},
+    #{SUBJ_NO},
+    #{CLASS_NO},
+    #{CHARGE_PROF_NO},
+    #{LECEVAL_GCD},
+    #{SESSION_USER_ID}
+    )} 
+</select>
+
+<select id="searchSchdChk" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_중간강의평가_학사일정_조회(
+    #{SYEAR},
+    #{TERM_GCD}
+    )} 
+</select>
+
+<select id="saveStdtKey" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_중간강의평가_평가_학생번호_저장(
+    #{SYEAR},
+    #{TERM_GCD},
+    #{LECEVAL_GCD},
+    #{SUBJ_NO},
+    #{CLASS_NO},
+    #{CHARGE_PROF_NO},
+    #{SESSION_USER_ID},
+    #{SESSION_USER_ID},
+    #{SESSION_USER_IP},
+    #{SESSION_SYSTEM_GCD},
+    #{SESSION_MENU_CD}
+    )} 
+</select>
+
+<select id="saveMiddletermLecevalQuestion" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_중간강의평가_평가_저장(
+    #{SYEAR},
+    #{TERM_GCD},
+    #{SUBJ_NO},
+    #{CLASS_NO},
+    #{SESSION_USER_ID},
+    #{LECEVAL_GCD},
+    #{CHARGE_PROF_NO},
+    #{QUESTION_NO},
+    #{LECEVAL_QUESTION_NO},
+    #{radioGroup},
+    #{multipleTxt},
+   	#{SESSION_USER_ID},
+    #{SESSION_USER_IP},
+    #{SESSION_SYSTEM_GCD},
+    #{SESSION_MENU_CD}
+    )} 
+</select>
+
+<select id="selectWebLimitWord" resultType="hashMap">
+    {CALL OST.DBO.OST_강의평가_웹제한단어_조회(#{multipleTxt})} 
+</select>
+
+</mapper>

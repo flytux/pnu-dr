@@ -1,0 +1,19 @@
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="62.71" height="45.84" viewBox="0 0 62.71 45.84">
+  <g id="Layer_1" data-name="Layer 1">
+    <g id="그룹_107" data-name="그룹 107">
+      <g id="그룹_105" data-name="그룹 105">
+        <path id="패스_112" data-name="패스 112" d="M38.17,33.5H1.5V1.5h48v6" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+        <line id="선_14" data-name="선 14" x1="20" transform="translate(15.5 41.5)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+        <line id="선_15" data-name="선 15" y2="8" transform="translate(25.5 33.5)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <path id="패스_113" data-name="패스 113" d="M32.83,18.49l-10,5.68v-12Z" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+      <g id="그룹_106" data-name="그룹 106">
+        <rect id="사각형_340" data-name="사각형 340" width="34" height="20" rx="2" transform="translate(41.21 44.34) rotate(-90)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+        <line id="선_16" data-name="선 16" x2="20" transform="translate(41.21 18.33)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+        <line id="선_17" data-name="선 17" x2="20" transform="translate(41.21 35.33)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+        <circle id="타원_19" data-name="타원 19" cx="1.4" cy="1.4" r="1.4" transform="translate(49.81 38.33)" fill="#333"/>
+        <line id="선_18" data-name="선 18" x2="6" transform="translate(48.21 14.33)" fill="none" stroke="#333" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<div id="popups">
+	<form onsubmit="fn_check();return false;">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1" role="table" aria-label="1단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box " role="rowheader" style="flex: 0 0 146px; max-width: 140px">
+							<label for="CHG_USER_ID">전환사용자아이디</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<input class="form-control" type="text" id="CHG_USER_ID" placeholder="학번" > <!-- onkeypress="javascript:fn_check();return false;" -->
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2 " id="btn_Check" >확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	</form>
+</div>
+
+<script>
+
+$(document).ready(popInit());
+function popInit() {
+	
+    $("#btn_Check").bind("click", function(){
+    	fn_check();
+    });
+
+}
+function fn_check(){
+	if($('#CHG_USER_ID').val() == ""){
+		alert("전환사용자아이디를 입력해 주세요.",$('#CHG_USER_ID'));
+		return false;
+	}
+	
+	
+	var form = $('<form method="POST" action="/login/loginCheck">');
+	form.append('<input type="hidden" name="' + scwin.tokenHeaderNm + '" value="' + scwin.token + '" />');
+	form.append('<input type="hidden" name="' + scwin.tokenParameterNm + '" value="' + scwin.token + '" />');
+	form.append('<input type="hidden" name="USER_ID" value="'+fn_ajax_enc_param($('#CHG_USER_ID').val())+'" />');
+	form.append('<input type="hidden" name="PWD" value="" />');
+	form.append('<input type="hidden" name="ORIGIN_ID" value="'+fn_ajax_enc_param(scwin.loginUser.userId)+'" />');
+	form.append('<input type="hidden" name="SYSTEM_GCD" value="0002" />');   
+
+	$('body').append(form);
+	form.submit().remove();
+}
+
+</script>

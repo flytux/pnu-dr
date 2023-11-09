@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 수강취소 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김수민
+ * @Create : 2022년 03월 02일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.atlectcancel.atlectcancel">
+
+	<select id="searchCurcStdtYear" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_학위취득유예여부_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchLecApplyCrdtCnt" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_수강신청학점과목수_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchLecCancelCrdtCnt" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_수강취소학점과목수_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchCancelSchdChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_학사일정_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD})} 
+	</select>
+	
+	<select id="searchCancelSeaSchdChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_학사일정_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD})} 
+	</select>
+	
+	<select id="searchRefundSchdInfo" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_환불일정_조회(#{SYEAR}, #{TERM_GCD})} 
+	</select>
+	
+	<select id="searchCancelSubjectChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절수업수강취소_대상자_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID}, "S")} 
+	</select>
+	
+	<select id="searchSeasonCancelSubjectChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절수업수강취소_대상자_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID}, "I")} 
+	</select>
+	
+	<select id="searchSeasonCancelSubjectDeleteChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절수업수강취소_대상자_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID}, "D")} 
+	</select>
+	
+	<select id="searchCancelSubjectChkRegularList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_수강신청과목선택_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID}, #{FIRSTINDEX}, #{LASTINDEX})} 
+	</select>
+	
+	<select id="searchCancelSubjectChkSeasonList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_수강신청과목선택_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID}, #{FIRSTINDEX}, #{LASTINDEX})} 
+	</select>
+	
+	<select id="searchCancelSubjectApplyRegularList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_수강취소신청과목_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchCancelSubjectApplySeasonList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_수강취소신청과목_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchCancelRefundProgressRegularList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_수강취소진행상황_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchCancelRefundProgressSeasonList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_수강취소진행상황_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="searchCancelRefundCompleteList" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_수강취소환불완료과목_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="selectStdtGcd" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_학생구분코드_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SESSION_USER_ID})} 
+	</select>
+	
+	<select id="selectRegularSubjectCancelChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기수강취소_입력체크_조회(#{SYEAR}, #{TERM_GCD}, #{SESSION_USER_ID}, #{SUBJ_NO}, #{CRDT}, #{COLL_GRAD_GCD}, #{STDT_GCD}, #{MNG_FG})} 
+	</select>
+	
+	<select id="saveRegularSubjectCancel" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기수강취소_저장(#{SYEAR}, #{TERM_GCD}, #{SESSION_USER_ID}, #{SUBJ_NO}, #{CLASS_NO}, #{CRDT}, #{CANCEL_REASON_COMMENT}, #{STDT_TEL}, #{STDT_GCD}, #{COLL_GRAD_GCD}, #{MNG_FG}, #{SESSION_USER_ID}, #{SESSION_USER_IP}, #{SESSION_SYSTEM_GCD}, #{SESSION_MENU_CD})} 
+	</select>
+	
+	<select id="searchApprConfDt" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_승인확인가능일시_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD})} 
+	</select>
+	
+	<select id="saveRegularCancelApplyDelete" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_정규학기_수강취소신청삭제_저장(#{SYEAR}, #{TERM_GCD}, #{SESSION_USER_ID}, #{SUBJ_NO}, #{CLASS_NO}, #{SESSION_USER_ID}, #{SESSION_USER_IP}, #{SESSION_SYSTEM_GCD}, #{SESSION_MENU_CD})} 
+	</select>
+	
+	<select id="saveSeasonSubjectCancel" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기수강취소_저장(#{SYEAR}, #{TERM_GCD}, #{SESSION_USER_ID}, #{SUBJ_NO}, #{SUBJ_NM}, #{CLASS_NO}, #{CRDT}
+    																	, #{REFUND_AMT}, #{BANK_CD}, #{BANK_NM}, #{ACCT_NO}, #{ACCT_NM}, #{STDT_TEL}
+    																	, #{REFUND_CHASU}, #{ATTACH_FILE_GRP_CD}, #{SESSION_USER_ID}, #{SESSION_USER_IP}, #{SESSION_SYSTEM_GCD}, #{SESSION_MENU_CD}, #{STDT_GCD})} 
+	</select>
+	
+	<select id="saveSeasonCancelApplyDelete" resultType="hashMap">
+	    {CALL OST.DBO.OST_수강취소_계절학기_수강취소신청삭제_저장(#{SYEAR}, #{TERM_GCD}, #{SESSION_USER_ID}, #{SUBJ_NO}, #{CLASS_NO}, #{SESSION_USER_ID}, #{SESSION_USER_IP}, #{SESSION_SYSTEM_GCD}, #{SESSION_MENU_CD})} 
+	</select>
+	
+</mapper>

@@ -1,0 +1,205 @@
+<div id="popups2">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1" id="" role="table" aria-label="">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label for="SCH_STDT_NO" data-lang>학번</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="form-row mb-2">
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="SCH_STDT_NO" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item ">
+						<div class="b-title-box" role="rowheader">
+							<label id="POST_SSN_TXT" data-lang>주민등록번호</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="form-row align-items-center">
+								<div class="col-sm-4">
+									<input type="text" class="form-control numeric" id="SCH_SSN1" maxlength="6" title="주민번호앞자리"/>
+								</div>
+								<div class="">
+									<span class=" ml-2 mr-2">-</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="password" class="form-control numeric" id="SCH_SSN2" maxlength="7" title="주민번호뒷자리"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-box">
+				<div class="form-row btn-box-right">
+					<div class="col-auto">
+						<button class="btn btn-search" id="btnBroSch" type="button" data-lang onclick="javascript:return fn_searchBrothers();">형제/자매 정보조회</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="b-table-box flex-col-2 d-none" id="stdtTable" role="table" aria-label="학생정보 테이블" >
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학번</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: STDT_NO"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>성명</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: STDT_KOR_NM"></span>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학년</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: STDT_YEAR_GCD_NM"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>상태</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: HJ_STA_GCD_NM"></span>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>대학(부)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: COLL_CD_NM"></span>
+<!-- 							<input type="hidden" id="STDT_NO" data-bind="value: STDT_NO" /> -->
+<!-- 							<input type="hidden" id="STDT_KOR_NM" data-bind="value: STDT_KOR_NM" /> -->
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학과</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span data-bind="text: DEPT_CD_NM"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="_footer d-none" >
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+						<button class="btn btn-etc" id="btnBroSubmit" type="button" data-lang onclick="javascript:return fn_setBrothers();">적용</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(popInit());
+    
+    function popInit() {
+    	$("#popups2 #stdtTable").addClass('d-none');
+    	$("#popups2 ._footer").addClass('d-none');
+    }
+	
+	/***************************************************************************
+	 * 형제/자매 조회
+	 **************************************************************************/	
+	function fn_searchBrothers() {
+		popInit();
+		if (!fn_validateBro())return false; 
+		var broParam = gfn_com_inputdata($("#popups2"));
+		
+		var searchParam = {"SYEAR" : scwin.detailObj.SYEAR
+										, "TERM_GCD" : scwin.detailObj.TERM_GCD
+										, "SEARCH_STDT_NO" : broParam.SCH_STDT_NO
+										, "SSN" : broParam.SCH_SSN1 + broParam.SCH_SSN2 
+										, "ERRMSG" : ''
+										};
+
+		gfn_ajax_request({
+			url : "/ost/jh/jhapply/PriorityJhApply/selectListBrothers",
+			reqData : searchParam,
+			success : function(data, responseData) {
+				if (gfn_com_isEmptyObject(data)) {
+		            alert("해당 학번의 학생정보가 없습니다.");
+					return;
+		        }else{
+		        	// 학생과 김민서 선생님 요청 신입생도 가능하게 수정
+		        	if(data[0].O_MSG != '' && data[0].O_MSG != null){
+		        		alert(data[0].O_MSG);
+		        		return;
+					}else{
+						gfn_com_dataBind($("#stdtTable"), data[0]);
+						scwin.detailObj.brothers = data[0];
+						scwin.detailObj.brothers.SSN = $('#SCH_SSN1').val()+$('#SCH_SSN2').val();
+				    	$("#popups2 #stdtTable").removeClass('d-none');
+				    	$("#popups2 ._footer").removeClass('d-none');
+					}
+		        }
+			}
+		});
+	}
+	
+
+
+	/***************************************************************************
+	 *  필수입력 체크
+	 **************************************************************************/	
+	function fn_validateBro() {
+
+		if ($('#SCH_STDT_NO').val() == '') {
+			alert('학번은 필수 입력 항목 입니다.');
+			$('#SCH_STDT_NO').focus();
+			return false;
+		}
+		if ($('#SCH_SSN1').val() == '') {
+			alert('주민등록번호는 필수 입력 항목 입니다.');
+			$('#SCH_SSN1').focus();
+			return false;
+		}
+		if ($('#SCH_SSN2').val() == '') {
+			alert('주민등록번호는 필수 입력 항목 입니다.');
+			$('#SCH_SSN2').focus();
+			return false;
+		}
+		return true;
+	}
+
+	/***************************************************************************
+	 * 적용
+	 **************************************************************************/	
+	function fn_setBrothers() {
+	 	gfn_com_closeModalWall(2, function() {
+	 		fn_searchBrothersCallback();
+	 	});
+	}
+	
+</script>

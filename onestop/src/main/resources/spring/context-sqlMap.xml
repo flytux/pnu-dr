@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- SQL Session Ncom -->
+    <bean id="sqlSessionPnu" class="com.onestop.core.RefreshableSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourcePnu" />
+        <property name="configLocation" value="classpath:mybatis/sql-mapper-config.xml" />
+        <property name="mapperLocations" value="classpath*:sqlmap/**/**/*.xml" />
+        <property name="interval" value="60000" />
+
+        <!-- 
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="cacheEnabled" value="false" />
+                <property name="useGeneratedKeys" value="false" />
+                <property name="defaultExecutorType" value="REUSE" />
+                <property name="logImpl" value="org.apache.ibatis.logging.log4j2.Log4j2Impl" />
+                <property name="mapUnderscoreToCamelCase" value="true" />
+                <property name="callSettersOnNulls" value="true" />
+                <property name="jdbcTypeForNull" value="NULL" />
+            </bean>
+        </property>
+         -->
+    </bean>
+
+    <bean id="sqlSessionTemplatePnu" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg index="0" ref="sqlSessionPnu" />
+    </bean>
+    
+    
+     <!-- SQL Session Homepage -->
+    <bean id="sqlSessionHomepage" class="com.onestop.core.RefreshableSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceHomepage" />
+        <property name="configLocation" value="classpath:mybatis/sql-mapper-config.xml" />
+        <property name="mapperLocations" value="classpath*:sqlmap/**/**/*.xml" />
+        <property name="interval" value="60000" />
+    </bean>
+    
+    <!-- SQL Session Homepage -->
+    <bean id="sqlSessionUnit" class="com.onestop.core.RefreshableSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceUnit" />
+        <property name="configLocation" value="classpath:mybatis/sql-mapper-config.xml" />
+        <property name="mapperLocations" value="classpath*:sqlmap/**/**/*.xml" />
+        <property name="interval" value="60000" />
+    </bean>
+
+    <bean id="sqlSessionTemplateHomepage" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg index="0" ref="sqlSessionHomepage" />
+    </bean>
+
+</beans>

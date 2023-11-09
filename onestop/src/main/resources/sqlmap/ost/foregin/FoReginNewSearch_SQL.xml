@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 교환/교비 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김수민
+ * @Create : 2022년 02월 03일
+ * @Title : ExchgFee_SQL
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.vote.foreginnewsearch">
+	
+	<select id="serviceTerm" parameterType="map" resultType="hashMap">
+		{CALL OST.DBO.OST_학적_신입생학번_외국인용_조회(
+			#{EXAM_NO},
+	    	#{PWD}
+		)}
+	</select>
+	
+
+</mapper>

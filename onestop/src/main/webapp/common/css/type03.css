@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* type03-빨검 */
+
+:root{
+    --gnb-color-01: 196, 0, 35; /* #c40023 */
+    --gnb-color-01-light: 255, 102, 110; /* #ff666e */
+    --gnb-color-01-hover: 230, 0, 11; /* #e6000b */
+    --gnb-color-01-dark: 128, 0, 6; /* #800006 */
+    --gnb-color-02: 68, 68, 68; /* #444 */
+    --gnb-color-02-light: 179, 179, 179; /* #b3b3b3 */
+    --gnb-color-02-hover: 38, 38, 38; /* #262626 */
+    --gnb-color-02-dark: 0, 0, 0; /* #000 */
+    
+    --point-color: 255, 102, 130; /* #ff6682 - point */
+    --point-color-01: 153, 0, 28; /* #99001c - 주컬러 */
+    --point-color-01-light:231, 153, 167; /* #e799a7 */
+    --point-color-01-hover: 102, 0, 19; /* #660013 */
+    --point-color-01-dark: 77, 0, 14; /* #4d000e */
+}

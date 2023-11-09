@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 졸업사정결과 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 심진용
+ * @Create : 2022년 03월 08일
+ * @Title : JolupDelayApply_SQL
+ * @version 1.0
+ * @stereotype Sql
+  --> 
+<mapper namespace="ost.jolup.hakjukbujolupguide.jolupevaltnresult">  
+    <select id="selectListJolupEvaltnResult" resultType="hashMap">
+	    {CALL OST.DBO.OST_졸업_졸업사정결과_조회(
+		    #{SESSION_USER_ID}
+	    )}
+	</select>
+</mapper>

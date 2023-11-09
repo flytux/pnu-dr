@@ -1,0 +1,146 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">			
+			<div class="b-table-box flex-col-1" role="table" aria-label="1단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label class="req tel-label"></label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="row">
+								<div class="col-xl-3">
+									<select id="NATION_NO_GCD" class="form-control" title="국가코드"></select>
+								</div>					
+								<div class="_normal col-xl-3 novisible">
+									<select id="TEL_NO1" class="form-control" title="전화번호 앞자리"></select>
+								</div>
+								<div class="_normal col-xl-3 novisible">
+									<input type="text" id="TEL_NO2" class="form-control numeric" maxlength="4" title="전화번호 중간자리"/>
+								</div>
+								<div class="_normal col-xl-3 novisible">
+									<input type="text" id="TEL_NO3" class="form-control numeric" maxlength="4" title="전화번호 뒷자리"/>
+								</div>
+								<div class="_etc col-xl-9 novisible">
+									<input type="text" id="TEL_NO" class="form-control" maxlength="20" title="전화번호"/>
+								</div>
+							</div>
+						</div>
+					</div>                                  
+				</div>                                 
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2" onclick="javascript:return fn_telNoPopConfirm(this);">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(popInit());
+    
+    function popInit() {
+    	
+    	$("#popups .tel-label").text(scwin.telEditorPop.title);
+    	
+    	$("#popups #TEL_NO1").attr("title",scwin.telEditorPop.title+" 앞자리");
+    	$("#popups #TEL_NO2").attr("title",scwin.telEditorPop.title+" 중간자리");
+    	$("#popups #TEL_NO3").attr("title",scwin.telEditorPop.title+" 뒷자리");
+    	
+    	$("#popups #NATION_NO_GCD").dropDownList({
+			dataSource : null,
+			commonCode : "0000_NATION_NO_GCD",
+			dataTextField : "COMMON_DETAIL_CD_KOR_NM",
+			dataValueField : "COMMON_DETAIL_CD",
+			hakbuGradFg : false,
+			dataBound : function(e) {
+				$("#popups #NATION_NO_GCD").val(scwin.telEditorPop.nationNoGcd);
+				$("#popups #TEL_NO1").dropDownList({
+					dataSource : null,
+					commonCode : "0000_TEL_NO_GCD",
+					dataTextField : "COMMON_DETAIL_CD_KOR_NM",
+					dataValueField : "COMMON_DETAIL_CD",
+					hakbuGradFg : false,
+					optionLabel : "선택",
+					optionValue : "",
+					defaultValue : "",
+					expnCondition : ((scwin.telEditorPop.telnoGbn == "A") ? "" : "AND CHAR_1_CONTENT = '"+scwin.telEditorPop.telnoGbn+"'"),
+					dataBound : function(e) {
+						if(scwin.telEditorPop.formatFlag == "_etc") {
+		                    $("#popups #TEL_NO").val(scwin.telEditorPop.etcTelno);
+		                } else {
+		                	$("#popups #TEL_NO1").val(scwin.telEditorPop.normalTelno1);
+		                	$("#popups #TEL_NO2").val(scwin.telEditorPop.normalTelno2);
+		                	$("#popups #TEL_NO3").val(scwin.telEditorPop.normalTelno3);
+		                }
+						$("#popups ."+((scwin.telEditorPop.formatFlag == "_new") ? "_normal" : scwin.telEditorPop.formatFlag)).show();
+						
+						$("#popups #NATION_NO_GCD").change(function(){
+							if($(this).val() != "+82") {
+			                    $('#popups ._normal').hide();
+			                    $('#popups ._etc').show();
+			                } else {
+			                    $('#popups ._etc').hide();
+			                    $('#popups ._normal').show();
+			                }		
+						});
+					}
+				});
+			}
+		});
+    }
+    
+    function fn_telNoPopConfirm(obj) {
+
+    	var _txtVal = "";
+    	var _originVal = "";
+    	
+    	if($("#popups #NATION_NO_GCD").val() != "+82") {
+            if($("#popups #TEL_NO").val() == "") {
+                alert(scwin.telEditorPop.title+"를 입력 하세요.",$("#popups #TEL_NO"));                            
+                return;
+            }
+            _txtVal = $("#popups #TEL_NO").val();
+            _originVal = $("#popups #NATION_NO_GCD").val()+"|"+$("#popups #TEL_NO").val();
+        } else {
+            if($("#popups #TEL_NO1").val() == "" ) {
+                alert(scwin.telEditorPop.title+" 앞자리를 입력 하세요.",$("#popups #TEL_NO1"));                            
+                return;
+            }
+            if($("#popups #TEL_NO2").val() == "") {
+                alert(scwin.telEditorPop.title+" 중간자리를 입력 하세요.",$("#popups #TEL_NO2"));                            
+                return;
+            }
+            if($("#popups #TEL_NO3").val() == "") {
+                alert(scwin.telEditorPop.title+" 뒷자리를 입력 하세요.",$("#popups #TEL_NO3"));                            
+                return;
+            }
+            _txtVal = (($("#popups #NATION_NO_GCD").val() == "+82") ? "" : $("#popups #NATION_NO_GCD").val()+" ")+$("#popups #TEL_NO1").val()+"-"+$("#popups #TEL_NO2").val()+"-"+$("#popups #TEL_NO3").val();
+            _originVal = $("#popups #NATION_NO_GCD").val()+"|"+$("#popups #TEL_NO1").val()+"-"+$("#popups #TEL_NO2").val()+"-"+$("#popups #TEL_NO3").val();            
+        }
+    	
+    	$("#"+scwin.telEditorPop.compid).val(_txtVal);
+    	$("#"+scwin.telEditorPop.compid).focus();
+    	$("#"+scwin.telEditorPop.compid+"_hidden").val(_originVal);
+    	
+    	$("#"+scwin.telEditorPop.compid+"_wrap button i").removeClass("bi-pencil");
+    	$("#"+scwin.telEditorPop.compid+"_wrap button i").addClass("bi-x");
+    	$("#"+scwin.telEditorPop.compid+"_wrap button i span").html("삭제");
+    	
+    	if(typeof scwin.telEditorPop.dataBound == "function"){
+    		scwin.telEditorPop.dataBound({"telnoInput":_originVal,"telnoTxtInput":_txtVal});   
+    	}else if (typeof scwin.telEditorPop.dataBound == "string"){
+    	    window[scwin.telEditorPop.dataBound]({"telnoInput":_originVal,"telnoTxtInput":_txtVal});
+    	}
+    	gfn_com_closeModalWall(obj);
+    }
+</script>

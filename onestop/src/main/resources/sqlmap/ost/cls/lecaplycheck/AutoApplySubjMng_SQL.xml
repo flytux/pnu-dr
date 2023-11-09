@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 자동신청교과목 확인 및 삭제 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 김수민
+ * @Create : 2022년 02월 17일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.lecaplycheck.autoapplysubjmng">
+
+	<select id="searchClsSchdChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_수강신청기간_학사일정_조회(#{SYEAR}, #{TERM_GCD} )} 
+	</select>
+	
+	<select id="searchAutoClsSchdChk" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_자동신청결과확인_학사일정_조회(#{SYEAR}, #{TERM_GCD} )} 
+	</select>
+	
+	<select id="searchAutoApplySubj" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_수강신청및확인_자동신청교과목확인및삭제_자동신청교과목_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SCH_STDT_NO} )} 
+	</select>
+	
+	<select id="searchAutoApplyCancel" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_수강신청및확인_자동신청교과목확인및삭제_자동신청교과목_삭제내역_조회(#{SCH_SYEAR}, #{SCH_TERM_GCD}, #{SCH_STDT_NO} )} 
+	</select>
+	
+	<select id="saveAutoApplyCancel" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_수강신청및확인_자동신청교과목확인및삭제_자동신청교과목_삭제(#{SYEAR} , 
+	    																												#{TERM_GCD} , 
+	    																												#{SUBJ_NO} ,
+	    																												#{CLASS_NO} , 
+	    																												#{SCH_STDT_NO} , 
+	    																												#{SESSION_USER_ID} , 
+	    																												#{SESSION_USER_IP} , 
+	    																												#{SESSION_SYSTEM_GCD} , 
+	    																												#{SESSION_MENU_CD})} 
+	</select>
+	
+	<select id="searchRecmplSubj" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_수강신청및확인_자동신청교과목확인및삭제_재이수내역_조회(#{SYEAR}, #{TERM_GCD}, #{SUBJ_NO}, #{CLASS_NO}, #{STDT_NO} )} 
+	</select>
+
+</mapper>

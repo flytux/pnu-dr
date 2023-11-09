@@ -1,0 +1,568 @@
+<style>
+#popups .date .input-group {
+	width: auto;
+}
+</style>
+<div id="popups">
+
+
+	<section class="sec-3">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-3" role="table" aria-label="3단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>소속(과정)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id="ASSIGN_NM"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학번(성명)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id="USER"></span>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학년(학기)</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id="TERM_INFO"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>학적상태</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id="HJ_STA_GCD_KOR_NM"></span>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang>휴대전화번호</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<span id="CELLULAR_NO"></span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+	<section class="sec-3" id="payApplyInfo">
+		<input type="hidden" id="APPLY_SERIAL_NO" /> <input type="hidden" id="ATTACH_FILE_GRP_CD" />
+		<header>
+			<h4 class="sec-title">진료사항</h4>
+			<div class="col-md req-txt">
+				<span class="text-danger">＊ 필수입력</span> 항목입니다.
+			</div>
+		</header>
+		<div class="sec-body">
+
+			<div class="b-table-box flex-col-3" role="table" aria-label="3단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="SYEAR">신청 학년도</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<select id="SYEAR" class="form-control" title="학년도선택"></select>
+							</div>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="TERM_GCD">신청 학기</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<select id="TERM_GCD" class="form-control" title="학기선택"></select>
+							</div>
+						</div>
+					</div>
+					<div class="b-row-item"></div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-3">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="DISEASE_NM">병명</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="DISEASE_NM">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-2">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="HOSPITAL_NM">병원명</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="HOSPITAL_NM">
+							</div>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="HOSPITAL_TEL_NO">병원전화번호</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="HOSPITAL_TEL_NO">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="OUTPATIENT_START_DATE">통원기간</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box date" role="cell">
+							<input class="form-control datepicker" type="text" id="OUTPATIENT_START_DATE" style="max-width: 108px" maxlength="10">&nbsp;~&nbsp; <input class="form-control datepicker" type="text" id="OUTPATIENT_CLOSE_DATE" style="max-width: 108px" maxlength="10">
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="INPATIENT_START_DATE">입원기간</label><strong class="text-danger"></strong>
+						</div>
+						<div class="b-con-box date" role="cell">
+							<input class="form-control datepicker" type="text" id="INPATIENT_START_DATE" style="max-width: 108px" maxlength="10" title="시작일자">&nbsp;~&nbsp; <input class="form-control datepicker" type="text" id="INPATIENT_CLOSE_DATE" style="max-width: 108px" maxlength="10" title="종료일자">
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="SELF_PAY_AMT">진료비총액<br />(본인부담금)
+							</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="SELF_PAY_AMT" maxlength="11">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item merge-3">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="OCCUR_CONTENT">발생경위<br />(6하원칙에 따라 정확하게 기입)
+							</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<textarea class="form-control" id="OCCUR_CONTENT"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="BANK_CD">은행명</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<select id="BANK_CD" class="form-control"></select>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="ACCT_NO">계좌번호</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="ACCT_NO" maxlength="30">
+							</div>
+						</div>
+					</div>
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="ACCT_NM">예금주</label><strong class="text-danger">*</strong>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="input-group">
+								<input class="form-control" type="text" id="ACCT_NM" maxlength="30">
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="text-primary text-underline" id="TEXT" style ="text-decoration: underline;">* 공제급여입금통장은 본인 또는 보호자 명의의 계좌번호를 입력하셔야 합니다.</p>
+				<p class="text-primary text-underline" id="TEXT" style ="text-decoration: underline;">* 학생의료공제회 급여는 학기당 1회만 신청이 가능합니다.</p>
+				<div class="b-row-box" role="row" style ="display:none">
+					<div class="b-row-item merge-3">
+						<div class="b-title-box" role="rowheader">
+							<label data-lang for="uploader_target1">첨부파일</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<div class="sec-body" id="uploader_target1"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2" onclick="javascript:return fn_clause();">저장</button>
+							<button class="btn btn-delete mb-2" onclick="javascript:return delPayApplyInfo();">삭제</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script>
+$(document).ready(popInit());
+function popInit() {
+	fn_setCommonCd();
+	
+	$("#ASSIGN_NM").text(scwin.loginUser.collCdKorNm+" "+scwin.loginUser.assignNm + " (" + scwin.loginUser.degCourseGcdKorNm+ ")" );
+	$("#USER").text(scwin.loginUser.userId +"("+scwin.loginUser.nm+")");
+	$("#TERM_INFO").text(scwin.termInfo.SYEAR + "("+scwin.termInfo.TERM_GCD_KOR_NM+")");
+	$("#HJ_STA_GCD_KOR_NM").text(scwin.loginUser.hjStaGcdKorNm);
+	$("#CELLULAR_NO").text(scwin.loginUser.cellularNo);
+	//$("#SYEAR").val(scwin.termInfo.SYEAR);
+	//$("#TERM_GCD").val(scwin.termInfo.TERM_GCD);
+
+	const input = document.querySelector('#SELF_PAY_AMT');
+	input.addEventListener('keyup', function(e){payFormat(e,input);})
+	
+	
+	
+	if(scwin.rowStatus=="U") {
+		fn_payApplyDetail();
+	}else if(scwin.rowStatus=="C"){
+		
+		$("#HOSPITAL_TEL_NO").telEditor({
+			txtVal : "",
+			originVal : "0000|",
+			telnoGbn : "C", /* 휴대폰번호 : C, 전화번호(팩스) : T, ALL : A */
+			telnoNm : "전화번호 "
+		});
+		
+		fn_setUploadTarget();
+		
+		selectBankList();
+	}
+	
+	
+}
+
+/***************************************************************************
+ * fn_setCommonCd
+ **************************************************************************/
+function fn_setCommonCd() {
+	var date = new Date();
+	var maxdate = date.getFullYear();
+	
+	/*학년도 바인드*/
+	gfn_ajax_request({
+		url : "/ost/curc/common/curccommon/selectSearchBoxSyear",
+		reqData : {
+			"BOUNDARY" : "",
+			"STARTYEAR" :maxdate-9,
+			"ENDYEAR" : maxdate
+		},
+		success : function(data, responseData) {
+
+			$("#SYEAR").dropDownList({
+				dataSource : data,
+				commonCode : "",
+				dataTextField : "LABEL",
+				dataValueField : "CODE",
+				optionLabel : "선택",
+				optionValue : "",
+				defaultValue : scwin.termInfo.SYEAR,
+				expnCondition : "",
+				dataBound : function(e) {
+					termInfo = responseData.termInfo;
+					$("#SYEAR").on("change",function(){
+						if($(this).val() == ""){
+							$("#TERM_GCD").val("");
+						}
+					});
+				}
+			});
+			
+			/*학기 공통코드 바인드*/
+			$("#TERM_GCD").dropDownList({
+				dataSource : null,
+				commonCode : "0001_TERM_GCD",
+				dataTextField : "COMMON_DETAIL_CD_KOR_NM",
+				dataValueField : "COMMON_DETAIL_CD",
+				optionLabel : "선택",
+				optionValue : "",
+				defaultValue : scwin.termInfo.TERM_GCD,
+				expnCondition : "AND CHAR_1_CONTENT LIKE 'A%' ",
+				dataBound : function(e) {
+					$("#SCH_TERM_GCD").val("all"); //termInfo.TERM_GCD
+				}
+			});
+			
+			
+
+		}
+	});
+	
+	
+}
+
+function payFormat(e,input) {
+	  let value = e.target.value;
+	  value = Number(value.replaceAll(',', ''));
+	  if(isNaN(value)) {         //NaN인지 판별
+	    input.value = 0;   
+	  }else {                   //NaN이 아닌 경우
+	    const formatValue = value.toLocaleString('ko-KR');
+	    input.value = formatValue;
+	  }
+}
+function fn_payApplyDetail(){
+	gfn_ajax_request({
+		url : "/ost/md/payApplyDetail",
+		reqData : {
+			APPLY_SERIAL_NO : scwin.detailObj.APPLY_SERIAL_NO
+		},
+		success : function(data, responseData) {
+			$("#SYEAR").val(data.SYEAR);
+			$("#TERM_GCD").val(data.TERM_GCD);
+			$("#APPLY_SERIAL_NO").val(data.APPLY_SERIAL_NO);
+			$("#DISEASE_NM").val(data.DISEASE_NM);
+			$("#HOSPITAL_NM").val(data.HOSPITAL_NM);
+			$("#HOSPITAL_TEL_NO").telEditor({
+				txtVal : data.HOSPITAL_TEL_NO,
+				originVal : "0000|"+data.HOSPITAL_TEL_NO,
+				telnoGbn : "C", /* 휴대폰번호 : C, 전화번호(팩스) : T, ALL : A */
+				telnoNm : "전화번호 "
+			});
+			
+			$("#OUTPATIENT_START_DATE").val(data.OUTPATIENT_START_DATE);
+			$("#OUTPATIENT_CLOSE_DATE").val(data.OUTPATIENT_CLOSE_DATE);
+			$("#INPATIENT_START_DATE").val(data.INPATIENT_START_DATE);
+			$("#INPATIENT_CLOSE_DATE").val(data.INPATIENT_CLOSE_DATE);
+			$("#SELF_PAY_AMT").val(gfn_str_numberWithCommas(data.SELF_PAY_AMT));
+			$("#OCCUR_CONTENT").val(data.OCCUR_CONTENT);
+			$("#ATTACH_FILE_GRP_CD").val(data.ATTACH_FILE_GRP_CD);
+			selectBankList(data.BANK_CD);
+			fn_setUploadTarget(data.ATTACH_FILE_GRP_CD);
+			
+			$("#ACCT_NO").val(data.ACCT_NO);
+			$("#ACCT_NM").val(data.ACCT_NM);
+			
+		}
+	});
+	
+}
+
+function selectBankList(bankCd){
+	gfn_ajax_request({
+		url : "/ost/hj/stdtinfo/acctnoupd/selectBankList"
+          ,success: function(data, responseData){
+       	  $("#BANK_CD").dropDownList({          
+      			  dataSource : data,
+                  dataTextField : "BANK_NM",
+                  dataValueField : "BANK_CD",
+                  optionLabel : "선택",
+                  optionValue : "",
+                  defaultValue : bankCd, 
+                  expnCondition : "",
+                  dataBound : function(e) {
+                  }
+              });
+           }
+       });
+}
+
+function fn_setUploadTarget(attach_file_grp_cd){
+
+	var uploader_target1 = $("#uploader_target1").formuploader({
+		SYSTEM_GCD : scwin.systemGcd ,  //시스템코드
+		ATTACH_FILE_GCD : "9999", // 첨부파일 종류 코드 
+		ATTACH_FILE_GRP_CD : gfn_str_parseNull(attach_file_grp_cd) ,  // 첨부파일 그룹 코드	
+		ACCEPT_EXT : scwin.menuInfo.FILE_EXTENSION_CONTENT,  // 허용확장자 ( 메뉴설정에서 들고 오거나 지정한 확장자가 없으면 기본 확장자로 사용. )
+		UPLOAD_SIZE : scwin.menuInfo.FILE_SIZE / 1024 / 1024, // 최대 파일용량 (mb) (메뉴설정에서 들고 오거나 지정한 용량 없으면 기본 20mb )
+       	dataBound : function(data,_target) { /* 업로드 완료후 처리 함수*/
+			alert("업로드 완료",_target);
+			$("#ATTACH_FILE_GRP_CD").val(data.ATTACH_FILE_GRP_CD);
+        }
+	});
+}
+
+function fn_clause() {
+    
+    var param = gfn_com_inputdata($("#payApplyInfo"));
+	common.accountChk(param.BANK_CD,param.ACCT_NO,function(data){
+		console.log(data);
+		if(data.RSLT !="OK"){
+			alert(data.RSLT_MSG,$("#ACCT_NO"));
+			return false;
+		}
+	});
+	if (!fn_validate(param)) return false;
+	
+	/* 정보동의팝업 호출 */
+	gfn_com_clausePop({
+		title : '개인정보 수집 및 이용제공 동의',
+		systemGcd : '0002', /* 공통.약관관리(SYS_CLAUSE_MNG) 테이블의 시스템구분코드(SYSTEM_GCD) */
+		clauseSeqNo : 35, /* 공통.약관관리(SYS_CLAUSE_MNG) 테이블의 약관순번(CLAUSE_SEQ_NO) */
+		params : {},
+		callbackFunc : function(data){
+			/* 필수동의 사항에 동의한 경우 콜백 실행 */
+		    fn_submit();
+		}
+	});
+}
+
+function fn_submit(){
+	
+
+	confirm(gva_SAVE_CONFIRM_MSG,function(_flag){
+		if(_flag) {
+			
+			if(gfn_str_parseNull($("#uploader_target1").find("input[name=attach_file_grp_cd]").val()) != ""){
+				var options = {};
+        	 	options.target= "uploader_target1";
+    			options.success = function(data, responseData) {
+    				executePayApplyInfo();
+    			};
+        	 	$.formuploader._completeFile(options);		
+			}else{
+				executePayApplyInfo();
+			}
+			
+		}
+	});
+}
+
+function fn_validate(param) {
+	var rtnValue = true;
+	
+	rtnValue = gfn_val_validateDataMap(param, [{
+		"id" : "SYEAR",
+		"name" : $("label[for='SYEAR']").text(),
+		"notNull" : true,
+	},{
+		"id" : "TERM_GCD",
+		"name" : $("label[for='TERM_GCD']").text(),
+		"notNull" : true,
+	},{
+		"id" : "DISEASE_NM",
+		"name" : $("label[for='DISEASE_NM']").text(),
+		"notNull" : true,
+	},{
+		"id" : "HOSPITAL_NM",
+		"name" : $("label[for='HOSPITAL_NM']").text(),
+		"notNull" : true,
+	},{
+		"id" : "HOSPITAL_TEL_NO",
+		"name" : $("label[for='HOSPITAL_TEL_NO']").text(),
+		"notNull" : true,
+	},{
+		"id" : "OUTPATIENT_START_DATE",
+		"name" : $("label[for='OUTPATIENT_START_DATE']").text(),
+		"notNull" : true,
+	},{
+		"id" : "OUTPATIENT_CLOSE_DATE",
+		"name" : $("label[for='OUTPATIENT_START_DATE']").text(),
+		"notNull" : true,
+	},{
+		"id" : "SELF_PAY_AMT",
+		"name" : $("label[for='SELF_PAY_AMT']").text(),
+		"notNull" : true,
+	},{
+		"id" : "OCCUR_CONTENT",
+		"name" : $("label[for='OCCUR_CONTENT']").text(),
+		"notNull" : true,
+	},{
+		"id" : "BANK_CD",
+		"name" : $("label[for='BANK_CD']").text(),
+		"notNull" : true,
+	},{
+		"id" : "ACCT_NO",
+		"name" : $("label[for='ACCT_NO']").text(),
+		"notNull" : true,
+	},{
+		"id" : "ACCT_NM",
+		"name" : $("label[for='ACCT_NM']").text(),
+		"notNull" : true,
+	}
+	
+	]);
+	
+	if (!rtnValue) return rtnValue;
+
+	return rtnValue;
+}
+
+function delPayApplyInfo(){
+    scwin.rowStatus="D";
+    confirm(gva_DELETE_CONFIRM_MSG,function(_flag){
+		if(_flag) {
+		    executePayApplyInfo();
+		}
+	});
+}
+
+function executePayApplyInfo(){
+	
+	var param = gfn_com_inputdata($("#payApplyInfo"));
+	param.rowStatus = scwin.rowStatus;
+	
+	param.OUTPATIENT_START_DATE = param.OUTPATIENT_START_DATE.replaceAll("-","");
+	param.OUTPATIENT_CLOSE_DATE = param.OUTPATIENT_CLOSE_DATE.replaceAll("-","");
+	param.INPATIENT_START_DATE = param.INPATIENT_START_DATE.replaceAll("-","");
+	param.INPATIENT_CLOSE_DATE = param.INPATIENT_CLOSE_DATE.replaceAll("-","");
+	param.SELF_PAY_AMT = param.SELF_PAY_AMT.replaceAll(",","");
+	gfn_ajax_request({
+		url : "/ost/md/executePayApplyInfo",
+		reqData : param,
+        success: function(data, responseData){
+        	
+        	if(data !=null && data.O_RSLT){
+        		alert(data.O_MSG);
+        	}else{
+        		if(param.rowStatus =="C"){
+        			alert("저장 완료 되었습니다.");
+        		}else if(param.rowStatus =="U"){
+        			alert("수정 완료 되었습니다.");
+        		}else if(param.rowStatus =="D"){
+        			alert("삭제 완료 되었습니다.");
+        		}
+        		gfn_com_closeModalWall(1,function(){
+        			fn_sch();
+        		});
+        	}
+        	
+        	
+       }
+   });
+}
+</script>

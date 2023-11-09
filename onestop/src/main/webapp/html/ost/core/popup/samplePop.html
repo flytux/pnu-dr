@@ -1,0 +1,178 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="b-table-box flex-col-1" role="table" aria-label="1단 테이블">
+				<div class="b-row-box" role="row">
+					<div class="b-row-item">
+						<div class="b-title-box" role="rowheader">
+						   <label class="req">시스템구분</label>
+						</div>
+						<div class="b-con-box" role="cell">
+							<select id="SYSTEM_GCD" class="form-control" data-bind="selected: SYSTEM_GCD"></select>
+						</div>
+					</div>                                  
+				</div>
+				<div class="b-row-box" role="row">
+                    <div class="b-row-item">
+                        <div class="b-title-box" role="rowheader">
+                           <label class="req">공통코드</label>
+                        </div>
+                        <div class="b-con-box" role="cell">
+                        	<input id="COMMON_CD" class="form-control" data-bind="value: COMMON_CD"></input>
+                        </div>
+                    </div>                                  
+                </div>
+                <div class="b-row-box" role="row">
+                    <div class="b-row-item">
+                        <div class="b-title-box" role="rowheader">
+                           <label class="req">공통코드명</label>
+                        </div>
+                        <div class="b-con-box" role="cell">
+                        	<input id="COMMON_CD_KOR_NM" class="form-control" data-bind="value: COMMON_CD_KOR_NM"></input>	
+                        </div>
+                    </div>                                  
+                </div> 
+                <div class="b-row-box" role="row">
+                    <div class="b-row-item">
+                        <div class="b-title-box" role="rowheader">
+                           <label>사용여부</label>
+                        </div>
+                        <div class="b-con-box" role="cell">
+                        	<div class="form-check form-check-inline">
+	                          <input class="form-check-input" type="radio" name="USE_FG" id="USE_FG_Y" value="Y" data-bind="checked: USE_FG" checked>
+	                          <label class="form-check-label" for="USE_FG_Y">예</label>
+	                        </div>
+	                        <div class="form-check form-check-inline">
+	                          <input class="form-check-input" type="radio" name="USE_FG" id="USE_FG_N" value="N" data-bind="checked: USE_FG">
+	                          <label class="form-check-label" for="USE_FG_N">아니오</label>
+	                        </div>
+                        </div>
+                    </div>                                  
+                </div>                                     
+			</div>
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2" onclick="javascript:return fn_samplePopSave();">저장</button>
+							<button class="btn btn-dark mb-2 hide" onclick="javascript:return fn_samplePopDelete();">삭제</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(popInit());
+    
+    function popInit() {
+    	$("#SYSTEM_GCD").dropDownList({          
+			dataSource : null,
+            commonCode : "0000_SYSTEM_GCD",
+            dataTextField : "COMMON_DETAIL_CD_KOR_NM",
+            dataValueField : "COMMON_DETAIL_CD",
+            optionLabel : "선택",
+            optionValue : "",
+            expnCondition : "",
+            hakbuGradFg : false,
+            dataBound : function(e) {
+            	if(scwin.rowState == "U") {
+            		$("#SYSTEM_GCD, #COMMON_CD").prop("disabled",true);
+            		$("#popups .btn-box-right button:eq(1)").show();
+            		gfn_com_dataBind($("#popups"), scwin.detailObj);
+            	} else {
+            		$("#popups .btn-box-right button:eq(1)").remove();
+            	}
+            }
+        });
+    }
+    
+    function fn_validate(param) {
+		var rtnValue = true;
+
+		rtnValue = gfn_val_validateDataMap(param, [{
+			"id" : "SYSTEM_GCD",
+			"name" : "시스템구분",
+			"notNull" : true,
+		},{
+			"id" : "COMMON_CD",
+			"name" : "공통코드",
+			"notNull" : true
+		},{
+			"id" : "COMMON_CD_KOR_NM",
+			"name" : "공통코드명",
+			"notNull" : true
+		},{
+			"id" : "USE_FG",
+			"name" : "사용여부",
+			"notNull" : true
+		}]);
+		
+		if (!rtnValue) return rtnValue;
+
+		return rtnValue;
+	}
+    
+    function fn_validateEtc() {
+		if($(":input:radio[name=USE_FG]:checked").val() == "N") {
+        	alert("사용여부가 N입니다.");
+            return;
+        }
+		return true;
+	}
+    
+    function fn_samplePopSave() {
+
+    	var param = gfn_com_inputdata($("#popups"));
+    	
+    	if (!fn_validate(param)) return false;
+    	
+    	if (!fn_validateEtc()) return false;
+    	
+    	param["rowState"] = scwin.rowState;
+    	
+    	confirm(gva_SAVE_CONFIRM_MSG,function(_flag){
+    		if(_flag) {
+    			
+    			param["agreeDltInfo"] = agreeDltInfo; /* 신청정보 parameter에 개인정보동의 내용도 넣어줌 */
+    			
+    			gfn_ajax_request({
+        			url : "/common/sample/saveSampleInfo",        			
+        			reqData : param,
+        			success : function(data, responseData){
+        				alert(data.msg);
+        				gfn_com_closeModalWall(1,function(){
+        					fn_sch();
+        				});		
+        			}
+        		});
+    		}
+    	});
+    }
+    
+    function fn_samplePopDelete() {
+    	var param = gfn_com_inputdata($("#popups"));
+
+    	param["rowState"] = 'D';
+    	
+    	confirm(gva_DELETE_CONFIRM_MSG,function(_flag){
+    		if(_flag) {
+    			gfn_ajax_request({
+        			url : "/common/sample/saveSampleInfo",
+        			reqData : param,
+        			success : function(data, responseData){
+        				alert(data.msg);
+        				gfn_com_closeModalWall(1,function(){
+        					fn_sch();
+        				});				
+        			}
+        		});
+    		}
+    	});    	
+    }
+</script>

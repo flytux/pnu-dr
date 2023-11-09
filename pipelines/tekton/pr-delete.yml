@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pr-delete
+  namespace: build
+spec:
+  jobTemplate:
+    metadata:
+      namespace: build
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - |2-
+
+              ns=build
+              tkn pr delete -n $ns --keep 5 --force
+              echo "--- pipeline deleted ---"
+            image: dev:sh
+            imagePullPolicy: IfNotPresent
+            name: pr-delete
+          restartPolicy: Never
+  schedule: 0 0/12 * * *
+  successfulJobsHistoryLimit: 1
+  suspend: false

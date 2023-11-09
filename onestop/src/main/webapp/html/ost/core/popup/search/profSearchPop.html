@@ -1,0 +1,82 @@
+<div id="popups">
+	<section class="sec-1">
+		<header>
+		   <h4 class="sec-title"></h4>
+		</header>
+		<div class="sec-body">
+            <div class="table-box">
+                <div class="table-body">                    
+                    <table class="table table-hover" data-toggle="table" >
+                        <caption>Prof Search Table</caption>
+                        <colgroup>
+                            <col style="min-width: 20px;">
+                            <!-- <col style="min-width: 50px;"> -->
+                            <col style="min-width: 80px;">
+                            <col style="min-width: 150px;">
+                            <col style="min-width: 100px;">
+                            <col style="min-width: 100px;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">번호</th>
+                                <!-- <th scope="col">직원번호</th> -->
+                                <th scope="col">이름</th>
+                                <th scope="col">소속</th>
+                                <th scope="col">직급</th>
+                                <th scope="col">상태</th>
+                            </tr> 
+                        </thead>
+                        <tbody id="_resultTbody">
+                        </tbody>
+                    </table>
+                </div>                  
+            </div>
+		</div>
+	</section>
+</div>
+<script type="text/x-tbody-template" id="_resultTemplate">
+    <tr style="cursor:pointer;" tabindex="0">
+        <td>#:auto#</td>
+        <!-- <td>#:USER_ID#</td> -->
+        <td>#:NM#</td>
+        <td class="text-left">#:ASSIGN_NM#</td>
+        <td>#:JK_NM#</td>
+        <td>#:EMP_STA_GCD_NM#</td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(document).ready(popInit());
+    
+    function popInit() {
+        gfn_ajax_request({
+            url : "/core/function/getEmpUserInfo",
+            reqData : {
+                KEYWORD : $("#" + scwin.profSearchPop.compid).val()
+            },
+            success : function(data, responseData) {                
+                $(".popup-wrap #_resultTbody").listView({
+                    dataSource : data,
+                    dataBound : function(e) {
+                        $(".popup-wrap #_resultTbody tr").on("dblclick , keyup", function(e) {
+                        	
+                        	if( (e.type == "keyup" && e.keyCode == 13) || e.type == "dblclick" ){
+	                            $("#" + scwin.profSearchPop.compid).val($(this).data().NM);
+	                            $("#" + scwin.profSearchPop.compid+"_hidden").val($(this).data().USER_ID);
+	                            $("#" + scwin.profSearchPop.compid+"_hidden").data($(this).data());
+	                            $("#" + scwin.profSearchPop.compid).css("background-color","rgb(255 193 7 / 30%)");
+	                            if($("#" + scwin.profSearchPop.compid).attr("callbackFunc") != undefined){
+	                            	window[$("#" + scwin.profSearchPop.compid).attr("callbackFunc")]($(this).data());
+	                        	}
+	                            $("#" + scwin.profSearchPop.compid).focus();
+	                            gfn_com_closeModalWall($(this));
+                        	}
+                        });
+                    },
+                    template : $(".popup-wrap #_resultTemplate"),
+                    totalCnt : data.length,
+                    headerText : "특정 사용자 정보를 더블클릭 하면 선택 됩니다."
+                });
+            }
+        });
+    }
+</script>

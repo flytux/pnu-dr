@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+ * 출석인정신청 iBatis SqlMap으로서 작용한다.
+ * @Company : IDINO Co., Ltd.
+ * @Copyright : Copyright (C) by IDINO All rights reserved.
+ * @Author : 최아영
+ * @Create : 2022년 02월 23일
+ * @Title : ComnCdMngtSql
+ * @version 1.0
+ * @stereotype Sql
+  -->
+<mapper namespace="ost.cls.attendconf.attendacceptapply">
+
+	<select id="selectAttendAcceptApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출석인정신청_신청내역_조회(
+	    	#{SESSION_USER_ID}, 
+	    	#{SCH_SYEAR}, 
+	    	#{SCH_TERM_GCD}, 
+    	    #{FIRSTINDEX},
+    		#{LASTINDEX}
+	    )} 
+	</select>
+
+	<select id="selectLecApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출석인정신청_수강신청내역_조회(
+	    	#{SESSION_USER_ID}, 
+	    	#{SCH_SYEAR}, 
+	    	#{SCH_TERM_GCD}, 
+    	    #{FIRSTINDEX},
+    		#{LASTINDEX}
+	    )} 
+	</select>
+	
+	<select id="selectLecDate" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출석인정신청_학사일정_조회(
+	    	#{SYEAR}, 
+	    	#{TERM_GCD},
+            #{SESSION_USER_ID}            
+	    )} 
+	</select>	
+
+	<select id="saveAttendAcceptApply" resultType="hashMap">
+	    {CALL OST.DBO.OST_수업_출결확인_출석인정신청_신청내역_삭제(
+	    	#{SYEAR}, 
+	    	#{TERM}, 
+	    	#{SUBJ_NO}, 
+	    	#{CLASS_NO}, 
+	    	#{SEQ_NO}, 
+	    	#{SESSION_USER_ID}, 
+			#{SESSION_USER_ID} , 
+			#{SESSION_USER_IP} , 
+			#{SESSION_SYSTEM_GCD} , 
+			#{SESSION_MENU_CD}
+		)} 
+	</select>	
+
+	   <select id="saveLecApply" resultType="hashMap">   
+	    {  CALL OST.DBO.OST_수업_출결확인_출석인정신청_출석인정신청_저장(
+	    		#{SYEAR}
+	    	 ,  #{TERM_GCD}
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SUBJ_NO} 
+	    	 ,  #{CLASS_NO}  
+	    	 ,  #{ATTACH_FILE_GRP_CD}
+			 ,  #{ATTEND_START_DATE_VAL}			 
+	    	 ,  #{ATTEND_CLOSE_DATE_VAL}
+	    	 ,  #{APPLY_REASON_GCD_VAL}
+	    	 ,  #{DETAIL_REASON_CONTENT_VAL}  
+	    	 ,  #{SESSION_USER_ID}
+	    	 ,  #{SESSION_USER_IP}
+	    	 ,  #{SESSION_SYSTEM_GCD}
+	    	 ,  #{SESSION_MENU_CD}
+	    )} 
+	</select>
+
+</mapper>

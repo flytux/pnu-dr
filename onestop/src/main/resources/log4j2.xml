@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<Configuration>
+    <properties>
+        <property name="log-path">C:/logs/onestop</property>
+        <!-- <property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %-30.30C::%-30.30M:%-5.5L | %msg%n</property> -->
+    </properties>
+    <Appenders>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%highlight{%-5level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
+        </Console>
+
+        <!-- -->
+        <RollingFile name="file" filename="${log-path}/onestop_log.log" filePattern="${log-path}/%d{yyyyMM}/ses_log_%d{yyyyMMdd}.log"
+            append="false">
+            <PatternLayout pattern="%d{yyyy.MM.dd hh:mm:ss,SSS} %5p [%c::%M] %m%n" />
+
+            <Policies>
+                <!-- interval(default 1)이므로 1초 간격으로 rolling 수행 intervar속성 추가 -->
+                <TimeBasedTriggeringPolicy interval="1" />
+                <!-- 사이즈 제한을 하고 싶을 경우 아래 속성 추가 -->
+                <!-- <SizeBasedTriggeringPolicy size="250 MB"/> -->
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- log SQL with timing information, post execution -->
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Root>
+<!-- 
+        <Logger name="egovframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        <Logger name="java.sql" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        <Logger name="com.onestop" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        
+        <Logger name="jdbc.sqlonly" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        
+        <Logger name="log4jdbc.log4j2" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+ -->
+        <!-- SQL Logger -->
+        <!-- 
+        <logger name="jdbc.sqltiming" additivity="false">
+            <level value="debug" />
+            <appender-ref ref="console" />
+        </logger>
+ -->
+        <logger name="jdbc.sqlonly" additivity="false">
+            <level value="error" />
+            <appender-ref ref="console" />
+        </logger>
+        <!-- 
+        <logger name="jdbc.audit" additivity="false">
+            <level value="debug" />
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc.resultset" additivity="false">
+            <level value="debug" />
+            <appender-ref ref="console" />
+        </logger>
+ 
+        <logger name="jdbc.resultsettable" additivity="false">
+            <level value="debug" />
+            <appender-ref ref="console" />
+        </logger>
+ -->
+    </Loggers>
+</Configuration>

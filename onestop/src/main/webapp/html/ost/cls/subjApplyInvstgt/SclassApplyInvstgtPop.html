@@ -1,0 +1,322 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<!-- 검색 영역 -->
+			<div class="search-box">
+				<div class="b-table-box flex-col-4" role="table" aria-label="순위보기">
+					<div class="b-row-box" role="row">
+						<div class="b-row-item merge-2">
+							<div class="b-title-box" role="rowheader">
+								<label class="req" data-lang>순위보기</label>
+							</div>
+							<div class="b-con-box" role="cell" aria-colspan="3">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="SCH_TOT_CNT" id="radio1" value="10" checked>
+									<label class="form-check-label mr-2" for="radio1" data-lang>TOP 10 강좌</label>
+									<input class="form-check-input" type="radio" name="SCH_TOT_CNT" id="radio2" value="30">
+									<label class="form-check-label mr-2" for="radio2" data-lang>TOP 30 강좌</label>
+									<input class="form-check-input" type="radio" name="SCH_TOT_CNT" id="radio3" value="50">
+									<label class="form-check-label mr-2" for="radio3" data-lang>TOP 50 강좌</label>
+								</div>
+							</div>
+						</div>
+						<div class="b-row-item merge-2">
+							<div class="b-title-box" role="rowheader">
+								<label class="req" for="SCH_GUBUN_POP" data-lang>교과목구분</label>
+							</div>
+							<div class="b-con-box" role="cell">
+								<select id="SCH_GUBUN_POP" class="form-control">
+									<option value="">전체</option>
+									<option value="1">교양선택</option>
+									<option value="2">교양필수(정보화소양)</option>
+									<option value="3">전공기초/전공/교직과목(1,2,3,4학년)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="b-row-box" role="row">
+						<div class="b-row-item merge-4">
+							<div class="b-title-box" role="rowheader">
+								<label class="req" for="SCH_AREA_GCD" data-lang>영역구분</label>
+							</div>
+							<div class="b-con-box" role="cell" aria-colspan="7">
+								<select id="SCH_AREA_GCD" class="form-control" auto-bind="SCH_GUBUN_POP"></select>
+							</div>
+						</div>
+					</div>
+					<div class="b-row-box" role="row">
+						<div class="b-row-item">
+							<div class="b-title-box" role="rowheader">
+								<label class="req" for="SCH_COLL_GRAD_GCD" data-lang>대학/대학원</label>
+							</div>
+							<div class="b-con-box" role="cell">
+								<input type="text" id="SCH_COLL_GRAD_GCD" class="form-control" />
+							</div>
+						</div>
+						<div class="b-row-item">
+							<div class="b-title-box" role="rowheader">
+								<label class="" for="SCH_GRAD_GCD" data-lang>대학원</label>
+							</div>
+							<div class="b-con-box" role="cell">
+								<input type="text" id="SCH_GRAD_GCD" class="form-control" />
+							</div>
+						</div>
+						<div class="b-row-item">
+							<div class="b-title-box" role="rowheader">
+								<label class="" for="SCH_COLL_CD" data-lang>단과대학</label>
+							</div>
+							<div class="b-con-box" role="cell">
+								<input type="text" id="SCH_COLL_CD" class="form-control" />
+							</div>
+						</div>
+						<div class="b-row-item">
+							<div class="b-title-box" role="rowheader">
+								<label class="" for="SCH_DEPT_CD" data-lang>학과(부)/전공</label>
+							</div>
+							<div class="b-con-box" role="cell">
+								<input type="text" id="SCH_DEPT_CD" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-box">
+				<div class="form-row btn-box-right">
+					<div class="col-auto">
+						<button class="btn btn-primary mb-3" onclick="javascript:return fn_sclassSubjRankSch();" data-lang>순위보기</button>
+					</div>
+				</div>
+			</div>
+			<!-- /END 검색 영역 -->
+			<div class="table-box">
+				<div class="table-body">
+					<table class="table table-hover" data-toggle="table" data-show-column="true">
+						<caption>계절수업 수요조사 결과</caption>
+						<colgroup>
+							<col style="min-width: 50px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 150px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 150px;">
+							<col style="min-width: 200px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">순위</th>
+								<th scope="col">신청자수</th>
+								<th scope="col">교과목구분</th>
+								<th scope="col">교과목명</th>
+								<th scope="col">교과목번호</th>
+								<th scope="col">학점</th>
+								<th scope="col">주관학과</th>
+							</tr>
+						</thead>
+						<tbody id="sclassSubjRankTbody"></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="message-box">
+				<div class="message-box-inner">
+					<div class="message-body">
+						<ul class="list list-style-1">
+							<li><span class="dfn"></span>내가 신청한 강좌 결과 보기</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="table-box">
+				<div class="table-body">
+					<table class="table table-hover" data-toggle="table"  data-show-column="true">
+						<caption>내가 신청한 강좌 결과</caption>
+						<colgroup>
+							<col style="min-width: 50px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 150px;">
+							<col style="min-width: 100px;">
+							<col style="min-width: 150px;">
+							<col style="min-width: 200px;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">No</th>
+								<th scope="col">교과목구분</th>
+								<th scope="col">교과목명</th>
+								<th scope="col">교과목번호</th>
+								<th scope="col">학점</th>
+								<th scope="col">주관학과</th>
+							</tr>
+						</thead>
+						<tbody id="applySubjTbody"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/x-tbody-template" id="sclassSubjRankTemplate">
+	<tr style="cursor:pointer;">
+		<td>#:RN#</td>
+        <td>#:APPLY_CNT#</td>
+	    <td>#:SUBJ_GCD_NM#</td>
+		<td>#:SUBJ_NM#</td>
+		<td>#:SUBJ_NO#</td>
+		<td>#:CRDT#</td>
+		<td>#:MNG_DEPT_NM#</td>
+	</tr>
+</script>
+<script type="text/x-tbody-template" id="applySubjTemplate">
+	<tr style="cursor:pointer;">
+		<td>#:RN#</td>
+        <td>#:SUBJ_GCD_NM#</td>
+	    <td>#:SUBJ_NM#</td>
+		<td>#:SUBJ_NO#</td>
+		<td>#:CRDT#</td>
+		<td>#:MNG_DEPT_NM#</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	$(document).ready(popInit());
+	/* 전역변수 */
+	var btnFlag = ""; // 수정버튼 : update, 신청취소버튼 : cancel 
+
+	function popInit() {
+
+		$("#SCH_AREA_GCD").dropDownList({
+			dataSource : null,
+			commonCode : "0001_AREA_GCD",
+			dataTextField : "COMMON_DETAIL_CD_KOR_NM",
+			dataValueField : "COMMON_DETAIL_CD",
+			optionLabel : "선택",
+			optionValue : "",
+			expnCondition : "AND ISNULL(CHAR_1_CONTENT, '0000') <= '2021' AND '2021' < ISNULL(CHAR_3_CONTENT, '9999')",
+			hakbuGradFg : false,
+			dataBound : function(e) {
+
+			}
+		});
+
+		gfn_com_assignCombo({
+			collGradGcd : $("#SCH_COLL_GRAD_GCD"),
+			gradGcd : $("#SCH_GRAD_GCD"),
+			collCd : $("#SCH_COLL_CD"),
+			deptCd : $("#SCH_DEPT_CD"),
+			comboLvl : 4,
+			dataBound : function(e) {
+
+			}
+		});
+		
+		$("#SCH_AREA_GCD").closest(".b-row-box").hide();
+		$("#SCH_COLL_GRAD_GCD").closest(".b-row-box").hide();
+
+		/*  검색방법 변경 시 이벤트 */
+		$("#SCH_GUBUN_POP").change(function() {
+			var schGubun = $(this).val();
+			if (schGubun == "1") {
+				$("#SCH_AREA_GCD").closest(".b-row-box").show();
+				$("#SCH_COLL_GRAD_GCD").closest(".b-row-box").hide();
+			} else if (schGubun == "2") {
+				$("#SCH_AREA_GCD").closest(".b-row-box").hide();
+				$("#SUBJ_NM").closest(".b-row-box").hide();
+				$("#SCH_COLL_GRAD_GCD").closest(".b-row-box").hide();
+			} else if (schGubun == "3") {
+				$("#SCH_AREA_GCD").closest(".b-row-box").hide();
+				$("#SCH_COLL_GRAD_GCD").closest(".b-row-box").show();
+			} else {
+				$("#SCH_AREA_GCD").closest(".b-row-box").hide();
+				$("#SCH_COLL_GRAD_GCD").closest(".b-row-box").hide();
+			}
+		});
+	}
+
+	/* 계절수업 수요조사 교과목목록 조회 */
+	function fn_sclassSubjRankSch(data) {
+
+		/* 검색조건데이터 가져오기 */
+		if (gfn_com_isEmptyObject(data)) {
+			data = gfn_com_searchData($("#popups").find(".search-box"));
+			data["SYEAR"] = scwin.termInfo.SYEAR;
+			data["TERM_GCD"] = scwin.termInfo.TERM_GCD;
+		}
+
+		/* 필수체크 */
+		var valObj = [ ];
+
+		if ($("#SCH_GUBUN_POP").val() == "1") {
+			valObj.push({
+				"id" : "SCH_AREA_GCD",
+				"name" : "영역구분",
+				"notNull" : true,
+			});
+		} else if ($("#SCH_GUBUN").val() == "3") {
+			valObj.push({
+				"id" : "SCH_COLL_GRAD_GCD",
+				"name" : "대학",
+				"notNull" : true,
+			}, {
+				"id" : "SCH_GRAD_GCD",
+				"name" : "대학원구분",
+				"notNull" : true,
+			}, {
+				"id" : "SCH_COLL_CD",
+				"name" : "단과대학",
+				"notNull" : true,
+			}, {
+				"id" : "SCH_DEPT_CD",
+				"name" : "학과(전공)",
+				"notNull" : true,
+			});
+		} 
+
+		if (!gfn_val_validateDataMap(data, valObj))
+			return false;
+
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/cls/subjApplyInvstgt/sclassApplyInvstgt/selectListSclassSubjRank",
+			reqData : data,
+			success : function(data, responseData) {
+				$("#sclassSubjRankTbody").listView({
+					dataSource : data,
+					emptyComment : '해당 검색방법과 조건에 일치하는 교과목이 존재하지 않습니다.',
+					dataBound : function(e) {
+					},
+					template : $("#sclassSubjRankTemplate"),
+					totalCnt : responseData.totalCnt,
+				});
+				
+				if (!gfn_com_isEmptyObject(data)) {
+					fn_applySubjSch();
+				}
+			}
+		});
+	}
+	
+	/* 내가 신청한 계절수업 개설신청 교과목 목록 조회 */
+	function fn_applySubjSch(data) {
+		// 페이징 정보 담기 
+		$.each(scwin.pageInfo, function(k, v) {
+			paramData[k] = v;
+		});
+		/* ajax처리 */
+		gfn_ajax_request({
+			url : "/ost/cls/subjApplyInvstgt/sclassApplyInvstgt/selectListApplySubj",
+			reqData : paramData,
+			success : function(data, responseData) {
+				scwin.termInfo = responseData.termInfo;
+
+				$("#applySubjTbody").listView({
+					dataSource : data,
+					emptyComment : '현재 신청한 교과목이 없습니다.',
+					dataBound : function(e) {
+						totalCnt = responseData.pageInfo.totCnt;
+						currentData = data;
+					},
+					template : $("#applySubjTemplate"),
+					totalCnt : responseData.totalCnt,
+				});
+			}
+		});
+	}
+</script>

@@ -1,0 +1,152 @@
+<div id="popups">
+	<section class="sec-1">
+		<div class="sec-body">
+			<div class="accordion">
+				<div class="card">
+					<div class="card-header" id="heading1" style="padding: 3px;">
+						<button class="btn btn-block  collapsed" type="button" data-toggle="collapse" data-target="#collapse1" data-expanded="false" data-controls="collapse1">
+							<b data-lang>고급설정</b>
+						</button>
+					</div>
+					<div id="collapse1" class="collapse" aria-labelledby="heading1" style="">
+
+						<div class="b-table-box flex-col-1" role="table" aria-label="1단 테이블" style="margin-bottom: 0px;">
+							<div class="b-row-box" role="row">
+								<div class="b-row-item">
+									<div class="b-title-box" role="rowheader">
+										<label class="tel-label">헤더 유무</label>
+									</div>
+									<div class="b-con-box" role="cell">
+										<div id="HEADER_FG">
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="HEADER_FG0" name="HEADER_FG" value="Y" class="custom-control-input"> <label class="custom-control-label" for="HEADER_FG0">포함</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="HEADER_FG1" name="HEADER_FG" value="N" checked="" class="custom-control-input"> <label class="custom-control-label" for="HEADER_FG1">미포함</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="b-row-item">
+									<div class="b-title-box" role="rowheader">
+										<label for="START_ROW" class="tel-label">시작 row</label>
+									</div>
+									<div class="b-con-box" role="cell">
+										<div class="row">
+											<div class="col-auto">
+												<input id="START_ROW" class="form-control" type="number" value="0">
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="b-row-item">
+									<div class="b-title-box" role="rowheader">
+										<label for="START_COL" class="tel-label">시작 col</label>
+									</div>
+									<div class="b-con-box" role="cell">
+										<div class="row">
+											<div class="col-auto">
+												<input id="START_COL" class="form-control" type="number" value="0">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="b-row-item">
+									<div class="b-title-box" role="rowheader">
+										<label for="SHEET_NO" class="tel-label">시트 No</label>
+									</div>
+									<div class="b-con-box" role="cell">
+										<div class="row">
+											<div class="col-auto">
+												<input id="SHEET_NO" class="form-control" type="number" value="0">
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="b-table-box flex-col-1" role="table" aria-label="1단 테이블">
+					<div class="b-row-box" role="row">
+
+						<div class="b-row-item merge-3" style="border-left: 1px solid #E1E2EA;">
+							<div class="b-con-box" role="cell" aria-colspan="2">
+								<input type="file" id="file" onchange="fn_fileCheck()" />
+								<!-- onchange="fn_excelUpload()" -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<div class="_footer">
+		<section class="sec-1">
+			<div class="sec-body">
+				<div class="btn-box">
+					<div class="form-row btn-box-right">
+						<div class="col-auto">
+							<button class="btn btn-danger mb-2" id="uploadBtn">파일업로드</button>
+							<!-- onclick="fn_excelUpload()" -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script>
+	function fn_fileCheck() {
+
+		var fileName = $("#file")[0].files[0].name;
+		var fileNameArr = fileName.split("\.");
+		var ext = fileNameArr[fileNameArr.length - 1];
+		var accept_ext = "xlsx,xls";
+		if (accept_ext.indexOf(ext.toLowerCase(), 0) < 0) {
+			alert("Excel 파일만 업로드 가능합니다.");
+			return;
+		}
+	}
+
+	function fn_excelUpload(params) {
+		confirm("엑셀 업로드 하시겠습니까?", function(_flag) {
+			if (_flag) {
+
+				if (gfn_str_parseNull($("#file")[0].files[0]) == '') {
+					alert("파일을 선택해주세요.");
+					return;
+				}
+
+				var formData = new FormData();
+				formData.append("file", $("#file")[0].files[0]);
+				formData.append("HEADER_FG", $("input[name=HEADER_FG]:checked")
+						.val());
+				formData.append("START_ROW", $("#START_ROW").val());
+				formData.append("START_COL", $("#START_COL").val());
+				formData.append("SHEET_NO", $("#SHEET_NO").val());
+
+				$.formuploader._gfn_ajax_file_request({
+					url : "/file/uploadExcel",
+					reqData : formData,
+					success : function(responseData) {
+
+						if (typeof params.dataBound == "function") {
+							params.dataBound(responseData);
+						} else if (typeof params.dataBound == "string") {
+							window[params.dataBound](responseData);
+						}
+
+					}
+
+				});
+				gfn_com_closeModalWall(1);
+			}
+		});
+	}
+</script>

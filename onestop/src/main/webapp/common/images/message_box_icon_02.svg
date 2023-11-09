@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="108" viewBox="0 0 104 108">
+  <g id="message_box_icon_02" transform="translate(-348 -347)">
+    <circle id="Ellipse_10" data-name="Ellipse 10" cx="30" cy="30" r="30" transform="translate(392 395)" fill="#f5f6f8"/>
+    <g id="Group_212" data-name="Group 212" transform="translate(-621.5 -320)">
+      <path id="Rectangle_52" data-name="Rectangle 52" d="M1,0H14a0,0,0,0,1,0,0V50a0,0,0,0,1,0,0H1a1,1,0,0,1-1-1V1A1,1,0,0,1,1,0Z" transform="translate(997.5 691)" fill="none" stroke="#023975" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Rectangle_656" data-name="Rectangle 656" d="M1,0H16a0,0,0,0,1,0,0V48a0,0,0,0,1,0,0H1a1,1,0,0,1-1-1V1A1,1,0,0,1,1,0Z" transform="translate(1033.5 693)" fill="none" stroke="#023975" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Rectangle_655" data-name="Rectangle 655" d="M1,0H22a0,0,0,0,1,0,0V57a0,0,0,0,1,0,0H1a1,1,0,0,1-1-1V1A1,1,0,0,1,1,0Z" transform="translate(1011.5 684)" fill="none" stroke="#023975" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <rect id="Rectangle_55" data-name="Rectangle 55" width="66" height="13" transform="translate(990.5 741)" fill="none" stroke="#023975" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Line_193" data-name="Line 193" x2="22" transform="translate(1011.5 698)" fill="none" stroke="#023975" stroke-linecap="round" stroke-width="4"/>
+      <line id="Line_194" data-name="Line 194" x2="22" transform="translate(1011.5 711)" fill="none" stroke="#023975" stroke-linecap="round" stroke-width="4"/>
+      <line id="Line_195" data-name="Line 195" y2="11" transform="translate(1041.5 717)" fill="none" stroke="#023975" stroke-linecap="round" stroke-width="4"/>
+    </g>
+    <path id="Rectangle_570" data-name="Rectangle 570" d="M357,367v-7.5l-5.164,5.434-1.45-1.377L355.67,358H348v-2h7.5l-5.434-5.164,1.378-1.45L357,354.67V347h2v7.5l5.163-5.433,1.45,1.378L360.329,356H368v2h-7.5l5.433,5.163-1.377,1.45L359,359.33V367Z" fill="#aaa"/>
+  </g>
+</svg>
