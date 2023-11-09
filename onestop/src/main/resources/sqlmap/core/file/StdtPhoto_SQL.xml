@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="core.stdtPhoto">
-    <select id="saveStdtPhoto" parameterType="map" resultType="hashMap">
-         { CALL HAKJUK.DBO.HJ_학생정보_학적사진_개인별사진_저장(#{STDT_NO}, #{PIC}, #{SCH_GUBUN}, #{SCH_ADMS_YEAR}  
-                                                            , #{SESSION_USER_ID}, #{SESSION_USER_IP}, #{SESSION_SYSTEM_GCD}, #{SESSION_MENU_CD}) }
-    </select>
-    
-</mapper>
